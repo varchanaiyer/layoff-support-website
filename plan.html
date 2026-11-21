@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Your plan — Layoff Support</title>
 <meta name="description" content="Every deadline your layoff started, your health coverage options and people to talk to, in one place. Free, private, nothing leaves your browser.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -165,31 +165,55 @@ input[type=range]{width:100%;accent-color:var(--teal)}
 }
 .mcrisis{display:none;justify-content:space-between;font-size:12px;color:var(--rose);font-weight:600}
 @media (prefers-reduced-motion:no-preference){ .view{animation:in .25s ease both} @keyframes in{from{transform:translateY(4px)}to{transform:none}} }
+
+/* Shared site side menu (same as every other page) */
+.app{grid-template-columns:260px minmax(0,1fr)}
+.dash__side{background:#fff;border-right:1px solid #F1F5F9;padding:28px 20px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.dash__side a{text-decoration:none}
+.dash__side .logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:36px}
+.logo__mark{width:46px;height:46px;display:grid;place-items:center}
+.logo__mark img{width:100%;height:100%;object-fit:contain;display:block}
+.logo__text{display:flex;flex-direction:column;gap:2px}
+.logo__text span{font-size:19px;font-weight:800;color:#14B8A6;line-height:1;letter-spacing:-.2px}
+.dash__menu{list-style:none;display:flex;flex-direction:column;gap:4px;margin:0;padding:0}
+.dash__menu a{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;color:#475569;font-size:14px;font-weight:500;transition:background .2s,color .2s}
+.dash__menu a:hover{background:#F0FDFA;color:#0F766E}
+.dash__menu a.is-active{background:#14B8A6;color:#fff;box-shadow:0 6px 14px rgba(20,184,166,.28)}
+.dash__menu svg{width:18px;height:18px;color:#94A3B8}
+.dash__menu a.is-active svg{color:#fff}
+.dash__side-foot{margin-top:32px;padding:20px;background:linear-gradient(160deg,#F0FDFA,#CCFBF1);border-radius:12px}
+.dash__side-foot h5{font-size:14px;color:#0F172A;margin:0 0 6px}
+.dash__side-foot p{font-size:12px;color:#475569;margin:0 0 12px;line-height:1.5}
+.dash__side-foot .btn{font-size:13px;padding:9px 16px}
+[hidden]{display:none!important}
+/* Plan sections as a row of tabs */
+.tabs-wrap{position:sticky;top:0;z-index:20;margin:-32px calc(-1 * clamp(16px,4vw,48px)) 28px;padding:14px clamp(16px,4vw,48px) 10px;background:rgba(246,250,249,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav.tabs{display:flex;flex-direction:row;flex-wrap:wrap;gap:6px}
+.nav.tabs button{all:unset;cursor:pointer;padding:9px 16px;border-radius:999px;font-size:14px;font-weight:600;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);display:inline-flex;align-items:center;gap:6px}
+.nav.tabs button:hover{border-color:var(--teal);color:var(--teal-strong)}
+.nav.tabs button[aria-current="page"]{background:var(--teal);border-color:var(--teal);color:#fff}
+.nav.tabs small{font-size:11.5px;opacity:.85;display:inline}
+.tabcrisis{margin:8px 0 0;font-size:12.5px;color:var(--rose,#be123c)}
+@media (max-width:900px){.app{grid-template-columns:1fr}.dash__side{position:static;height:auto;border-right:0;border-bottom:1px solid #F1F5F9}.tabs-wrap{margin-top:0}}
 </style>
-</head><body>
+</head><body data-page="plan">
 
 <div class="app">
-  <aside class="rail">
-    <div class="row" style="flex-wrap:nowrap">
-      <a class="logo" href="index.html"><img src="data:image/avif;base64,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" alt=""><span>layoff<br>support</span></a>
-      <span class="mcrisis">In crisis? Call or text 988</span>
-    </div>
-    <nav class="nav" aria-label="Sections">
-      <button data-view="today" aria-current="page">Today</button>
-      <button data-view="clock">My deadlines <small id="navCount"></small></button>
-      <button data-view="cover">Health coverage</button>
-      <button data-view="talk">Talk to someone</button>
-      <button data-view="circles">Circles</button>
-      <button data-view="saved">Saved jobs <small id="savedCount"></small></button>
-      <div class="sep"></div>
-      <a class="navlink" href="marketplace.html">Work Board: jobs and gigs</a>
-      <a class="navlink" href="jobs.html">Job boards</a>
-      <a class="navlink" href="index.html">Back to home</a>
-    </nav>
-    <div class="crisis"><b>In crisis right now?</b>Call or text 988 (US). Free, 24/7, and confidential.</div>
-  </aside>
+  <aside id="sidebar" class="dash__side"></aside>
 
   <main>
+    <div class="tabs-wrap">
+      <nav class="nav tabs" aria-label="Your plan sections">
+        <button data-view="today" aria-current="page">Today</button>
+        <button data-view="clock">My deadlines <small id="navCount"></small></button>
+        <button data-view="cover">Health coverage</button>
+        <button data-view="talk">Talk to someone</button>
+        <button data-view="circles">Circles</button>
+        <button data-view="saved">Job boards <small id="savedCount"></small></button>
+      </nav>
+      <p class="tabcrisis"><b>In crisis right now?</b> Call or text 988 (US). Free, 24/7 and confidential.</p>
+    </div>
+
     <!-- TODAY -->
     <section class="view" id="v-today">
       <div class="vhead">
@@ -348,19 +372,22 @@ input[type=range]{width:100%;accent-color:var(--teal)}
     </section>
     <div id="notesList" hidden></div>
 
-    <!-- SAVED JOBS -->
+    <!-- JOB BOARDS -->
     <section class="view" id="v-saved">
       <div class="vhead">
-        <span class="eyebrow">Saved jobs</span>
-        <h1 class="title">Jobs you're keeping an eye on</h1>
-        <p class="sub">Save jobs on the job board and they'll wait for you here, on any device.</p>
+        <span class="eyebrow">Job boards</span>
+        <h1 class="title">Your job search, in one place</h1>
+        <p class="sub">Your preferences, today's matches and the jobs you've saved.</p>
       </div>
-      <div class="panel" id="savedPanel">
-        <div id="savedOut" data-signed-in hidden><p class="small muted">Loading…</p></div>
-        <div data-signed-out>
-          <p>Sign in to keep a list of jobs you like. It's free, and there's no password.</p>
-          <div class="row" style="justify-content:flex-start;margin-top:12px"><button class="btn" data-require-signin="Sign in to save jobs and see them here in your plan.">Sign in</button><a class="btn ghost" href="jobs.html">Browse jobs</a></div>
-        </div>
+      <div data-signed-in hidden style="display:grid;gap:20px">
+        <div class="panel" id="prefsPanel"><p class="small muted">Loading…</p></div>
+        <div class="panel" id="matchPanel" hidden><h3>Matches for you today</h3><div id="matchOut"></div></div>
+        <div class="panel"><h3>Saved jobs</h3><div id="savedOut"><p class="small muted">Loading…</p></div></div>
+      </div>
+      <div class="panel" data-signed-out>
+        <h3>Get jobs matched to you</h3>
+        <p>Set the role, place and pay you're after, and save jobs you like. It's free, and there's no password.</p>
+        <div class="row" style="justify-content:flex-start;margin-top:12px"><button class="btn" data-job-prefs>Set my preferences</button><a class="btn ghost" href="jobs.html">Browse jobs</a></div>
       </div>
     </section>
   </main>
@@ -524,7 +551,9 @@ input[type=range]{width:100%;accent-color:var(--teal)}
 })();
 </script>
 
-<script src="assets/auth.js?v=202611220037"></script>
+<script src="assets/script.js?v=202611220047"></script>
+<script src="assets/auth.js?v=202611220047"></script>
+  <script src="assets/jobprefs.js?v=202611220047"></script>
 <script>
   // Sign-in features on the plan page: save the plan to the account, and record circle/pod interest.
   function lsInterest(tag, reason) {
@@ -600,7 +629,51 @@ input[type=range]{width:100%;accent-color:var(--teal)}
         if (!r.error) { rows = rows.filter(function (x) { return x.job_id !== id; }); draw(rows); }
       });
     });
-    if (window.LS) LS.onUser(load);
+    // Preferences and today's matches
+    var prefsPanel = document.getElementById('prefsPanel'), matchPanel = document.getElementById('matchPanel'), matchOut = document.getElementById('matchOut');
+    var EUROPE = ['United Kingdom','Ireland','Germany','France','Spain','Portugal','Italy','Netherlands','Belgium','Switzerland','Austria','Poland','Denmark','Sweden','Norway','Finland'];
+    var TYPE = { full: 'Full time', contract: 'Contract', part: 'Part time' };
+    function prefsText(p) {
+      var bits = [];
+      if (p.q) bits.push('<b>' + esc(p.q) + '</b>');
+      bits.push(p.where ? (p.where === 'europe' ? 'Europe' : esc(p.where)) : 'anywhere');
+      if (p.types && p.types.length) bits.push(p.types.map(function (t) { return TYPE[t]; }).join(' or '));
+      if (p.min) bits.push('$' + Math.round(p.min / 1000) + 'k or more');
+      return bits.join(' \u00b7 ');
+    }
+    function matchJobs(p, jobs) {
+      var words = (p.q || '').toLowerCase().split(/[\s,]+/).filter(Boolean);
+      return jobs.filter(function (j) {
+        var w = j.where || [];
+        if (p.where && w.length) { if (p.where === 'europe' ? !w.some(function (c) { return EUROPE.indexOf(c) > -1; }) : w.indexOf(p.where) < 0) return false; }
+        if (p.types && p.types.length && !p.types.some(function (t) { return (j.type || '').toLowerCase().indexOf(t) > -1; })) return false;
+        if (p.min && !((j.max || j.min || 0) >= p.min)) return false;
+        if (words.length) { var hay = (j.title + ' ' + (j.cats || []).join(' ') + ' ' + j.about).toLowerCase(); return words.some(function (x) { return hay.indexOf(x) > -1; }); }
+        return true;
+      });
+    }
+    function showPrefs(p) {
+      if (!p || !p.updated) {
+        prefsPanel.innerHTML = '<h3>Get jobs matched to you</h3><p class="small muted">Tell us the role, place and pay you\u2019re after, and we\u2019ll show matching jobs here.</p><div class="row" style="justify-content:flex-start;margin-top:10px"><button class="btn" data-job-prefs>Set my preferences</button></div>';
+        matchPanel.hidden = true; return;
+      }
+      prefsPanel.innerHTML = '<div class="row"><h3>Your job preferences</h3><button class="btn ghost" data-job-prefs>Edit</button></div><p>' + prefsText(p) + '</p>' + (p.email ? '<p class="small muted">We\u2019ll email you new matches once a week.</p>' : '');
+      fetch('data/live-jobs.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (d) {
+        var m = matchJobs(p, d.jobs || []);
+        matchPanel.hidden = false;
+        matchOut.innerHTML = m.length ? '<div class="saved-list">' + m.slice(0, 6).map(function (j) {
+          var pay = money(j);
+          return '<div class="saved-row"><div><b>' + esc(j.title) + '</b><p class="small muted">' + esc(j.company) + (pay ? ' \u00b7 ' + esc(pay) : '') + (j.type ? ' \u00b7 ' + esc(j.type) : '') + '</p></div><a class="btn" href="' + esc(j.link) + '" target="_blank" rel="noopener">Apply</a></div>';
+        }).join('') + '</div><p class="small muted" style="margin-top:10px">' + m.length + ' matching jobs today. <a href="jobs.html">See them all on the job board</a>. Jobs from <a href="https://himalayas.app" target="_blank" rel="noopener">Himalayas</a>.</p>'
+          : '<p class="small muted">No matches today. Try widening your preferences, or check back tomorrow: new jobs arrive every day.</p>';
+      });
+    }
+    function loadPrefs(u) {
+      if (!u) return;
+      LS.db.from('member_profiles').select('job_prefs').eq('id', u.id).maybeSingle().then(function (r) { showPrefs(r.data && r.data.job_prefs); });
+    }
+    document.addEventListener('ls:jobprefs', function (e) { showPrefs(e.detail); });
+    if (window.LS) { LS.onUser(load); LS.onUser(loadPrefs); }
   })();
 </script>
 </body></html>

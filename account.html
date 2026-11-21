@@ -6,8 +6,8 @@
   <title>Your progress — Layoff Support</title>
   <meta name="robots" content="noindex" />
   <meta name="description" content="Sign in to save your layoff plan, track your checklist and get help that fits your situation." />
-  <link rel="stylesheet" href="assets/styles.css?v=202611220037" />
-  <link rel="stylesheet" href="assets/home.css?v=202611220037" />
+  <link rel="stylesheet" href="assets/styles.css?v=202611220047" />
+  <link rel="stylesheet" href="assets/home.css?v=202611220047" />
 </head>
 <body data-page="account">
 
@@ -45,6 +45,11 @@
             <div class="progress-bar"><span id="progress-fill" style="width:0%"></span></div>
           </div>
           <button class="btn btn--primary" type="button" id="openChecklist">Open checklist</button>
+        </section>
+
+        <section class="acct-card jp-prompt" style="margin-top:24px">
+          <div><b>Jobs matched to you</b><p>Set the role, place and pay you're after, and we'll keep matches in your plan.</p></div>
+          <button type="button" class="btn btn--primary btn--sm" data-job-prefs>Set my job preferences</button>
         </section>
 
         <section class="acct-card" id="about">
@@ -168,9 +173,10 @@ Thanks,
     </div>
   </footer>
 
-<script src="assets/script.js?v=202611220037"></script>
-<script src="assets/auth.js?v=202611220037"></script>
-  <script src="assets/calm.js?v=202611220037"></script>
+<script src="assets/script.js?v=202611220047"></script>
+<script src="assets/auth.js?v=202611220047"></script>
+  <script src="assets/jobprefs.js?v=202611220047"></script>
+  <script src="assets/calm.js?v=202611220047"></script>
   <script>
   (function () {
     const NON_EXPANSION = ['AL','FL','GA','KS','MS','SC','TN','TX','WI','WY'];

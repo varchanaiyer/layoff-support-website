@@ -926,3 +926,8 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 @media (max-width: 720px) { .jb-card { grid-template-columns: 44px 1fr; } .jb-card__actions { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; } }
 
 .jb-savedlink[hidden] { display: none !important; }
+
+/* "Get jobs matched to you" prompts */
+.jp-prompt { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 18px 22px; border-radius: 18px; background: linear-gradient(120deg, #e7fbf6, #f1ecfd); border: 1px solid #cdeee6; margin: 4px 0 18px; }
+.jp-prompt b { display: block; font-size: 17px; color: var(--ink-900); }
+.jp-prompt p { margin: 2px 0 0 !important; font-size: 14px !important; color: var(--ink-600, #475569); }

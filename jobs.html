@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Find work: a searchable job board — Layoff Support</title>
-  <link rel="stylesheet" href="assets/styles.css?v=202611220037" />
-  <link rel="stylesheet" href="assets/home.css?v=202611220037" />
+  <link rel="stylesheet" href="assets/styles.css?v=202611220047" />
+  <link rel="stylesheet" href="assets/home.css?v=202611220047" />
 </head>
 <body data-page="jobs">
 
@@ -59,6 +59,12 @@
         <label class="jb-check"><input type="checkbox" id="jbPay" /> Salary shown</label>
       </div>
     </form>
+
+    <!-- ========= MATCHED JOBS PROMPT ========= -->
+    <div class="jp-prompt">
+      <div><b>Get jobs matched to you</b><p>Tell us the role, place and pay you're after. Matches will wait for you in your plan.</p></div>
+      <button type="button" class="btn btn--primary btn--sm" data-job-prefs>Set my preferences</button>
+    </div>
 
     <!-- ========= 3. RESULTS ========= -->
     <div class="jb-results">
@@ -407,9 +413,10 @@
     </div>
   </footer>
 
-<script src="assets/script.js?v=202611220037"></script>
-  <script src="assets/auth.js?v=202611220037"></script>
-  <script src="assets/calm.js?v=202611220037"></script>
-  <script src="assets/jobs.js?v=202611220037"></script>
+<script src="assets/script.js?v=202611220047"></script>
+  <script src="assets/auth.js?v=202611220047"></script>
+  <script src="assets/jobprefs.js?v=202611220047"></script>
+  <script src="assets/calm.js?v=202611220047"></script>
+  <script src="assets/jobs.js?v=202611220047"></script>
 </body>
 </html>
