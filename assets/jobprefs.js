@@ -192,10 +192,24 @@
   window.JobPrefs = { open };
   function init() {
     if (window.LS) LS.onUser(afterSignIn);
-    // On the job board, invite people once, a few seconds after they arrive
+    // On the job board, open automatically shortly after arriving, unless they've
+    // already saved preferences or closed it earlier in this visit.
     if (document.body.getAttribute('data-page') === 'jobs') {
-      let prompted = false; try { prompted = localStorage.getItem('ls_prefs_prompted') === '1'; } catch (e) {}
-      if (!prompted) setTimeout(() => { if (!(window.LS && LS.user)) open(); }, 6000);
+      let shown = false; try { shown = sessionStorage.getItem('ls_prefs_shown') === '1'; } catch (e) {}
+      if (!shown) {
+        const go = async () => {
+          if (window.LS) {
+            await LS.ready;
+            if (LS.user) {
+              const r = await LS.db.from('member_profiles').select('job_prefs').eq('id', LS.user.id).maybeSingle();
+              if (r.data && r.data.job_prefs && r.data.job_prefs.updated) return;
+            }
+          }
+          try { sessionStorage.setItem('ls_prefs_shown', '1'); } catch (e) {}
+          open();
+        };
+        setTimeout(go, 1200);
+      }
     }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
