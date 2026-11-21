@@ -37,7 +37,7 @@
     if (document.querySelector('link[href*="assets/auth.css"]')) return;
     const l = document.createElement('link');
     l.rel = 'stylesheet';
-    l.href = 'assets/auth.css?v=202611212346';
+    l.href = 'assets/auth.css?v=202611212350';
     document.head.appendChild(l);
   }
 
