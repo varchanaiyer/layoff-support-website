@@ -570,3 +570,15 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .h-country__chosen { text-align: center; color: var(--ink-500); font-size: 15px; margin: 0 0 20px; }
 .h-country__chosen b { color: var(--ink-900); }
 .h-country__chosen button { margin-left: 8px; border: 0; background: none; color: var(--teal-700); font: inherit; font-weight: 600; text-decoration: underline; cursor: pointer; }
+
+/* Country dropdown */
+.h-country__q { display: block; }
+.h-country__select { display: inline-block; position: relative; }
+.h-country__select select { appearance: none; -webkit-appearance: none; min-width: 300px; padding: 13px 44px 13px 18px; border: 1px solid var(--ink-200, #e2e8f0); border-radius: 999px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%230F766E' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 18px center; font: inherit; font-size: 16px; font-weight: 600; color: var(--ink-900); cursor: pointer; box-shadow: 0 4px 14px rgba(15, 23, 32, .05); }
+.h-country__select select:focus-visible { outline: 3px solid var(--teal-200, #99f6e4); outline-offset: 2px; border-color: var(--teal-500); }
+/* Gentle timeline chips */
+.h-chip--today { background: #e6f7f3; color: #0f766e; }
+.h-chip--week  { background: #efeafd; color: #5b46b8; }
+.h-chip--ready { background: #fdf1e6; color: #9a4b12; }
+.h-chip--month { background: #e9f2fb; color: #2b5b8a; }
+.h-timeline li { grid-template-columns: 118px 1fr; }

@@ -39,21 +39,22 @@
         <div>
           <p class="h-eyebrow">Solidarity in transition</p>
           <h1 class="h-title">A layoff is a company decision, not a verdict on you.</h1>
-          <p class="h-lead">Free, practical help for the weeks after. See every deadline your layoff started, compare health coverage before you overpay, and find people who have been through it.</p>
+          <p class="h-lead">Free, gentle help for the weeks after. Your next steps in one place, affordable ways to stay covered, and people who've been through it too.</p>
           <div class="h-actions">
             <a href="plan.html" class="btn btn--primary">Build my plan, free</a>
             <a href="marketplace.html" class="btn btn--outline">Find work on the Work Board</a>
           </div>
           <p class="h-note">No account needed. Your plan stays in your browser.</p>
         </div>
-        <div class="h-hero__card" aria-label="Example of what your plan shows">
-          <p class="h-card__eyebrow">The next thing that can't wait</p>
+        <div class="h-hero__card" aria-label="Gentle first steps">
+          <p class="h-card__eyebrow">No rush. One step at a time.</p>
           <ol class="h-timeline">
-            <li><span class="h-chip h-chip--urgent">This week</span><div><b>File for unemployment</b><small>Do it in your first week, even if you got severance.</small></div></li>
-            <li><span class="h-chip h-chip--soon">Day 21</span><div><b>Decide on your severance</b><small>Don't sign on the spot. Your leverage ends when you do.</small></div></li>
-            <li><span class="h-chip h-chip--later">Day 60</span><div><b>Choose your health coverage</b><small>COBRA isn't your only option, and often not the cheapest.</small></div></li>
+            <li><span class="h-chip h-chip--today">Today</span><div><b>Be gentle with yourself</b><small>This happened to you, not because of you. It's okay to take a breath first.</small></div></li>
+            <li><span class="h-chip h-chip--week">This week</span><div><b>Ask for the support you've earned</b><small>Unemployment benefits exist for exactly this moment.</small></div></li>
+            <li><span class="h-chip h-chip--ready">When you're ready</span><div><b>Take your time with any offer</b><small>You don't have to sign a severance agreement on the spot.</small></div></li>
+            <li><span class="h-chip h-chip--month">This month</span><div><b>Keep yourself covered</b><small>There are often more affordable health options than you'd expect.</small></div></li>
           </ol>
-          <a href="plan.html" class="h-card__link">See my own dates &rarr;</a>
+          <a href="plan.html" class="h-card__link">Build your plan at your own pace &rarr;</a>
         </div>
       </div>
     </section>
@@ -64,18 +65,36 @@
         <p class="h-eyebrow h-center">Where to start</p>
         <h2 class="section-title">Three things that matter most this month</h2>
         <div class="h-country" id="hCountry">
-          <p class="h-country__q" id="hCountryQ">Where are you based? We'll show the three steps for your country.</p>
-          <div class="h-country__opts" role="group" aria-labelledby="hCountryQ">
-            <button type="button" data-country="US">United States</button>
-            <button type="button" data-country="UK">United Kingdom</button>
-            <button type="button" data-country="CA">Canada</button>
-            <button type="button" data-country="IN">India</button>
-            <button type="button" data-country="AU">Australia</button>
-            <button type="button" data-country="DE">Germany</button>
-            <button type="button" data-country="XX">Somewhere else</button>
+          <label class="h-country__q" for="hCountrySel">Where are you based? We'll show the steps that apply to you.</label>
+          <div class="h-country__select">
+            <select id="hCountrySel">
+              <option value="">Choose your country</option>
+              <option value="US">United States</option>
+              <option value="UK">United Kingdom</option>
+              <option value="CA">Canada</option>
+              <option value="IN">India</option>
+              <option value="AU">Australia</option>
+              <option value="DE">Germany</option>
+              <optgroup label="Other countries">
+              <option value="XX:Brazil">Brazil</option>
+              <option value="XX:France">France</option>
+              <option value="XX:Ireland">Ireland</option>
+              <option value="XX:Italy">Italy</option>
+              <option value="XX:Japan">Japan</option>
+              <option value="XX:Mexico">Mexico</option>
+              <option value="XX:Netherlands">Netherlands</option>
+              <option value="XX:New Zealand">New Zealand</option>
+              <option value="XX:Nigeria">Nigeria</option>
+              <option value="XX:Philippines">Philippines</option>
+              <option value="XX:Singapore">Singapore</option>
+              <option value="XX:South Africa">South Africa</option>
+              <option value="XX:Spain">Spain</option>
+              <option value="XX:United Arab Emirates">United Arab Emirates</option>
+              <option value="XX:">Somewhere else</option>
+              </optgroup>
+            </select>
           </div>
         </div>
-        <p class="h-country__chosen" id="hCountryChosen" hidden>Steps for <b id="hCountryName"></b> <button type="button" id="hCountryChange">Change country</button></p>
         <div class="h-steps" id="hSteps">
           <a class="h-step" href="plan.html#clock">
             <span class="h-step__num">1</span>
@@ -540,29 +559,28 @@
         ['Check what support you can get', 'Most countries have unemployment benefits with strict deadlines to apply. Look up your government\'s site this week.', 'https://www.google.com/search?q=apply+for+unemployment+benefits', 'Search for your country'],
         ['Talk to someone', 'Find a free, confidential helpline in your country, open now.', 'https://findahelpline.com', 'Find a helpline']]],
     };
-    var box = document.getElementById('hCountry'), grid = document.getElementById('hSteps'),
-        chosen = document.getElementById('hCountryChosen'), name = document.getElementById('hCountryName');
+    var sel = document.getElementById('hCountrySel'), grid = document.getElementById('hSteps');
     function esc(t) { var d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
-    function show(code) {
-      var c = STEPS[code]; if (!c) return;
+    function show(value) {
+      var code = (value || '').split(':')[0];
+      var c = STEPS[code];
+      if (!c) { grid.hidden = true; return; }
       grid.innerHTML = c[1].map(function (s, i) {
         var ext = /^https?:/.test(s[2]);
         return '<a class="h-step" href="' + s[2] + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' +
           '<span class="h-step__num">' + (i + 1) + '</span><h3>' + esc(s[0]) + '</h3><p>' + esc(s[1]) + '</p>' +
           '<span class="h-step__go">' + esc(s[3]) + ' &rarr;</span></a>';
       }).join('');
-      name.textContent = code === 'XX' ? 'outside these countries' : box.querySelector('[data-country="' + code + '"]').textContent;
-      box.hidden = true; chosen.hidden = false; grid.hidden = false;
+      grid.hidden = false;
     }
-    function ask() { box.hidden = false; chosen.hidden = true; grid.hidden = true; }
-    box.addEventListener('click', function (e) {
-      var b = e.target.closest('[data-country]'); if (!b) return;
-      try { localStorage.setItem('ls_country', b.dataset.country); } catch (err) {}
-      show(b.dataset.country);
+    sel.addEventListener('change', function () {
+      try { localStorage.setItem('ls_country', sel.value); } catch (err) {}
+      show(sel.value);
     });
-    document.getElementById('hCountryChange').addEventListener('click', ask);
     var saved = null; try { saved = localStorage.getItem('ls_country'); } catch (err) {}
-    if (saved && STEPS[saved]) show(saved); else ask();
+    if (saved && saved !== 'XX') { sel.value = saved; }
+    if (saved === 'XX') { sel.value = 'XX:'; }
+    show(sel.value);
   })();
   </script>
 </body>
