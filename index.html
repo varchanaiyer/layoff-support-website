@@ -24,12 +24,8 @@
       <button class="site-nav__toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
       <nav id="site-nav" class="site-nav" aria-label="Main">
         <a href="plan.html">Your plan</a>
-        <a href="offers.html">Our picks</a>
-        <a href="jobs.html">Job boards</a>
-        <a href="therapists.html">Therapy</a>
-        <a href="mentors.html">Mentors</a>
-        <a href="communities.html">Communities</a>
-        <a href="blog.html">Stories</a>
+        <a href="offers.html">Get help</a>
+        <a href="jobs.html">Find work</a>
         <a href="marketplace.html" class="btn btn--primary btn--sm site-nav__cta">Work Board</a>
       </nav>
     </div>
@@ -67,7 +63,20 @@
       <div class="container">
         <p class="h-eyebrow h-center">Where to start</p>
         <h2 class="section-title">Three things that matter most this month</h2>
-        <div class="h-steps">
+        <div class="h-country" id="hCountry">
+          <p class="h-country__q" id="hCountryQ">Where are you based? We'll show the three steps for your country.</p>
+          <div class="h-country__opts" role="group" aria-labelledby="hCountryQ">
+            <button type="button" data-country="US">United States</button>
+            <button type="button" data-country="UK">United Kingdom</button>
+            <button type="button" data-country="CA">Canada</button>
+            <button type="button" data-country="IN">India</button>
+            <button type="button" data-country="AU">Australia</button>
+            <button type="button" data-country="DE">Germany</button>
+            <button type="button" data-country="XX">Somewhere else</button>
+          </div>
+        </div>
+        <p class="h-country__chosen" id="hCountryChosen" hidden>Steps for <b id="hCountryName"></b> <button type="button" id="hCountryChange">Change country</button></p>
+        <div class="h-steps" id="hSteps">
           <a class="h-step" href="plan.html#clock">
             <span class="h-step__num">1</span>
             <h3>Know your deadlines</h3>
@@ -497,5 +506,63 @@
 
   <script src="assets/script.js"></script>
   <script src="assets/auth.js"></script>
+  <script>
+  (function () {
+    // "Where to start": ask for the country, then show the three steps that matter there.
+    var STEPS = {
+      US: ['United States', [
+        ['Know your deadlines', 'Unemployment, severance, COBRA, marketplace enrollment, visas and FSA claims, worked out from your own dates.', 'plan.html#clock', 'Open my deadlines'],
+        ['Keep your health cover', 'Compare COBRA with Marketplace plans and Medicaid at your real income, so you don\'t overpay for the same care.', 'offers.html#health', 'Compare my options'],
+        ['Talk to someone', 'Call or text 988, free and confidential, any time. Low-cost therapy options are listed too.', 'offers.html#therapy', 'Find support']]],
+      UK: ['the United Kingdom', [
+        ['Check your redundancy pay and notice', 'If you worked there for 2 years or more, you\'re usually owed statutory redundancy pay, on top of notice pay and unused holiday.', 'https://www.gov.uk/calculate-your-redundancy-pay', 'Calculate your redundancy pay'],
+        ['Claim benefits straight away', 'New Style Jobseeker\'s Allowance or Universal Credit. Claim as soon as you stop working.', 'https://www.gov.uk/browse/benefits/looking-for-work', 'See what you can claim'],
+        ['Talk to someone', 'Samaritans are free and there any time, day or night. Call 116 123.', 'https://www.samaritans.org', 'Samaritans']]],
+      CA: ['Canada', [
+        ['Apply for Employment Insurance', 'Apply as soon as you stop working. If you wait more than 4 weeks after your last day, you could lose benefits.', 'https://www.canada.ca/en/services/benefits/ei/ei-regular-benefit.html', 'Apply for EI'],
+        ['Sort out your health and dental benefits', 'Provincial health care continues, but workplace benefits end. Ask HR this week about converting them, as the window is usually short.', 'account.html', 'Add it to my checklist'],
+        ['Talk to someone', 'Call or text 9-8-8, free and confidential, any time.', 'https://988.ca', '9-8-8 Canada']]],
+      IN: ['India', [
+        ['Get your full and final settlement', 'Ask HR for your final pay, leave encashment, gratuity if you served 5 years or more, and your relieving and experience letters.', 'account.html', 'Add it to my checklist'],
+        ['Sort out your PF', 'You can withdraw part of your EPF after a month without work, or transfer it to your next employer. Keep your UAN handy.', 'https://www.epfindia.gov.in', 'EPFO member services'],
+        ['Talk to someone', 'Tele MANAS is free and there any time. Call 14416.', 'https://telemanas.mohfw.gov.in', 'Tele MANAS']]],
+      AU: ['Australia', [
+        ['Check your redundancy pay and notice', 'Most employees with a year or more of service are owed redundancy pay under the National Employment Standards.', 'https://www.fairwork.gov.au/ending-employment/redundancy', 'Fair Work: redundancy'],
+        ['Apply for JobSeeker Payment', 'Through Services Australia (Centrelink). Redundancy pay can affect when payments start.', 'https://www.servicesaustralia.gov.au/jobseeker-payment', 'JobSeeker Payment'],
+        ['Talk to someone', 'Lifeline is free and there any time. Call 13 11 14.', 'https://www.lifeline.org.au', 'Lifeline']]],
+      DE: ['Germany', [
+        ['Register with the Agentur f\u00fcr Arbeit', 'Register as job-seeking within 3 days of getting notice, or your unemployment benefit can be cut.', 'https://www.arbeitsagentur.de/arbeitslos-arbeit-finden', 'Register as job-seeking'],
+        ['Keep your health insurance', 'While you get Arbeitslosengeld, the Agentur pays your health insurance. Tell your Krankenkasse you\'ve lost your job.', 'https://www.arbeitsagentur.de/arbeitslosengeld', 'About Arbeitslosengeld'],
+        ['Talk to someone', 'TelefonSeelsorge is free and there any time. Call 0800 111 0 111.', 'https://www.telefonseelsorge.de', 'TelefonSeelsorge']]],
+      XX: ['your country', [
+        ['Get your paperwork in order', 'Your contract, final pay slip, any severance offer and a reference letter. Don\'t sign anything on the spot.', 'account.html', 'Start my checklist'],
+        ['Check what support you can get', 'Most countries have unemployment benefits with strict deadlines to apply. Look up your government\'s site this week.', 'https://www.google.com/search?q=apply+for+unemployment+benefits', 'Search for your country'],
+        ['Talk to someone', 'Find a free, confidential helpline in your country, open now.', 'https://findahelpline.com', 'Find a helpline']]],
+    };
+    var box = document.getElementById('hCountry'), grid = document.getElementById('hSteps'),
+        chosen = document.getElementById('hCountryChosen'), name = document.getElementById('hCountryName');
+    function esc(t) { var d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+    function show(code) {
+      var c = STEPS[code]; if (!c) return;
+      grid.innerHTML = c[1].map(function (s, i) {
+        var ext = /^https?:/.test(s[2]);
+        return '<a class="h-step" href="' + s[2] + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' +
+          '<span class="h-step__num">' + (i + 1) + '</span><h3>' + esc(s[0]) + '</h3><p>' + esc(s[1]) + '</p>' +
+          '<span class="h-step__go">' + esc(s[3]) + ' &rarr;</span></a>';
+      }).join('');
+      name.textContent = code === 'XX' ? 'outside these countries' : box.querySelector('[data-country="' + code + '"]').textContent;
+      box.hidden = true; chosen.hidden = false; grid.hidden = false;
+    }
+    function ask() { box.hidden = false; chosen.hidden = true; grid.hidden = true; }
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-country]'); if (!b) return;
+      try { localStorage.setItem('ls_country', b.dataset.country); } catch (err) {}
+      show(b.dataset.country);
+    });
+    document.getElementById('hCountryChange').addEventListener('click', ask);
+    var saved = null; try { saved = localStorage.getItem('ls_country'); } catch (err) {}
+    if (saved && STEPS[saved]) show(saved); else ask();
+  })();
+  </script>
 </body>
 </html>

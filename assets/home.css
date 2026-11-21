@@ -559,3 +559,14 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .wb-prefill { padding: 12px 14px; border-left: 3px solid var(--teal-500, #14b8a6); background: #f2fbf9; border-radius: 0 12px 12px 0; font-size: 15px !important; margin: 8px 0 10px !important; }
 .acct-card .is-missing, .chips.is-missing { outline: 2px solid #f4b740; outline-offset: 2px; border-radius: 12px; }
 @media (max-width: 640px) { .wb-steps { grid-template-columns: 1fr; } }
+
+/* "Where to start" country picker */
+.h-country { text-align: center; margin: 8px auto 28px; max-width: 760px; }
+.h-country[hidden], .h-country__chosen[hidden], .h-steps[hidden] { display: none !important; }
+.h-country__q { font-size: 18px; color: var(--ink-700); margin-bottom: 16px; }
+.h-country__opts { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.h-country__opts button { padding: 11px 18px; border: 1px solid var(--ink-100, #e3e8e6); border-radius: 999px; background: #fff; font: inherit; font-size: 15px; font-weight: 600; color: var(--ink-900); cursor: pointer; }
+.h-country__opts button:hover, .h-country__opts button:focus-visible { border-color: var(--teal-500, #14b8a6); background: var(--teal-50, #e8f8f5); color: var(--teal-700); outline: none; }
+.h-country__chosen { text-align: center; color: var(--ink-500); font-size: 15px; margin: 0 0 20px; }
+.h-country__chosen b { color: var(--ink-900); }
+.h-country__chosen button { margin-left: 8px; border: 0; background: none; color: var(--teal-700); font: inherit; font-weight: 600; text-decoration: underline; cursor: pointer; }
