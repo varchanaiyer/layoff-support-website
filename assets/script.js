@@ -10,6 +10,8 @@ const NAV_ITEMS = [
     icon: '<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/>' },
   { key: 'plan',        href: 'plan.html',        label: 'Your plan',
     icon: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>' },
+  { key: 'offers',      href: 'offers.html',      label: 'Our picks',
+    icon: '<path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 17.8 5.8 21.2l1.3-7L2 9.4l7-.9z"/>' },
   { key: 'jobs',        href: 'jobs.html',        label: 'Job boards',
     icon: '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>' },
   { key: 'tools',       href: 'tools.html',       label: 'Tools',
