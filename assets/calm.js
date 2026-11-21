@@ -14,7 +14,7 @@
     const dx = x - ptr.x, dy = y - ptr.y;
     ptr.x = x; ptr.y = y;
     if (ptr.sx < -9000) { ptr.sx = x; ptr.sy = y; }
-    ptr.energy = Math.min(1, ptr.energy + Math.min(60, Math.hypot(dx, dy)) / 220);
+    ptr.energy = Math.min(1, ptr.energy + Math.min(40, Math.hypot(dx, dy)) / 400);
     lastMove = performance.now();
   }
   window.addEventListener('pointermove', (e) => onMove(e.clientX, e.clientY), { passive: true });
@@ -24,7 +24,7 @@
   const STYLE = '.calm-host{position:relative;isolation:isolate}' +
     '.calm-waves{position:absolute;left:0;top:0;width:100%;z-index:-1;pointer-events:none;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 18%,#000 78%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 18%,#000 78%,transparent 100%)}' +
     '.calm-glow{position:fixed;left:0;top:0;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:2;' +
-    'background:radial-gradient(circle,rgba(45,212,191,.13) 0%,rgba(167,139,250,.07) 38%,transparent 66%);mix-blend-mode:multiply;will-change:transform;transition:opacity .6s}' +
+    'background:radial-gradient(circle,rgba(45,212,191,.09) 0%,rgba(45,212,191,.04) 40%,transparent 66%);mix-blend-mode:multiply;will-change:transform;transition:opacity .6s}' +
     '@media (prefers-reduced-motion: reduce){.calm-glow{display:none}}';
 
   // ---------- Waves ----------
@@ -52,33 +52,33 @@
   }
   window.addEventListener('resize', () => fields.forEach(size));
 
+  // Soothing waves: a few evenly spaced lines that rise and fall together at a slow
+  // breathing pace (about 5.5 seconds per breath), drifting gently sideways.
+  // Near the cursor they lean softly away, like water parting, then settle back.
+  const BREATH_MS = 5500;
   function draw(f, t) {
     const { ctx, w, h } = f;
     ctx.clearRect(0, 0, w, h);
     const r = f.host.getBoundingClientRect();
     const mx = ptr.sx - r.left, my = ptr.sy - r.top;
-    const reach = Math.max(140, Math.min(260, w * 0.18));
-    for (let i = 0; i < f.lines; i++) {
-      const base = h * (0.42 + (i / (f.lines - 1)) * 0.5);
-      const amp = 10 + i * 3;
-      const k = 0.0042 + i * 0.0006;
-      const speed = 0.00016 + i * 0.00003;
-      const phase = i * 1.7;
+    const reach = Math.max(180, Math.min(320, w * 0.22));
+    const breath = (1 - Math.cos((t % BREATH_MS) / BREATH_MS * Math.PI * 2)) / 2; // 0..1..0
+    const lines = 4;
+    for (let i = 0; i < lines; i++) {
+      const base = h * (0.5 + i * 0.1) - breath * 10;
+      const amp = 14 + breath * 6;
+      const k = 0.0032;
+      const drift = t * 0.00005;
       ctx.beginPath();
       for (let x = -10; x <= w + 10; x += 6) {
-        let y = base + Math.sin(x * k + t * speed + phase) * amp + Math.sin(x * k * 0.47 - t * speed * 1.6 + phase) * amp * 0.6;
-        // Swell around the cursor: lines lift away from it, more when it has just moved.
+        let y = base + Math.sin(x * k + drift + i * 0.55) * amp;
         const dx = x - mx, dy = base - my;
-        const d2 = dx * dx + dy * dy;
-        const g = Math.exp(-d2 / (2 * reach * reach));
-        if (g > 0.002) {
-          const dir = dy >= 0 ? 1 : -1;
-          y += dir * g * (18 + 46 * ptr.energy) + Math.sin(x * 0.03 - t * 0.006) * g * 14 * ptr.energy;
-        }
+        const g = Math.exp(-(dx * dx + dy * dy) / (2 * reach * reach));
+        if (g > 0.003) y += (dy >= 0 ? 1 : -1) * g * (10 + 16 * ptr.energy);
         if (x === -10) ctx.moveTo(x, y); else ctx.lineTo(x, y);
       }
-      ctx.strokeStyle = 'rgba(' + COLORS[i % COLORS.length] + ',' + (0.16 + 0.05 * (i % 3)) + ')';
-      ctx.lineWidth = 1.4 + (i % 2) * 0.6;
+      ctx.strokeStyle = 'rgba(20,184,166,' + (0.22 - i * 0.035) + ')';
+      ctx.lineWidth = 1.6;
       ctx.stroke();
     }
   }
@@ -92,9 +92,9 @@
   }
 
   function frame(t) {
-    ptr.sx += (ptr.x - ptr.sx) * 0.08;
-    ptr.sy += (ptr.y - ptr.sy) * 0.08;
-    if (performance.now() - lastMove > 120) ptr.energy *= 0.965;
+    ptr.sx += (ptr.x - ptr.sx) * 0.035;
+    ptr.sy += (ptr.y - ptr.sy) * 0.035;
+    if (performance.now() - lastMove > 200) ptr.energy *= 0.985;
     if (!document.hidden) fields.forEach((f) => { if (f.visible) draw(f, t); });
     if (glow && ptr.x > -9000) glow.style.transform = 'translate3d(' + (ptr.sx - 260) + 'px,' + (ptr.sy - 260) + 'px,0)';
     requestAnimationFrame(frame);
