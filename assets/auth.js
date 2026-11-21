@@ -34,10 +34,10 @@
   }
 
   function loadCss() {
-    if (document.querySelector('link[href$="assets/auth.css"]')) return;
+    if (document.querySelector('link[href*="assets/auth.css"]')) return;
     const l = document.createElement('link');
     l.rel = 'stylesheet';
-    l.href = 'assets/auth.css';
+    l.href = 'assets/auth.css?v=202611212312';
     document.head.appendChild(l);
   }
 
