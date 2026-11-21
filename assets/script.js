@@ -45,8 +45,8 @@ function renderSidebar(active) {
     </ul>
     <div class="dash__side-foot">
       <h5>Looking for work?</h5>
-      <p>Join Next Chapter, our jobs and gigs network, for freelance, contract and full-time roles.</p>
-      <a href="marketplace.html" class="btn btn--primary btn--sm">Join Next Chapter</a>
+      <p>Members can find freelance, contract and full-time roles on the Work Board.</p>
+      <a href="marketplace.html" class="btn btn--primary btn--sm">Open the Work Board</a>
     </div>
   `;
 }

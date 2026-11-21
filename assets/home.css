@@ -533,3 +533,12 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .acct-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; align-items: center; }
 .saved-msg { font-size: 14px; color: var(--teal-700); }
 @media (max-width: 640px) { .acct-grid { grid-template-columns: 1fr; } }
+.acct { max-width: 860px; }
+.acct > div > .acct-card:first-of-type { margin-top: 8px; }
+.acct-summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.acct-summary > div { flex: 1 1 260px; }
+.acct-summary .progress-bar { margin-bottom: 0; }
+.acct .page__meta { color: var(--ink-500); font-size: 14px; }
+.acct ul { padding-left: 22px; display: grid; gap: 6px; margin: 12px 0; color: var(--ink-700); }
+.acct h2 { font-size: 20px; color: var(--ink-900); margin: 0 0 8px; }
+.acct h3 { font-size: 16px; color: var(--ink-900); }

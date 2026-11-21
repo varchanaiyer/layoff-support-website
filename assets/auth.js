@@ -29,6 +29,7 @@
 
   function emit() {
     renderNavLinks();
+    if (client) syncChecklist();
     listeners.forEach((fn) => { try { fn(user); } catch (e) { console.error(e); } });
   }
 
@@ -74,6 +75,7 @@
       const { data: legacy } = await client.rpc('my_legacy_member');
       if (legacy && legacy.length) { returning = true; first = legacy[0].first_name || first; }
       await client.from('member_profiles').insert({ id: user.id, email: user.email, first_name: first, returning_member: returning });
+      try { sessionStorage.setItem('ls_open_checklist', '1'); } catch (e) {}
     } catch (e) { console.warn('Could not set up profile', e); }
   }
 
@@ -102,9 +104,112 @@
         side.appendChild(li);
       }
       li.querySelector('span').textContent = label;
+      const onAcct = document.body.getAttribute('data-page') === 'account';
+      li.querySelector('a').classList.toggle('is-active', onAcct);
+      if (onAcct) li.querySelector('a').setAttribute('aria-current', 'page');
     }
     document.querySelectorAll('[data-signed-in]').forEach((el) => { el.hidden = !user; });
     document.querySelectorAll('[data-signed-out]').forEach((el) => { el.hidden = !!user; });
+  }
+
+
+  // ---------- Checklist pop-up (signed-in only) ----------
+  const ITEMS = [
+    ['unemployment', 'File for unemployment', 'Do it in your first week, even if you got severance.', 'https://www.careeronestop.org/LocalHelp/UnemploymentBenefits/find-unemployment-benefits.aspx', "Find your state's office"],
+    ['deadlines', 'Work out your deadlines', 'Severance, health coverage, visa and FSA dates, from your last day.', 'plan.html', 'Open your plan'],
+    ['severance', 'Read your severance agreement before signing', "If you're 40 or over, you get at least 21 days (45 in a group layoff).", 'offers.html#legal', 'Low-cost legal help'],
+    ['coverage', 'Choose your health coverage', 'You have 60 days from losing job coverage. Compare before paying for COBRA.', 'offers.html#health', 'Compare your options'],
+    ['talk', 'Talk to someone', 'A friend, a support group or a counselor. Low-cost options are listed.', 'offers.html#therapy', 'Find support'],
+    ['resume', 'Update your resume and LinkedIn', 'Free tools can tailor them to each job.', 'offers.html#tools', 'Free job-search tools'],
+    ['mentor', 'Book a free session with a coach or mentor', 'Your local American Job Center and alumni office are free.', 'offers.html#coaching', 'Free coaching'],
+    ['nextchapter', 'Set up your Work Board profile', 'Tell us the work you want, and we\'ll match you to roles and gigs.', 'marketplace.html', 'Open the Work Board'],
+    ['apply', 'Send your first five applications', 'Five thoughtful ones beat fifty rushed ones.', 'jobs.html', 'Job boards'],
+  ];
+  let done = null, fab = null, sheet = null;
+
+  async function loadProgress() {
+    done = {};
+    const { data } = await client.from('member_progress').select('item,done').eq('user_id', user.id);
+    (data || []).forEach((r) => (done[r.item] = r.done));
+    updateCounts();
+  }
+  function count() { return ITEMS.filter(([k]) => done && done[k]).length; }
+  function updateCounts() {
+    const n = count(), t = ITEMS.length;
+    if (fab) fab.querySelector('.ls-fab__count').textContent = n + '/' + t;
+    if (sheet) {
+      sheet.querySelector('.ls-check__label').textContent = n + ' of ' + t + ' done';
+      sheet.querySelector('.ls-check__fill').style.width = Math.round(100 * n / t) + '%';
+    }
+    document.dispatchEvent(new CustomEvent('ls:progress', { detail: { done: n, total: t } }));
+  }
+  function buildFab() {
+    fab = document.createElement('button');
+    fab.className = 'ls-fab';
+    fab.type = 'button';
+    fab.setAttribute('aria-label', 'Open your checklist');
+    fab.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg><span>Checklist</span><span class="ls-fab__count">0/9</span>';
+    fab.addEventListener('click', openChecklist);
+    document.body.appendChild(fab);
+  }
+  function buildSheet() {
+    sheet = document.createElement('div');
+    sheet.className = 'ls-modal ls-check';
+    sheet.hidden = true;
+    sheet.innerHTML = '<div class="ls-modal__card ls-check__card" role="dialog" aria-modal="true" aria-labelledby="ls-check-title">' +
+      '<button class="ls-modal__close" aria-label="Close">&times;</button>' +
+      '<p class="ls-modal__eyebrow">Your checklist</p>' +
+      '<h2 id="ls-check-title">The steps that matter most</h2>' +
+      '<p class="ls-check__label">0 of 9 done</p><div class="ls-check__bar"><span class="ls-check__fill"></span></div>' +
+      '<ul class="ls-check__list"></ul>' +
+      '<p class="ls-modal__small">Saved to your account. <a href="account.html">Your progress page</a></p></div>';
+    document.body.appendChild(sheet);
+    const close = () => { sheet.hidden = true; document.body.style.overflow = ''; };
+    sheet.addEventListener('click', (e) => { if (e.target === sheet) close(); });
+    sheet.querySelector('.ls-modal__close').addEventListener('click', close);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !sheet.hidden) close(); });
+    const ul = sheet.querySelector('.ls-check__list');
+    ITEMS.forEach(([key, title, detail, href, linkText]) => {
+      const li = document.createElement('li');
+      li.innerHTML = '<label><input type="checkbox" /><span><b></b><small></small></span></label><a></a>';
+      li.querySelector('b').textContent = title;
+      li.querySelector('small').textContent = detail;
+      const a = li.querySelector('a'); a.href = href; a.textContent = linkText + ' →';
+      if (href.startsWith('http')) { a.target = '_blank'; a.rel = 'noopener'; }
+      const box = li.querySelector('input');
+      box.dataset.key = key;
+      box.addEventListener('change', async () => {
+        done[key] = box.checked; li.classList.toggle('is-done', box.checked); updateCounts();
+        await client.from('member_progress').upsert({ user_id: user.id, item: key, done: box.checked, updated_at: new Date().toISOString() });
+      });
+      ul.appendChild(li);
+    });
+  }
+  async function openChecklist() {
+    if (!user) return requireSignIn('Sign in to keep a checklist of the steps that matter, saved between visits.');
+    if (!sheet) buildSheet();
+    if (!done) await loadProgress();
+    sheet.querySelectorAll('.ls-check__list input').forEach((box) => {
+      box.checked = !!done[box.dataset.key];
+      box.closest('li').classList.toggle('is-done', box.checked);
+    });
+    updateCounts();
+    sheet.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+  async function syncChecklist() {
+    if (user) {
+      if (!fab) buildFab();
+      fab.hidden = false;
+      await loadProgress();
+      let open = false;
+      try { open = sessionStorage.getItem('ls_open_checklist') === '1'; sessionStorage.removeItem('ls_open_checklist'); } catch (e) {}
+      if (open) openChecklist();
+    } else {
+      if (fab) fab.hidden = true;
+      if (sheet) sheet.hidden = true;
+      done = null;
+    }
   }
 
   // ---------- Sign-in pop-up ----------
@@ -192,6 +297,8 @@
     get db() { return client; },
     onUser,
     requireSignIn,
+    openChecklist,
+    checklistItems: ITEMS,
     async signOut() { if (client) await client.auth.signOut(); location.href = 'index.html'; },
   };
 

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Next Chapter: jobs and gigs — Layoff Support</title>
-  <meta name="description" content="Sign up for Next Chapter, the Layoff Support jobs and gigs network: freelance, contract and full-time work after a layoff." />
+  <title>Work Board: jobs and gigs — Layoff Support</title>
+  <meta name="description" content="The Layoff Support Work Board: freelance, contract and full-time work for people after a layoff. Free for members." />
   <link rel="icon" href="assets/img/logo.avif" />
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="stylesheet" href="assets/home.css" />
@@ -28,85 +28,58 @@
         <a href="mentors.html">Mentors</a>
         <a href="communities.html">Communities</a>
         <a href="blog.html">Stories</a>
-        <a href="marketplace.html" class="btn btn--primary btn--sm site-nav__cta">Join Next Chapter</a>
+        <a href="marketplace.html" class="btn btn--primary btn--sm site-nav__cta">Work Board</a>
       </nav>
     </div>
   </header>
 
   <main id="main" class="page">
     <div class="container page__narrow">
-      <p class="h-eyebrow">Next Chapter: jobs and gigs</p>
+      <p class="h-eyebrow">Work Board: jobs and gigs</p>
       <h1>Find your next role, or a gig to bridge the gap</h1>
-      <p class="h-lead">Tell us what you do and what kind of work you want next. We'll email you when matching freelance, contract and full-time opportunities open up in Next Chapter. Free to join.</p>
 
-      <form id="marketplace-form" class="form-card" action="https://submit-form.com/sJzhhkPeT" method="POST" novalidate>
-        <input type="hidden" name="signup_type" value="Marketplace sign-up" />
-        <div class="hp" aria-hidden="true">
-          <label for="mk-hp">Leave this empty</label>
-          <input id="mk-hp" type="text" name="_honeypot" tabindex="-1" autocomplete="off" />
+      <div data-signed-out>
+        <p class="h-lead">Freelance, contract and full-time work for Layoff Support members. Sign in with your free account, tell us the work you want, and we'll email you when a matching role or gig is posted.</p>
+        <ul>
+          <li>Roles and gigs from people who want to hire someone after a layoff</li>
+          <li>Matched to your field, location and the kind of work you're open to</li>
+          <li>Free, and the same account as your plan and checklist</li>
+        </ul>
+        <div class="acct-actions">
+          <button class="btn btn--primary" type="button" data-require-signin="Sign in with your free account to see the Work Board and tell us the work you're looking for.">Sign in to see the Work Board</button>
+          <span class="page__meta">No password needed.</span>
         </div>
+      </div>
 
-        <div class="field">
-          <label for="mk-name">Your name</label>
-          <input id="mk-name" type="text" name="name" autocomplete="name" required />
-        </div>
+      <div data-signed-in hidden>
+        <section class="acct-card">
+          <h2>Roles and gigs</h2>
+          <p>We're adding the first roles and gigs now. Set what you're looking for below, and we'll email you as soon as something matches.</p>
+        </section>
 
-        <div class="field">
-          <label for="mk-email">Email</label>
-          <input id="mk-email" type="email" name="email" autocomplete="email" required />
-          <small>We'll only use this to tell you about Next Chapter.</small>
-        </div>
-
-        <div class="field">
-          <label for="mk-field">What kind of work do you do?</label>
-          <select id="mk-field" name="field" required>
-            <option value="">Choose one</option>
-            <option>Engineering</option>
-            <option>Product</option>
-            <option>Design</option>
-            <option>Data</option>
-            <option>Marketing</option>
-            <option>Sales</option>
-            <option>Ops or People</option>
-            <option>Something else</option>
-          </select>
-        </div>
-
-        <fieldset class="field">
-          <legend>What are you open to?</legend>
-          <div class="choices">
-            <label class="choice"><input type="checkbox" name="open_to" value="Freelance gigs" /><span>Freelance gigs</span></label>
-            <label class="choice"><input type="checkbox" name="open_to" value="Contract" /><span>Contract</span></label>
-            <label class="choice"><input type="checkbox" name="open_to" value="Full-time" /><span>Full-time</span></label>
-            <label class="choice"><input type="checkbox" name="open_to" value="Part-time" /><span>Part-time</span></label>
-          </div>
-        </fieldset>
-
-        <div class="field">
-          <label for="mk-country">Where are you based?</label>
-          <input id="mk-country" type="text" name="location" autocomplete="country-name" placeholder="Country, or city and country" />
-        </div>
-
-        <div class="field">
-          <label for="mk-link">LinkedIn or portfolio <span style="font-weight:400;color:var(--ink-500)">(optional)</span></label>
-          <input id="mk-link" type="url" name="link" placeholder="https://" />
-        </div>
-
-        <div class="field">
-          <label for="mk-notes">Anything else we should know? <span style="font-weight:400;color:var(--ink-500)">(optional)</span></label>
-          <textarea id="mk-notes" name="notes" placeholder="Skills, the roles you're targeting, when you can start"></textarea>
-        </div>
-
-        <label class="consent">
-          <input type="checkbox" name="consent" value="yes" required />
-          <span>I'm happy for Layoff Support to email me about Next Chapter. I can unsubscribe at any time. See our <a href="privacy.html">privacy policy</a>.</span>
-        </label>
-
-        <div id="mk-status" class="form-status" role="status" aria-live="polite" hidden></div>
-        <button type="submit" class="btn btn--primary">Join Next Chapter</button>
-      </form>
+        <section class="acct-card">
+          <h2>What you're looking for</h2>
+          <p class="page__meta">Only you and the Layoff Support team can see this. We'll never share it with an employer without asking you first.</p>
+          <form id="workForm" class="acct-grid" style="margin-top:14px">
+            <div><label class="lbl" for="w-field">Your field</label><select id="w-field"><option value="">Choose one</option><option>Engineering</option><option>Product</option><option>Design</option><option>Data and AI</option><option>Marketing</option><option>Sales</option><option>Operations</option><option>People and HR</option><option>Finance</option><option>Customer support</option><option>Other</option></select></div>
+            <div><label class="lbl" for="w-location">Where are you based?</label><input type="text" id="w-location" placeholder="City and country, or remote" /></div>
+            <div class="field-full"><span class="lbl">What are you open to?</span>
+              <div class="chips" id="w-open">
+                <label><input type="checkbox" value="Freelance gigs" /> Freelance gigs</label>
+                <label><input type="checkbox" value="Contract" /> Contract</label>
+                <label><input type="checkbox" value="Full-time" /> Full-time</label>
+                <label><input type="checkbox" value="Part-time" /> Part-time</label>
+              </div></div>
+            <div class="field-full"><label class="lbl" for="w-link">LinkedIn or portfolio <span class="page__meta">(optional)</span></label><input type="text" id="w-link" placeholder="https://" inputmode="url" /></div>
+            <div class="field-full"><label class="lbl" for="w-notes">Anything else we should know? <span class="page__meta">(optional)</span></label><textarea id="w-notes" rows="3" placeholder="Skills, the roles you're targeting, when you can start" style="width:100%;padding:11px 13px;border:1px solid #d5dcd9;border-radius:12px;font:inherit;font-size:15px"></textarea></div>
+            <label class="check-line field-full"><input type="checkbox" id="w-alerts" /> Email me when a matching role or gig is posted. Unsubscribe any time.</label>
+            <div class="acct-actions field-full"><button class="btn btn--primary" type="submit">Save</button><span class="saved-msg" id="w-msg" role="status"></span></div>
+          </form>
+        </section>
+      </div>
     </div>
   </main>
+
 
   <footer class="footer">
     <div class="container">
@@ -125,7 +98,7 @@
         <div class="footer__col">
           <h4 class="footer__heading">Find work</h4>
           <ul class="footer__list">
-            <li><a href="marketplace.html">Next Chapter: jobs and gigs</a></li>
+            <li><a href="marketplace.html">Work Board: jobs and gigs</a></li>
             <li><a href="jobs.html">Job boards</a></li>
             <li><a href="tools.html">Job search tools</a></li>
             <li><a href="communities.html">Communities</a></li>
@@ -139,7 +112,7 @@
           <h4 class="footer__heading footer__heading--mt">About</h4>
           <ul class="footer__list">
             <li><a href="privacy.html">Privacy policy</a></li>
-            <li><a href="marketplace.html">Join Next Chapter</a></li>
+            <li><a href="marketplace.html">Work Board</a></li>
           </ul>
         </div>
       </div>
@@ -157,51 +130,36 @@
   <script src="assets/script.js"></script>
   <script src="assets/auth.js"></script>
   <script>
-    // If someone is signed in, fill in their name and email for them.
-    LS.onUser(async function (u) {
-      if (!u) return;
-      var e = document.getElementById('mk-email'), n = document.getElementById('mk-name');
-      if (e && !e.value) e.value = u.email || '';
-      var r = await LS.db.from('member_profiles').select('first_name').eq('id', u.id).maybeSingle();
-      if (n && !n.value && r.data && r.data.first_name) n.value = r.data.first_name;
-    });
-  </script>
-  <script>
   (function () {
-    var form = document.getElementById('marketplace-form');
-    var status = document.getElementById('mk-status');
-    function say(msg, ok) {
-      status.hidden = false;
-      status.textContent = msg;
-      status.className = 'form-status ' + (ok ? 'form-status--ok' : 'form-status--err');
-    }
-    form.addEventListener('submit', function (e) {
+    const $ = (id) => document.getElementById(id);
+    $('workForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      if (form.action.indexOf('FORMSPARK_FORM_ID') !== -1) {
-        say('Sign-ups open very soon. Please check back in a few days.', false);
-        return;
+      const row = {
+        field: $('w-field').value || null,
+        location: $('w-location').value.trim() || null,
+        open_to: [...document.querySelectorAll('#w-open input:checked')].map((i) => i.value),
+        link: $('w-link').value.trim() || null,
+        work_notes: $('w-notes').value.trim() || null,
+        work_alerts: $('w-alerts').checked,
+        updated_at: new Date().toISOString(),
+      };
+      const { error } = await LS.db.from('member_profiles').update(row).eq('id', LS.user.id);
+      $('w-msg').textContent = error ? 'Couldn\'t save. Please try again.' : 'Saved. We\'ll be in touch when something matches.';
+      if (!error) {
+        LS.db.from('member_progress').upsert({ user_id: LS.user.id, item: 'nextchapter', done: true, updated_at: new Date().toISOString() });
+        setTimeout(() => ($('w-msg').textContent = ''), 4000);
       }
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-      var btn = form.querySelector('button[type="submit"]');
-      btn.disabled = true;
-      var data = {};
-      new FormData(form).forEach(function (v, k) {
-        if (data[k]) data[k] = [].concat(data[k], v); else data[k] = v;
-      });
-      fetch(form.action, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data)
-      }).then(function (r) {
-        if (!r.ok) throw new Error('bad status');
-        form.reset();
-        say("You're on the list. We'll email you when Next Chapter opens to you.", true);
-      }).catch(function () {
-        say('Something went wrong sending that. Please try again in a moment.', false);
-      }).finally(function () { btn.disabled = false; });
+    });
+    LS.onUser(async (u) => {
+      if (!u) return;
+      const { data: p } = await LS.db.from('member_profiles').select('*').eq('id', u.id).maybeSingle();
+      if (!p) return;
+      $('w-field').value = p.field || '';
+      $('w-location').value = p.location || '';
+      $('w-link').value = p.link || '';
+      $('w-notes').value = p.work_notes || '';
+      $('w-alerts').checked = !!p.work_alerts;
+      document.querySelectorAll('#w-open input').forEach((i) => (i.checked = (p.open_to || []).includes(i.value)));
     });
   })();
   </script>

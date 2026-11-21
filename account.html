@@ -6,41 +6,20 @@
   <title>Your progress — Layoff Support</title>
   <meta name="robots" content="noindex" />
   <meta name="description" content="Sign in to save your layoff plan, track your checklist and get help that fits your situation." />
-  <link rel="icon" href="assets/img/logo.avif" />
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="stylesheet" href="assets/home.css" />
 </head>
-<body>
+<body data-page="account">
 
-  <a class="skip-link" href="#main">Skip to content</a>
+<div class="dash">
+  <aside id="sidebar" class="dash__side"></aside>
 
-  <header class="site-header">
-    <div class="container site-header__inner">
-      <a href="index.html" class="logo" aria-label="Layoff Support home">
-        <span class="logo__mark" aria-hidden="true"><img src="assets/img/logo.avif" alt="" /></span>
-        <span class="logo__text"><span>layoff</span><span>support</span></span>
-      </a>
-      <button class="site-nav__toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
-      <nav id="site-nav" class="site-nav" aria-label="Main">
-        <a href="plan.html">Your plan</a>
-        <a href="offers.html">Our picks</a>
-        <a href="jobs.html">Job boards</a>
-        <a href="therapists.html">Therapy</a>
-        <a href="mentors.html">Mentors</a>
-        <a href="communities.html">Communities</a>
-        <a href="blog.html">Stories</a>
-        <a href="marketplace.html" class="btn btn--primary btn--sm site-nav__cta">Join Next Chapter</a>
-      </nav>
-    </div>
-  </header>
+  <main class="dash__main acct">
 
-  <main id="main" class="page">
-    <div class="container page__narrow">
 
       <!-- Signed out -->
       <div data-signed-out>
-        <p class="h-eyebrow">Your progress</p>
-        <h1>Keep your next steps in one place</h1>
+        <div class="dash__topbar"><div class="dash__greeting"><h1>Keep your next steps in one place</h1><p>Free, and no password needed.</p></div></div>
         <p>A free account saves your plan and checklist, so you can pick up where you left off on any device. We'll also send you a reminder before a deadline is due, and help that fits your state and situation.</p>
         <ul>
           <li>Your deadlines and health coverage plan, saved</li>
@@ -56,15 +35,15 @@
 
       <!-- Signed in -->
       <div data-signed-in hidden>
-        <p class="h-eyebrow" id="hello-eyebrow">Your progress</p>
-        <h1 id="hello">Welcome</h1>
-        <p id="hello-sub">Here's where you are, and what's next.</p>
+        <div class="dash__topbar"><div class="dash__greeting"><h1 id="hello">Welcome</h1><p id="hello-sub">Here's where you are, and what's next.</p></div></div>
 
-        <section class="acct-card" id="checklist">
-          <h2>Your checklist</h2>
-          <p class="page__meta" id="progress-label">0 of 0 done</p>
-          <div class="progress-bar"><span id="progress-fill" style="width:0%"></span></div>
-          <ul class="todo" id="todo"></ul>
+        <section class="acct-card acct-summary" id="checklist">
+          <div>
+            <h2>Your checklist</h2>
+            <p class="page__meta" id="progress-label">Loading…</p>
+            <div class="progress-bar"><span id="progress-fill" style="width:0%"></span></div>
+          </div>
+          <button class="btn btn--primary" type="button" id="openChecklist">Open checklist</button>
         </section>
 
         <section class="acct-card" id="about">
@@ -137,10 +116,10 @@ Thanks,
           </div>
         </section>
       </div>
-    </div>
   </main>
+</div>
 
-
+  <!-- ============ FOOTER ============ -->
   <footer class="footer">
     <div class="container">
       <div class="footer__cols">
@@ -158,7 +137,7 @@ Thanks,
         <div class="footer__col">
           <h4 class="footer__heading">Find work</h4>
           <ul class="footer__list">
-            <li><a href="marketplace.html">Next Chapter: jobs and gigs</a></li>
+            <li><a href="marketplace.html">Work Board: jobs and gigs</a></li>
             <li><a href="jobs.html">Job boards</a></li>
             <li><a href="tools.html">Job search tools</a></li>
             <li><a href="communities.html">Communities</a></li>
@@ -172,7 +151,7 @@ Thanks,
           <h4 class="footer__heading footer__heading--mt">About</h4>
           <ul class="footer__list">
             <li><a href="privacy.html">Privacy policy</a></li>
-            <li><a href="marketplace.html">Join Next Chapter</a></li>
+            <li><a href="marketplace.html">Work Board</a></li>
           </ul>
         </div>
       </div>
@@ -187,24 +166,13 @@ Thanks,
     </div>
   </footer>
 
-  <script src="assets/script.js"></script>
-  <script src="assets/auth.js"></script>
+<script src="assets/script.js"></script>
+<script src="assets/auth.js"></script>
   <script>
   (function () {
-    const ITEMS = [
-      ['unemployment', 'File for unemployment', 'Do it in your first week, even if you got severance.', 'https://www.careeronestop.org/LocalHelp/UnemploymentBenefits/find-unemployment-benefits.aspx', 'Find your state\'s office'],
-      ['deadlines', 'Work out your deadlines', 'Severance, health coverage, visa and FSA dates, from your last day.', 'plan.html', 'Open your plan'],
-      ['severance', 'Read your severance agreement before signing', 'If you\'re 40 or over, you get at least 21 days (45 in a group layoff).', 'offers.html#legal', 'Low-cost legal help'],
-      ['coverage', 'Choose your health coverage', 'You have 60 days from losing job coverage. Compare before paying for COBRA.', 'offers.html#health', 'Compare your options'],
-      ['talk', 'Talk to someone', 'A friend, a support group or a counselor. Low-cost options are listed.', 'offers.html#therapy', 'Find support'],
-      ['resume', 'Update your resume and LinkedIn', 'Free tools can tailor them to each job.', 'offers.html#tools', 'Free job-search tools'],
-      ['mentor', 'Book a free session with a coach or mentor', 'Your local American Job Center and alumni office are free.', 'offers.html#coaching', 'Free coaching'],
-      ['nextchapter', 'Join Next Chapter', 'Hear about freelance, contract and full-time roles.', 'marketplace.html', 'Join'],
-      ['apply', 'Send your first five applications', 'Five thoughtful ones beat fifty rushed ones.', 'jobs.html', 'Job boards'],
-    ];
     const NON_EXPANSION = ['AL','FL','GA','KS','MS','SC','TN','TX','WI','WY'];
     const $ = (id) => document.getElementById(id);
-    let profile = null, done = {};
+    let profile = null;
 
     $('signinBtn').addEventListener('click', () => LS.requireSignIn());
     $('signoutBtn').addEventListener('click', () => LS.signOut());
@@ -212,28 +180,12 @@ Thanks,
       try { await navigator.clipboard.writeText($(b.dataset.copy).textContent); b.textContent = 'Copied'; setTimeout(() => (b.textContent = 'Copy'), 1500); } catch (e) {}
     }));
 
-    function renderTodo() {
-      const ul = $('todo'); ul.innerHTML = '';
-      ITEMS.forEach(([key, title, detail, href, linkText]) => {
-        const li = document.createElement('li'); if (done[key]) li.className = 'is-done';
-        li.innerHTML = '<label><input type="checkbox"' + (done[key] ? ' checked' : '') + ' /><span><b></b><small></small><a></a></span></label>';
-        li.querySelector('b').textContent = title;
-        li.querySelector('small').textContent = detail;
-        const a = li.querySelector('a'); a.href = href; a.textContent = linkText + ' \u2192';
-        if (href.startsWith('http')) { a.target = '_blank'; a.rel = 'noopener'; }
-        li.querySelector('input').addEventListener('change', async (e) => {
-          done[key] = e.target.checked; li.className = done[key] ? 'is-done' : ''; renderCount();
-          await LS.db.from('member_progress').upsert({ user_id: LS.user.id, item: key, done: done[key], updated_at: new Date().toISOString() });
-        });
-        ul.appendChild(li);
-      });
-      renderCount();
-    }
-    function renderCount() {
-      const n = ITEMS.filter(([k]) => done[k]).length;
-      $('progress-label').textContent = n + ' of ' + ITEMS.length + ' done';
-      $('progress-fill').style.width = Math.round(100 * n / ITEMS.length) + '%';
-    }
+    $('openChecklist').addEventListener('click', () => LS.openChecklist());
+    document.addEventListener('ls:progress', (e) => {
+      const { done, total } = e.detail;
+      $('progress-label').textContent = done + ' of ' + total + ' done' + (done === total ? '. Well done.' : '');
+      $('progress-fill').style.width = Math.round(100 * done / total) + '%';
+    });
 
     function renderForYou() {
       const box = $('foryou'); const p = profile || {}; const out = [];
@@ -246,7 +198,7 @@ Thanks,
       } else if (p.state === 'XX') {
         out.push('<div class="note">Most of our guides are for the US. The <a href="offers.html#tools">job-search tools</a> and <a href="offers.html#coaching">mentors</a> work anywhere.</div>');
       }
-      const MAP = { health: ['Health coverage', 'offers.html#health'], therapy: ['Low-cost therapy', 'offers.html#therapy'], legal: ['Severance and legal help', 'offers.html#legal'], coaching: ['Free coaching and mentors', 'offers.html#coaching'], jobs: ['Free job-search tools', 'offers.html#tools'], freelance: ['Next Chapter: freelance and gigs', 'marketplace.html'] };
+      const MAP = { health: ['Health coverage', 'offers.html#health'], therapy: ['Low-cost therapy', 'offers.html#therapy'], legal: ['Severance and legal help', 'offers.html#legal'], coaching: ['Free coaching and mentors', 'offers.html#coaching'], jobs: ['Free job-search tools', 'offers.html#tools'], freelance: ['Work Board: freelance and gigs', 'marketplace.html'] };
       needs.forEach((n) => { if (MAP[n]) out.push('<div class="note"><b>' + MAP[n][0] + ':</b> our researched picks. <a href="' + MAP[n][1] + '">Open</a></div>'); });
       if (p.layoff_date) {
         const days = Math.floor((Date.now() - new Date(p.layoff_date + 'T00:00:00')) / 86400000);
@@ -297,13 +249,9 @@ Thanks,
     LS.onUser(async (u) => {
       if (!u) return;
       $('acct-email').textContent = u.email;
-      const [{ data: p }, { data: prog }] = await Promise.all([
-        LS.db.from('member_profiles').select('*').eq('id', u.id).maybeSingle(),
-        LS.db.from('member_progress').select('item,done').eq('user_id', u.id),
-      ]);
-      profile = p || {}; done = {};
-      (prog || []).forEach((r) => (done[r.item] = r.done));
-      greet(); fillForm(); renderTodo(); renderForYou();
+      const { data: p } = await LS.db.from('member_profiles').select('*').eq('id', u.id).maybeSingle();
+      profile = p || {};
+      greet(); fillForm(); renderForYou();
     });
   })();
   </script>
