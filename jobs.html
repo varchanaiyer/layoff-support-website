@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Job Board — Layoff Support</title>
-  <link rel="stylesheet" href="assets/styles.css?v=202611220032" />
+  <title>Find work: a searchable job board — Layoff Support</title>
+  <link rel="stylesheet" href="assets/styles.css?v=202611220037" />
+  <link rel="stylesheet" href="assets/home.css?v=202611220037" />
 </head>
 <body data-page="jobs">
 
@@ -16,77 +17,63 @@
     <!-- ========= 1. TOPBAR ========= -->
     <div class="dash__topbar">
       <div class="dash__greeting">
-        <h1>Job board</h1>
-        <p>Sixteen mission-driven employers. Hand-verified, no fake metrics.</p>
+        <h1>Find work</h1>
+        <p>Fresh remote jobs, updated every day. Save the ones you like, and they'll wait for you in your plan.</p>
       </div>
+      <a href="plan.html#saved" class="jb-savedlink" id="jbSavedLink" hidden>Saved jobs <b>0</b></a>
     </div>
 
-    <!-- ========= 2. HOW THIS LIST WORKS ========= -->
-    <div class="panel">
-      <h3>How this list works</h3>
-      <p class="sub">No applicant counts, no "kindness" scores, no fabricated salary bands. Every company below is in <a href="data/jobs-data.json" style="color:var(--teal-700);">data/jobs-data.json</a> with a public source. The test that proves it is <a href="data/verify-jobs-data.js" style="color:var(--teal-700);">data/verify-jobs-data.js</a> — run it and the page won't ship if anything's invented.</p>
-    </div>
-
-    <!-- ========= 3. ENERGY BUDGET ========= -->
-    <div class="panel energy">
-      <h3>How much can you take on today?</h3>
-      <p class="sub">Pick a pace. We'll remember it.</p>
-      <div class="energy__options" role="radiogroup" aria-label="Energy budget">
-        <button type="button" class="energy__opt" data-energy="low" aria-pressed="false">
-          <span class="energy__dot energy__dot--low" aria-hidden="true"></span>
-          <span><span class="energy__label">Quiet day</span></span>
-        </button>
-        <button type="button" class="energy__opt is-active" data-energy="medium" aria-pressed="true">
-          <span class="energy__dot energy__dot--medium" aria-hidden="true"></span>
-          <span><span class="energy__label">Some fight in me</span></span>
-        </button>
-        <button type="button" class="energy__opt" data-energy="full" aria-pressed="false">
-          <span class="energy__dot energy__dot--full" aria-hidden="true"></span>
-          <span><span class="energy__label">Ready to swing</span></span>
-        </button>
+    <!-- ========= 2. SEARCH ========= -->
+    <form class="panel jb-search" id="jbForm" role="search">
+      <div class="jb-search__q">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <label for="jbQ" class="sr-only">Search jobs</label>
+        <input id="jbQ" type="search" placeholder="Job title, skill or company" autocomplete="off" />
       </div>
-    </div>
-
-    <!-- ========= 4. FILTERS ========= -->
-    <div class="panel">
-      <h3>Filter</h3>
-
-      <div class="filter-cluster">
-        <div class="filter-cluster__label">Shape of work</div>
-        <div class="filter-cluster__tags">
-          <span class="tag">Remote</span>
-          <span class="tag">Hybrid</span>
-          <span class="tag">Async-first</span>
-          <span class="tag">4-day week</span>
-        </div>
+      <div class="jb-search__row">
+        <label>Where
+          <select id="jbLoc">
+            <option value="">Anywhere</option>
+            <option value="United States" selected>United States</option>
+            <option value="Canada">Canada</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="europe">Europe</option>
+            <option value="India">India</option>
+            <option value="Australia">Australia</option>
+          </select>
+        </label>
+        <label>Type
+          <select id="jbType">
+            <option value="">Any</option>
+            <option value="full">Full time</option>
+            <option value="contract">Contract</option>
+            <option value="part">Part time</option>
+          </select>
+        </label>
+        <label>Sort
+          <select id="jbSort">
+            <option value="new">Newest first</option>
+            <option value="pay">Highest pay</option>
+          </select>
+        </label>
+        <label class="jb-check"><input type="checkbox" id="jbPay" /> Salary shown</label>
       </div>
+    </form>
 
-      <div class="filter-cluster">
-        <div class="filter-cluster__label">Function</div>
-        <div class="filter-cluster__tags">
-          <span class="tag">Engineering</span>
-          <span class="tag">Product</span>
-          <span class="tag">Design</span>
-          <span class="tag">Ops / People</span>
-          <span class="tag">Customer</span>
-        </div>
+    <!-- ========= 3. RESULTS ========= -->
+    <div class="jb-results">
+      <div class="jb-results__head">
+        <p id="jbCount" aria-live="polite"></p>
+        <p class="jb-credit">Jobs from <a href="https://himalayas.app" target="_blank" rel="noopener">Himalayas</a> <span id="jbUpdated"></span></p>
       </div>
-
-      <div class="filter-cluster">
-        <div class="filter-cluster__label">Structure</div>
-        <div class="filter-cluster__tags">
-          <span class="tag">Non-profit</span>
-          <span class="tag">Public Benefit Corp</span>
-          <span class="tag">B Corp</span>
-          <span class="tag">Employee-owned</span>
-          <span class="tag">Unionized</span>
-        </div>
-      </div>
+      <p class="jb-note" id="jbNote" role="status"></p>
+      <div id="jbList" class="jb-list"><div class="jb-empty"><p>Loading jobs…</p></div></div>
+      <button type="button" class="btn btn--outline jb-more" id="jbMore" hidden>Show more jobs</button>
     </div>
 
     <!-- ========= 5. VERIFIED EMPLOYERS GRID ========= -->
     <div class="panel">
-      <h3>Verified employers</h3>
+      <h3>Employers we've checked</h3>
       <p class="sub">Click through to each company's actual careers page.</p>
 
       <div class="counseling__grid">
@@ -420,8 +407,9 @@
     </div>
   </footer>
 
-<script src="assets/script.js?v=202611220032"></script>
-  <script src="assets/auth.js?v=202611220032"></script>
-  <script src="assets/calm.js?v=202611220032"></script>
+<script src="assets/script.js?v=202611220037"></script>
+  <script src="assets/auth.js?v=202611220037"></script>
+  <script src="assets/calm.js?v=202611220037"></script>
+  <script src="assets/jobs.js?v=202611220037"></script>
 </body>
 </html>

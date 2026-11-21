@@ -53,6 +53,9 @@ button,input,select{font:inherit;color:inherit}
 main{padding:32px clamp(16px,4vw,48px) 72px;min-width:0}
 .view{display:grid;gap:24px;max-width:1040px}
 .view+.view{margin-top:96px;padding-top:72px;border-top:1px solid var(--line)}
+.saved-list{display:grid;gap:10px}
+.saved-row{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.saved-row p{margin:2px 0 0}
 .view .vhead{margin-bottom:8px}
 
 .vhead{display:grid;gap:6px}
@@ -177,6 +180,7 @@ input[type=range]{width:100%;accent-color:var(--teal)}
       <button data-view="cover">Health coverage</button>
       <button data-view="talk">Talk to someone</button>
       <button data-view="circles">Circles</button>
+      <button data-view="saved">Saved jobs <small id="savedCount"></small></button>
       <div class="sep"></div>
       <a class="navlink" href="marketplace.html">Work Board: jobs and gigs</a>
       <a class="navlink" href="jobs.html">Job boards</a>
@@ -343,6 +347,22 @@ input[type=range]{width:100%;accent-color:var(--teal)}
       </div>
     </section>
     <div id="notesList" hidden></div>
+
+    <!-- SAVED JOBS -->
+    <section class="view" id="v-saved">
+      <div class="vhead">
+        <span class="eyebrow">Saved jobs</span>
+        <h1 class="title">Jobs you're keeping an eye on</h1>
+        <p class="sub">Save jobs on the job board and they'll wait for you here, on any device.</p>
+      </div>
+      <div class="panel" id="savedPanel">
+        <div id="savedOut" data-signed-in hidden><p class="small muted">Loading…</p></div>
+        <div data-signed-out>
+          <p>Sign in to keep a list of jobs you like. It's free, and there's no password.</p>
+          <div class="row" style="justify-content:flex-start;margin-top:12px"><button class="btn" data-require-signin="Sign in to save jobs and see them here in your plan.">Sign in</button><a class="btn ghost" href="jobs.html">Browse jobs</a></div>
+        </div>
+      </div>
+    </section>
   </main>
 </div>
 
@@ -504,7 +524,7 @@ input[type=range]{width:100%;accent-color:var(--teal)}
 })();
 </script>
 
-<script src="assets/auth.js?v=202611220032"></script>
+<script src="assets/auth.js?v=202611220037"></script>
 <script>
   // Sign-in features on the plan page: save the plan to the account, and record circle/pod interest.
   function lsInterest(tag, reason) {
@@ -543,6 +563,44 @@ input[type=range]{width:100%;accent-color:var(--teal)}
       }
       if (!localEmpty) push();
     });
+  })();
+</script>
+<script>
+  // Saved jobs, from the job board, shown in the plan.
+  (function () {
+    var out = document.getElementById('savedOut'), cnt = document.getElementById('savedCount');
+    function esc(t) { var d = document.createElement('div'); d.textContent = t == null ? '' : String(t); return d.innerHTML; }
+    function money(j) {
+      if (!j.min && !j.max) return '';
+      var f = function (n) { return n >= 1000 ? Math.round(n / 1000) + 'k' : n; };
+      var cur = j.cur === 'USD' ? '$' : j.cur === 'GBP' ? '\u00a3' : j.cur === 'EUR' ? '\u20ac' : (j.cur ? j.cur + ' ' : '');
+      return cur + (j.min ? f(j.min) : '') + (j.min && j.max && j.max !== j.min ? '\u2013' + f(j.max) : '');
+    }
+    function draw(rows) {
+      cnt.textContent = rows.length ? rows.length : '';
+      if (!rows.length) { out.innerHTML = '<p>No saved jobs yet. <a href="jobs.html">Browse the job board</a> and tap <b>Save</b> on any job you like.</p>'; return; }
+      out.innerHTML = '<div class="saved-list">' + rows.map(function (r) {
+        var j = r.job || {}, pay = money(j);
+        return '<div class="saved-row" data-id="' + esc(r.job_id) + '"><div><b>' + esc(j.title) + '</b><p class="small muted">' + esc(j.company) + (pay ? ' \u00b7 ' + esc(pay) : '') + (j.type ? ' \u00b7 ' + esc(j.type) : '') + '</p></div>' +
+          '<div class="row" style="gap:8px"><a class="btn" href="' + esc(j.link) + '" target="_blank" rel="noopener">Apply</a><button class="btn ghost" data-unsave="' + esc(r.job_id) + '">Remove</button></div></div>';
+      }).join('') + '</div><p class="small muted" style="margin-top:10px">Jobs from <a href="https://himalayas.app" target="_blank" rel="noopener">Himalayas</a>. Listings can close, so apply soon if one feels right.</p>';
+    }
+    var rows = [];
+    function load(u) {
+      if (!u) { cnt.textContent = ''; return; }
+      LS.db.from('member_saved_jobs').select('job_id,job,saved_at').eq('user_id', u.id).order('saved_at', { ascending: false }).then(function (r) {
+        if (r.error) { out.innerHTML = '<p class="small muted">Saved jobs aren\u2019t available just yet.</p>'; return; }
+        rows = r.data || []; draw(rows);
+      });
+    }
+    out.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-unsave]'); if (!b) return;
+      var id = b.dataset.unsave;
+      LS.db.from('member_saved_jobs').delete().eq('user_id', LS.user.id).eq('job_id', id).then(function (r) {
+        if (!r.error) { rows = rows.filter(function (x) { return x.job_id !== id; }); draw(rows); }
+      });
+    });
+    if (window.LS) LS.onUser(load);
   })();
 </script>
 </body></html>
