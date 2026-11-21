@@ -35,7 +35,8 @@
 
       <!-- Signed in -->
       <div data-signed-in hidden>
-        <div class="dash__topbar"><div class="dash__greeting"><h1 id="hello">Welcome</h1><p id="hello-sub">Here's where you are, and what's next.</p></div></div>
+        <div class="dash__topbar acct-top"><div class="dash__greeting"><h1 id="hello">Welcome</h1><p id="hello-sub">Here's where you are, and what's next.</p></div>
+          <div class="acct-top__who"><span id="acct-email-top"></span><button class="btn btn--outline btn--sm" type="button" id="signoutTop">Sign out</button></div></div>
 
         <section class="acct-card acct-summary" id="checklist">
           <div>
@@ -176,6 +177,7 @@ Thanks,
 
     $('signinBtn').addEventListener('click', () => LS.requireSignIn());
     $('signoutBtn').addEventListener('click', () => LS.signOut());
+    $('signoutTop').addEventListener('click', () => LS.signOut());
     document.querySelectorAll('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
       try { await navigator.clipboard.writeText($(b.dataset.copy).textContent); b.textContent = 'Copied'; setTimeout(() => (b.textContent = 'Copy'), 1500); } catch (e) {}
     }));
@@ -249,6 +251,7 @@ Thanks,
     LS.onUser(async (u) => {
       if (!u) return;
       $('acct-email').textContent = u.email;
+      $('acct-email-top').textContent = u.email;
       const { data: p } = await LS.db.from('member_profiles').select('*').eq('id', u.id).maybeSingle();
       profile = p || {};
       greet(); fillForm(); renderForYou();

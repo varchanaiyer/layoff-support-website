@@ -93,6 +93,16 @@
       }
       a.href = 'account.html';
       a.textContent = label;
+      let out = nav.querySelector('.site-nav__signout');
+      if (!out) {
+        out = document.createElement('a');
+        out.className = 'site-nav__signout';
+        out.href = '#';
+        out.textContent = 'Sign out';
+        out.addEventListener('click', (e) => { e.preventDefault(); window.LS.signOut(); });
+        a.insertAdjacentElement('afterend', out);
+      }
+      out.hidden = !user;
     }
     const side = document.querySelector('#sidebar .dash__menu');
     if (side) {
@@ -104,6 +114,15 @@
         side.appendChild(li);
       }
       li.querySelector('span').textContent = label;
+      let outLi = side.querySelector('.dash__signout');
+      if (!outLi) {
+        outLi = document.createElement('li');
+        outLi.className = 'dash__signout';
+        outLi.innerHTML = '<a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Sign out</a>';
+        outLi.querySelector('a').addEventListener('click', (e) => { e.preventDefault(); window.LS.signOut(); });
+        side.appendChild(outLi);
+      }
+      outLi.hidden = !user;
       const onAcct = document.body.getAttribute('data-page') === 'account';
       li.querySelector('a').classList.toggle('is-active', onAcct);
       if (onAcct) li.querySelector('a').setAttribute('aria-current', 'page');
@@ -162,11 +181,12 @@
       '<h2 id="ls-check-title">The steps that matter most</h2>' +
       '<p class="ls-check__label">0 of 9 done</p><div class="ls-check__bar"><span class="ls-check__fill"></span></div>' +
       '<ul class="ls-check__list"></ul>' +
-      '<p class="ls-modal__small">Saved to your account. <a href="account.html">Your progress page</a></p></div>';
+      '<p class="ls-modal__small">Saved to your account. <a href="account.html">Your progress page</a> &middot; <a href="#" class="ls-check__signout">Sign out</a></p></div>';
     document.body.appendChild(sheet);
     const close = () => { sheet.hidden = true; document.body.style.overflow = ''; };
     sheet.addEventListener('click', (e) => { if (e.target === sheet) close(); });
     sheet.querySelector('.ls-modal__close').addEventListener('click', close);
+    sheet.querySelector('.ls-check__signout').addEventListener('click', (e) => { e.preventDefault(); window.LS.signOut(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !sheet.hidden) close(); });
     const ul = sheet.querySelector('.ls-check__list');
     ITEMS.forEach(([key, title, detail, href, linkText]) => {

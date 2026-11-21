@@ -38,6 +38,12 @@
       <p class="h-eyebrow">Work Board: jobs and gigs</p>
       <h1>Find your next role, or a gig to bridge the gap</h1>
 
+      <ol class="wb-steps" id="wbSteps" aria-label="How the Work Board works">
+        <li data-step="1"><span class="wb-steps__n">1</span><div><b>Sign in</b><small>Free, no password</small></div></li>
+        <li data-step="2"><span class="wb-steps__n">2</span><div><b>Tell us the work you want</b><small>Field, location, type of work</small></div></li>
+        <li data-step="3"><span class="wb-steps__n">3</span><div><b>Get matched</b><small>We email you when a role or gig fits</small></div></li>
+      </ol>
+
       <div data-signed-out>
         <p class="h-lead">Freelance, contract and full-time work for Layoff Support members. Sign in with your free account, tell us the work you want, and we'll email you when a matching role or gig is posted.</p>
         <ul>
@@ -52,13 +58,10 @@
       </div>
 
       <div data-signed-in hidden>
-        <section class="acct-card">
-          <h2>Roles and gigs</h2>
-          <p>We're adding the first roles and gigs now. Set what you're looking for below, and we'll email you as soon as something matches.</p>
-        </section>
-
-        <section class="acct-card">
-          <h2>What you're looking for</h2>
+        <section class="acct-card" id="wbForm">
+          <p class="wb-kicker" id="wbKicker">Step 2 of 3</p>
+          <h2 id="wbTitle">Tell us the work you want</h2>
+          <p class="wb-prefill" id="wbPrefill" hidden></p>
           <p class="page__meta">Only you and the Layoff Support team can see this. We'll never share it with an employer without asking you first.</p>
           <form id="workForm" class="acct-grid" style="margin-top:14px">
             <div><label class="lbl" for="w-field">Your field</label><select id="w-field"><option value="">Choose one</option><option>Engineering</option><option>Product</option><option>Design</option><option>Data and AI</option><option>Marketing</option><option>Sales</option><option>Operations</option><option>People and HR</option><option>Finance</option><option>Customer support</option><option>Other</option></select></div>
@@ -72,9 +75,14 @@
               </div></div>
             <div class="field-full"><label class="lbl" for="w-link">LinkedIn or portfolio <span class="page__meta">(optional)</span></label><input type="text" id="w-link" placeholder="https://" inputmode="url" /></div>
             <div class="field-full"><label class="lbl" for="w-notes">Anything else we should know? <span class="page__meta">(optional)</span></label><textarea id="w-notes" rows="3" placeholder="Skills, the roles you're targeting, when you can start" style="width:100%;padding:11px 13px;border:1px solid #d5dcd9;border-radius:12px;font:inherit;font-size:15px"></textarea></div>
-            <label class="check-line field-full"><input type="checkbox" id="w-alerts" /> Email me when a matching role or gig is posted. Unsubscribe any time.</label>
-            <div class="acct-actions field-full"><button class="btn btn--primary" type="submit">Save</button><span class="saved-msg" id="w-msg" role="status"></span></div>
+            <label class="check-line field-full"><input type="checkbox" id="w-alerts" checked /> Email me when a matching role or gig is posted. Unsubscribe any time.</label>
+            <div class="acct-actions field-full"><button class="btn btn--primary" type="submit" id="wbSave">Save and get matched</button><span class="saved-msg" id="w-msg" role="status"></span></div>
           </form>
+        </section>
+
+        <section class="acct-card" id="wbRoles">
+          <h2>Roles and gigs</h2>
+          <p id="wbRolesText">We're adding the first roles and gigs now. Finish step 2 and we'll email you as soon as something matches.</p>
         </section>
       </div>
     </div>
@@ -134,6 +142,7 @@
     const $ = (id) => document.getElementById(id);
     $('workForm').addEventListener('submit', async (e) => {
       e.preventDefault();
+      if (missing()) { $('w-msg').textContent = 'Please fill in the highlighted parts.'; return; }
       const row = {
         field: $('w-field').value || null,
         location: $('w-location').value.trim() || null,
@@ -146,20 +155,72 @@
       const { error } = await LS.db.from('member_profiles').update(row).eq('id', LS.user.id);
       $('w-msg').textContent = error ? 'Couldn\'t save. Please try again.' : 'Saved. We\'ll be in touch when something matches.';
       if (!error) {
+        $('wbPrefill').hidden = true;
+        missing();
+        showState(row);
         LS.db.from('member_progress').upsert({ user_id: LS.user.id, item: 'nextchapter', done: true, updated_at: new Date().toISOString() });
         setTimeout(() => ($('w-msg').textContent = ''), 4000);
       }
     });
+    const STATES = {AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',CT:'Connecticut',DE:'Delaware',DC:'Washington, DC',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming'};
+    function setSteps(n) {
+      document.querySelectorAll('#wbSteps li').forEach((li) => {
+        const k = +li.dataset.step;
+        li.classList.toggle('is-done', k < n);
+        li.classList.toggle('is-current', k === n);
+      });
+    }
+    function missing() {
+      const need = [['w-field', !$('w-field').value], ['w-location', !$('w-location').value.trim()], ['w-open', !document.querySelector('#w-open input:checked')]];
+      need.forEach(([id, m]) => $(id).classList.toggle('is-missing', m));
+      return need.filter(([, m]) => m).length;
+    }
+    ['w-field', 'w-location'].forEach((id) => $(id).addEventListener('input', missing));
+    $('w-open').addEventListener('change', missing);
+
+    function complete(p) { return p && p.field && p.location && p.open_to && p.open_to.length; }
+    function showState(p) {
+      if (complete(p)) {
+        setSteps(4);
+        $('wbKicker').textContent = 'You\'re all set';
+        $('wbTitle').textContent = 'What you\'re looking for';
+        $('wbSave').textContent = 'Save changes';
+        $('wbRolesText').textContent = 'You\'re on the list. We\'re adding the first roles and gigs now, and we\'ll email you as soon as one matches ' + p.open_to.join(', ').toLowerCase() + ' work in ' + p.field.toLowerCase() + '.';
+      } else {
+        setSteps(2);
+        $('wbKicker').textContent = 'Step 2 of 3';
+        $('wbTitle').textContent = 'Tell us the work you want';
+      }
+    }
+
+    // Signed-out visitors see step 1 as the current step
+    setSteps(1);
+
     LS.onUser(async (u) => {
-      if (!u) return;
+      if (!u) { setSteps(1); return; }
       const { data: p } = await LS.db.from('member_profiles').select('*').eq('id', u.id).maybeSingle();
-      if (!p) return;
-      $('w-field').value = p.field || '';
-      $('w-location').value = p.location || '';
-      $('w-link').value = p.link || '';
-      $('w-notes').value = p.work_notes || '';
-      $('w-alerts').checked = !!p.work_alerts;
-      document.querySelectorAll('#w-open input').forEach((i) => (i.checked = (p.open_to || []).includes(i.value)));
+      const prof = p || {};
+      const filled = [];
+      $('w-field').value = prof.field || '';
+      if (prof.field) filled.push('your field');
+      let loc = prof.location || '';
+      if (!loc && prof.state && STATES[prof.state]) { loc = STATES[prof.state] + ', US'; filled.push('your location'); }
+      else if (loc) filled.push('your location');
+      $('w-location').value = loc;
+      $('w-link').value = prof.link || '';
+      $('w-notes').value = prof.work_notes || '';
+      if (prof.work_alerts === false && prof.open_to && prof.open_to.length) $('w-alerts').checked = false;
+      document.querySelectorAll('#w-open input').forEach((i) => (i.checked = (prof.open_to || []).includes(i.value)));
+      if (!complete(prof)) {
+        const name = prof.first_name ? prof.first_name + ', w' : 'W';
+        $('wbPrefill').hidden = false;
+        $('wbPrefill').textContent = filled.length
+          ? name + 'e\'ve filled in ' + filled.join(' and ') + ' from your profile. Check it, then pick the kind of work you\'re open to.'
+          : name + 'e just need three things: your field, where you\'re based, and the kind of work you\'re open to.';
+        missing();
+        setTimeout(() => $('wbForm').scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
+      }
+      showState(prof);
     });
   })();
   </script>

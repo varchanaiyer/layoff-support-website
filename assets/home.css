@@ -542,3 +542,20 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .acct ul { padding-left: 22px; display: grid; gap: 6px; margin: 12px 0; color: var(--ink-700); }
 .acct h2 { font-size: 20px; color: var(--ink-900); margin: 0 0 8px; }
 .acct h3 { font-size: 16px; color: var(--ink-900); }
+.acct-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.acct-top__who { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--ink-500); }
+
+/* Work Board steps */
+.wb-steps { list-style: none; padding: 0 !important; margin: 24px 0 8px !important; display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 10px !important; }
+.wb-steps li { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border: 1px solid #e6ece9; border-radius: 14px; background: #fff; }
+.wb-steps__n { flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 14px; background: #eef3f1; color: var(--ink-500); }
+.wb-steps b { display: block; font-size: 15px; color: var(--ink-900); line-height: 1.3; }
+.wb-steps small { display: block; font-size: 13px; color: var(--ink-500); margin-top: 2px; }
+.wb-steps li.is-current { border-color: var(--teal-500, #14b8a6); box-shadow: 0 0 0 3px rgba(20, 184, 166, .12); }
+.wb-steps li.is-current .wb-steps__n { background: var(--teal-500, #14b8a6); color: #fff; }
+.wb-steps li.is-done .wb-steps__n { background: var(--teal-50, #e8f8f5); color: var(--teal-700); font-size: 0; }
+.wb-steps li.is-done .wb-steps__n::after { content: '\2713'; font-size: 15px; }
+.wb-kicker { font-size: 12px !important; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal-700) !important; margin: 0 0 4px !important; }
+.wb-prefill { padding: 12px 14px; border-left: 3px solid var(--teal-500, #14b8a6); background: #f2fbf9; border-radius: 0 12px 12px 0; font-size: 15px !important; margin: 8px 0 10px !important; }
+.acct-card .is-missing, .chips.is-missing { outline: 2px solid #f4b740; outline-offset: 2px; border-radius: 12px; }
+@media (max-width: 640px) { .wb-steps { grid-template-columns: 1fr; } }

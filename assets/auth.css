@@ -53,3 +53,7 @@
 .ls-check__list li.is-done b { text-decoration: line-through; color: #5b6b66; }
 @media (max-width: 560px) { .ls-fab { right: 12px; bottom: 12px; } .ls-fab span:not(.ls-fab__count) { display: none; } }
 @media print { .ls-fab { display: none !important; } }
+
+.site-nav a.site-nav__signout { color: #5b6b66; font-size: 13px; }
+.site-nav a.site-nav__signout[hidden], .dash__signout[hidden] { display: none !important; }
+.dash__signout a { color: #5b6b66 !important; }
