@@ -8,8 +8,8 @@
   <meta property="og:title" content="Layoff Support — You are not alone in this" />
   <meta property="og:description" content="Every deadline your layoff started, health coverage options and people who get it. Free and private." />
   <link rel="icon" href="assets/img/logo.avif" />
-  <link rel="stylesheet" href="assets/styles.css?v=202611212338" />
-  <link rel="stylesheet" href="assets/home.css?v=202611212338" />
+  <link rel="stylesheet" href="assets/styles.css?v=202611212343" />
+  <link rel="stylesheet" href="assets/home.css?v=202611212343" />
 </head>
 <body>
 
@@ -47,10 +47,18 @@
           <p class="h-note">No account needed. Your plan stays in your browser.</p>
           <p class="h-note" style="margin-top:14px"><button type="button" class="calm-breathe-link" data-breathe><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>Feeling overwhelmed? Take a one-minute breather</button></p>
         </div>
-        <figure class="hugline" id="hugline">
-          <svg viewBox="0 110 500 340" role="img" aria-label="Two people with their foreheads gently touching, drawn as one flowing line">
-            <path class="hugline__echo" d="M0,430 C36,416 64,444 100,430 C122,421 124,396 116,372 C106,342 112,312 140,298 C158,290 166,278 164,262 C150,244 140,214 148,182 C158,140 198,124 226,134 C242,140 250,150 250,162 C250,170 247,176 242,179 C238,182 232,182 228,178 C232,184 238,184 242,182 C242,190 240,198 235,206 C233,209 236,212 238,213 C235,216 233,218 236,221 C233,224 231,227 233,230 C231,237 224,242 217,243 C212,254 214,266 222,276 C234,292 244,300 250,302 C256,300 266,292 278,276 C286,266 288,254 283,243 C276,242 269,237 267,230 C269,227 267,224 264,221 C267,218 265,216 262,213 C264,212 267,209 265,206 C260,198 258,190 258,182 C262,184 268,184 272,178 C268,182 262,182 258,179 C253,176 250,170 250,162 C250,150 258,140 274,134 C302,124 342,140 352,182 C360,214 350,244 336,262 C334,278 342,290 360,298 C388,312 394,342 384,372 C376,396 378,421 400,430 C436,444 464,416 500,430"/>
-            <path class="hugline__line" d="M0,430 C36,416 64,444 100,430 C122,421 124,396 116,372 C106,342 112,312 140,298 C158,290 166,278 164,262 C150,244 140,214 148,182 C158,140 198,124 226,134 C242,140 250,150 250,162 C250,170 247,176 242,179 C238,182 232,182 228,178 C232,184 238,184 242,182 C242,190 240,198 235,206 C233,209 236,212 238,213 C235,216 233,218 236,221 C233,224 231,227 233,230 C231,237 224,242 217,243 C212,254 214,266 222,276 C234,292 244,300 250,302 C256,300 266,292 278,276 C286,266 288,254 283,243 C276,242 269,237 267,230 C269,227 267,224 264,221 C267,218 265,216 262,213 C264,212 267,209 265,206 C260,198 258,190 258,182 C262,184 268,184 272,178 C268,182 262,182 258,179 C253,176 250,170 250,162 C250,150 258,140 274,134 C302,124 342,140 352,182 C360,214 350,244 336,262 C334,278 342,290 360,298 C388,312 394,342 384,372 C376,396 378,421 400,430 C436,444 464,416 500,430"/>
+        <figure class="hugheart" id="hugheart">
+          <svg viewBox="40 30 320 310" role="img" aria-label="Two people lean in and hug, and their embrace becomes a heart">
+            <defs>
+              <linearGradient id="hhFill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#99f6e4"/><stop offset="1" stop-color="#ddd6fe"/></linearGradient>
+            </defs>
+            <g class="hh__group">
+              <path class="hh__fill" d=""/>
+              <path class="hh__body hh__body--a" d=""/>
+              <path class="hh__body hh__body--b" d=""/>
+              <circle class="hh__head hh__head--a" r="24"/>
+              <circle class="hh__head hh__head--b" r="24"/>
+            </g>
           </svg>
           <figcaption>You don't have to go through this alone.</figcaption>
         </figure>
@@ -369,32 +377,100 @@
     </div>
   </footer>
 
-  <script src="assets/script.js?v=202611212338"></script>
-  <script src="assets/auth.js?v=202611212338"></script>
-  <script src="assets/calm.js?v=202611212338"></script>
+  <script src="assets/script.js?v=202611212343"></script>
+  <script src="assets/auth.js?v=202611212343"></script>
+  <script src="assets/calm.js?v=202611212343"></script>
   <script>
   (function () {
-    // One continuous line: two waves meet and become two people holding each other.
-    var fig = document.getElementById('hugline'); if (!fig) return;
-    var line = fig.querySelector('.hugline__line'), echo = fig.querySelector('.hugline__echo'), svg = fig.querySelector('svg');
+    // Two people lean in and hug, and their embrace becomes a heart.
+    var fig = document.getElementById('hugheart'); if (!fig) return;
+    var svg = fig.querySelector('svg'), group = fig.querySelector('.hh__group');
+    var bodyA = fig.querySelector('.hh__body--a'), bodyB = fig.querySelector('.hh__body--b');
+    var headA = fig.querySelector('.hh__head--a'), headB = fig.querySelector('.hh__head--b');
+    var fill = fig.querySelector('.hh__fill');
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    [line, echo].forEach(function (p) { var L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = reduce ? 0 : L; });
-    if (reduce) { fig.classList.add('is-drawn'); return; }
-    requestAnimationFrame(function () { fig.classList.add('is-drawing'); });
-    setTimeout(function () { fig.classList.add('is-drawn'); }, 5200);
-    // After drawing: a slow shared breath, and the echo wave drifts with the cursor.
-    var tx = 0, ty = 0, sx = 0, sy = 0;
-    window.addEventListener('pointermove', function (e) {
-      tx = (e.clientX / window.innerWidth - 0.5) * 2; ty = (e.clientY / window.innerHeight - 0.5) * 2;
-    }, { passive: true });
-    function frame(t) {
-      sx += (tx - sx) * 0.03; sy += (ty - sy) * 0.03;
-      var b = Math.sin(t / 5500 * Math.PI * 2);
-      svg.style.transform = 'translateY(' + (b * 3).toFixed(2) + 'px) rotate(' + (sx * 0.8).toFixed(2) + 'deg)';
-      echo.setAttribute('transform', 'translate(' + (8 + sx * 10).toFixed(2) + ' ' + (9 + sy * 6).toFixed(2) + ')');
-      requestAnimationFrame(frame);
+    // One person = a head plus a curving line (neck point + 3 curves). The other is its mirror.
+    var APART = { head: [112, 86], pts: [[118, 120], [[108, 128], [98, 144], [96, 166]], [[94, 206], [96, 246], [104, 274]], [[110, 296], [118, 312], [128, 324]]] };
+    var HEART = { head: [173, 138], pts: [[200, 128], [[184, 90], [146, 72], [116, 84]], [[78, 100], [62, 150], [86, 192]], [[112, 236], [164, 280], [200, 318]]] };
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function L2(a, b, t) { return [lerp(a[0], b[0], t), lerp(a[1], b[1], t)]; }
+    function mir(p) { return [400 - p[0], p[1]]; }
+    function f(p) { return p[0].toFixed(1) + ',' + p[1].toFixed(1); }
+    function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+    function pose(t) {
+      var n = L2(APART.pts[0], HEART.pts[0], t);
+      var segs = [1, 2, 3].map(function (i) { return APART.pts[i].map(function (p, j) { return L2(p, HEART.pts[i][j], t); }); });
+      var th = Math.min(1, t * 1.15); // heads settle a touch before the bodies close
+      var h = L2(APART.head, HEART.head, ease(th));
+      var dA = 'M' + f(n) + ' ' + segs.map(function (s) { return 'C' + s.map(f).join(' '); }).join(' ');
+      var dB = 'M' + f(mir(n)) + ' ' + segs.map(function (s) { return 'C' + s.map(function (p) { return f(mir(p)); }).join(' '); }).join(' ');
+      bodyA.setAttribute('d', dA); bodyB.setAttribute('d', dB);
+      headA.setAttribute('cx', h[0]); headA.setAttribute('cy', h[1]);
+      var hb = mir(h); headB.setAttribute('cx', hb[0]); headB.setAttribute('cy', hb[1]);
+      if (t >= 1) {
+        // closed heart outline for the soft fill
+        var back = segs.slice().reverse().map(function (s, i, arr) {
+          var startPt = i < arr.length - 1 ? arr[i + 1][2] : n;
+          return 'C' + [mir(s[1]), mir(s[0]), mir(startPt)].map(f).join(' ');
+        });
+        fill.setAttribute('d', dA + ' ' + back.join(' ') + ' Z');
+      }
     }
-    requestAnimationFrame(frame);
+    function drawIn() {
+      [bodyA, bodyB, headA, headB].forEach(function (el) {
+        var L = el.getTotalLength ? el.getTotalLength() : 160;
+        el.style.transition = 'none';
+        el.style.strokeDasharray = L; el.style.strokeDashoffset = L;
+        void el.getBoundingClientRect();
+        el.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.45,0,.25,1)';
+        el.style.strokeDashoffset = 0;
+      });
+    }
+    var playing = false;
+    function play() {
+      if (playing) return; playing = true;
+      fig.classList.remove('is-heart');
+      pose(0);
+      drawIn();
+      setTimeout(function () {
+        [bodyA, bodyB, headA, headB].forEach(function (el) { el.style.transition = 'none'; el.style.strokeDasharray = 'none'; });
+        var t0 = performance.now(), D = 2800, done = false;
+        function finish() { if (done) return; done = true; pose(1); fig.classList.add('is-heart'); playing = false; }
+        setTimeout(finish, D + 150); // always complete, even if animation frames pause
+        (function step() {
+          var t = Math.max(0, Math.min(1, (performance.now() - t0) / D));
+          pose(ease(t));
+          if (done) return;
+          if (t < 1) requestAnimationFrame(step); else finish();
+        })();
+      }, 2400);
+    }
+    if (reduce) { pose(1); fig.classList.add('is-heart', 'is-still'); return; }
+    pose(0);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es, ob) { if (es[0].isIntersecting) { ob.disconnect(); play(); } }, { threshold: 0.4 }).observe(fig);
+    } else play();
+    svg.addEventListener('click', play);
+    // Breathing, a lean toward the cursor, and a soft heartbeat when it comes close.
+    var tx = 0, sx = 0, near = 0, sn = 0, beat = 0;
+    window.addEventListener('pointermove', function (e) {
+      tx = (e.clientX / window.innerWidth - 0.5) * 2;
+      var r = svg.getBoundingClientRect();
+      var d = Math.hypot(e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2));
+      var wasNear = near > 0.5;
+      near = Math.max(0, 1 - d / 320);
+      if (!wasNear && near > 0.5 && fig.classList.contains('is-heart')) beat = performance.now();
+    }, { passive: true });
+    (function frame() {
+      var ts = performance.now();
+      sx += (tx - sx) * 0.03; sn += (near - sn) * 0.05;
+      var breath = Math.sin(ts / 5500 * Math.PI * 2);
+      var b = 0;
+      if (beat) { var k = Math.max(0, (ts - beat) / 900); if (k < 1) b = Math.sin(k * Math.PI * 2) * Math.exp(-k * 3) * 0.06; }
+      var sc = 1 + breath * 0.012 + sn * 0.02 + b;
+      group.setAttribute('transform', 'rotate(' + (sx * 2).toFixed(2) + ' 200 220) translate(200 220) scale(' + sc.toFixed(4) + ') translate(-200 -220)');
+      requestAnimationFrame(frame);
+    })();
   })();
   </script>
   <script>
