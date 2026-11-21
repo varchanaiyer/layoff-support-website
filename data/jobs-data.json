@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "last_verified": "2026-04-12",
+  "policy": {
+    "purpose": "Single source of truth for everything the job board page (jobs.html) claims about real companies. The verifier (verify-jobs-data.js) reads jobs.html and ensures (1) every company referenced on the page exists here, and (2) every piece of placeholder/illustrative content is explicitly marked with data-illustrative='true' so users can see the disclosure. If you add a new company to jobs.html, add it here first with a careers URL you can actually open.",
+    "verified_facts": "Each company entry lists only facts that are publicly stated by the company itself or by a primary source (B Lab directory, IRS 990 filings, the company's own benefits/careers page). Don't add unverifiable hearsay here.",
+    "illustrative": "Anything quoted or attributed to a specific person (vouches, hiring-manager notes, success stories) is treated as illustrative tone-of-voice copy until we have a real signed-off testimonial. Mark it in the markup; the verifier will fail otherwise.",
+    "do_not_invent": "No fabricated kindness scores, applicant counts, posting timestamps, response-rate percentages, salary bands, or 'decision in N days' promises. Those metrics need a real backend before they ship."
+  },
+  "companies": [
+    {
+      "id": "patagonia",
+      "name": "Patagonia",
+      "what": "Outdoor apparel; environmental mission.",
+      "why_on_list": "Certified B Corporation. On-site childcare at HQ since 1983. Generous paid parental leave for all parents.",
+      "careers_url": "https://www.patagonia.com/careers/",
+      "tags": ["B Corp", "Family-friendly"],
+      "source_urls": [
+        "https://www.patagonia.com/careers/",
+        "https://www.patagonia.com/great-pacific-child-development-center/"
+      ]
+    },
+    {
+      "id": "mozilla",
+      "name": "Mozilla",
+      "what": "Open-source web platform; maker of Firefox.",
+      "why_on_list": "Backed by the non-profit Mozilla Foundation. Distributed-first workforce; manifesto commits to open, equitable internet.",
+      "careers_url": "https://www.mozilla.org/en-US/careers/",
+      "tags": ["Non-profit-backed", "Remote-friendly"],
+      "source_urls": [
+        "https://www.mozilla.org/en-US/careers/",
+        "https://www.mozilla.org/en-US/about/manifesto/"
+      ]
+    },
+    {
+      "id": "wikimedia",
+      "name": "Wikimedia Foundation",
+      "what": "501(c)(3) non-profit; runs Wikipedia and sister projects.",
+      "why_on_list": "Charitable non-profit funded by donations. Public salary bands posted on every job listing. Distributed workforce across 40+ countries.",
+      "careers_url": "https://wikimediafoundation.org/about/jobs/",
+      "tags": ["Non-profit", "Transparent pay"],
+      "source_urls": [
+        "https://wikimediafoundation.org/about/jobs/"
+      ]
+    },
+    {
+      "id": "buffer",
+      "name": "Buffer",
+      "what": "Social media management software.",
+      "why_on_list": "Publicly publishes its salary formula and individual employee salaries. Piloted a four-day work week in 2020 and made it permanent.",
+      "careers_url": "https://buffer.com/journey",
+      "tags": ["Transparent pay", "4-day week"],
+      "source_urls": [
+        "https://buffer.com/journey",
+        "https://buffer.com/resources/salary-formula/",
+        "https://buffer.com/resources/4-day-work-week/"
+      ]
+    },
+    {
+      "id": "doist",
+      "name": "Doist",
+      "what": "Maker of Todoist and Twist.",
+      "why_on_list": "Async-first by company policy; no scheduled meetings as a default. Fully distributed across 35+ countries.",
+      "careers_url": "https://doist.com/careers",
+      "tags": ["Async-first", "Remote-global"],
+      "source_urls": [
+        "https://doist.com/careers",
+        "https://doist.com/blog/async-communication/"
+      ]
+    },
+    {
+      "id": "code-for-america",
+      "name": "Code for America",
+      "what": "501(c)(3) civic-tech non-profit.",
+      "why_on_list": "Charitable non-profit. Workers unionized in 2020 (Code for America Workers United, OPEIU Local 1010).",
+      "careers_url": "https://codeforamerica.org/jobs/",
+      "tags": ["Non-profit", "Unionized"],
+      "source_urls": [
+        "https://codeforamerica.org/jobs/",
+        "https://codeforamerica.org/news/code-for-america-staff-union/"
+      ]
+    },
+    {
+      "id": "khan-academy",
+      "name": "Khan Academy",
+      "what": "501(c)(3) education non-profit.",
+      "why_on_list": "Charitable non-profit. Fully remote-friendly; mission is free, world-class education for anyone.",
+      "careers_url": "https://www.khanacademy.org/careers",
+      "tags": ["Non-profit", "Remote-friendly"],
+      "source_urls": [
+        "https://www.khanacademy.org/careers"
+      ]
+    },
+    {
+      "id": "kickstarter",
+      "name": "Kickstarter PBC",
+      "what": "Crowdfunding platform; Public Benefit Corporation.",
+      "why_on_list": "Reincorporated as a Public Benefit Corporation in 2015 — first major tech company to do so. Workers unionized with OPEIU Local 153 in 2020.",
+      "careers_url": "https://www.kickstarter.com/jobs",
+      "tags": ["PBC", "Unionized"],
+      "source_urls": [
+        "https://www.kickstarter.com/charter",
+        "https://www.kickstarter.com/jobs"
+      ]
+    },
+    {
+      "id": "king-arthur",
+      "name": "King Arthur Baking Co.",
+      "what": "Heritage flour and baking company.",
+      "why_on_list": "100% employee-owned (ESOP) since 2004. Certified B Corporation.",
+      "careers_url": "https://www.kingarthurbaking.com/about/careers",
+      "tags": ["Employee-owned", "B Corp"],
+      "source_urls": [
+        "https://www.kingarthurbaking.com/about/employee-ownership",
+        "https://www.kingarthurbaking.com/about/careers"
+      ]
+    },
+    {
+      "id": "honeycomb",
+      "name": "Honeycomb",
+      "what": "Observability platform for engineers.",
+      "why_on_list": "Publishes engineering org values and on-call practices in public. Co-founders write openly about humane on-call rotations.",
+      "careers_url": "https://www.honeycomb.io/careers",
+      "tags": ["Engineer-led"],
+      "source_urls": [
+        "https://www.honeycomb.io/careers",
+        "https://www.honeycomb.io/blog/on-call"
+      ]
+    },
+    {
+      "id": "watershed",
+      "name": "Watershed",
+      "what": "Carbon-accounting platform for enterprises.",
+      "why_on_list": "Climate-tech mission. Public commitment to measurable corporate emissions reductions.",
+      "careers_url": "https://watershed.com/about/careers",
+      "tags": ["Climate"],
+      "source_urls": [
+        "https://watershed.com/about/careers"
+      ]
+    },
+    {
+      "id": "nava",
+      "name": "Nava PBC",
+      "what": "Public Benefit Corporation; civic-tech consultancy.",
+      "why_on_list": "PBC structure. Worked on healthcare.gov, VA, and Medicare. Mission is making government services work for the people who need them.",
+      "careers_url": "https://www.navapbc.com/careers",
+      "tags": ["PBC", "Civic-tech"],
+      "source_urls": [
+        "https://www.navapbc.com/careers"
+      ]
+    },
+    {
+      "id": "donorschoose",
+      "name": "DonorsChoose",
+      "what": "501(c)(3) education non-profit.",
+      "why_on_list": "Charitable non-profit; matches donors with public-school classroom needs.",
+      "careers_url": "https://www.donorschoose.org/about/jobs.html",
+      "tags": ["Non-profit"],
+      "source_urls": [
+        "https://www.donorschoose.org/about/jobs.html"
+      ]
+    },
+    {
+      "id": "aira",
+      "name": "Aira",
+      "what": "Visual interpreter service for blind and low-vision users.",
+      "why_on_list": "Accessibility-first product. Hires and centers blind and low-vision employees.",
+      "careers_url": "https://aira.io/careers",
+      "tags": ["Accessibility"],
+      "source_urls": [
+        "https://aira.io/careers",
+        "https://aira.io/about"
+      ]
+    },
+    {
+      "id": "beneficial-state-bank",
+      "name": "Beneficial State Bank",
+      "what": "Community development bank.",
+      "why_on_list": "Certified B Corporation. CDFI (Community Development Financial Institution). Bank holding company is a non-profit foundation.",
+      "careers_url": "https://beneficialstatebank.com/about/careers",
+      "tags": ["B Corp", "CDFI"],
+      "source_urls": [
+        "https://beneficialstatebank.com/about",
+        "https://beneficialstatebank.com/about/careers"
+      ]
+    },
+    {
+      "id": "crisis-text-line",
+      "name": "Crisis Text Line",
+      "what": "501(c)(3) mental-health non-profit; free 24/7 text-based crisis support.",
+      "why_on_list": "Charitable non-profit. Mission-aligned employer for mental-health, social work, and engineering roles.",
+      "careers_url": "https://www.crisistextline.org/careers/",
+      "tags": ["Non-profit", "Mental health"],
+      "source_urls": [
+        "https://www.crisistextline.org/careers/"
+      ]
+    }
+  ],
+  "external_boards": [
+    {
+      "name": "LinkedIn Jobs",
+      "url": "https://www.linkedin.com/jobs",
+      "note": "Largest general listings; warm-intro friendly."
+    },
+    {
+      "name": "Wellfound",
+      "url": "https://wellfound.com",
+      "note": "Startup roles; equity-heavy."
+    },
+    {
+      "name": "Work at a Startup",
+      "url": "https://www.workatastartup.com",
+      "note": "Y Combinator's job board."
+    },
+    {
+      "name": "Welcome to the Jungle",
+      "url": "https://www.welcometothejungle.com",
+      "note": "Curated; EU- and UK-friendly."
+    },
+    {
+      "name": "Layoffs.fyi Talent Pool",
+      "url": "https://layoffs.fyi",
+      "note": "Free directory of recently laid-off folks."
+    },
+    {
+      "name": "Remote.com Jobs",
+      "url": "https://remote.com/jobs",
+      "note": "Globally remote roles."
+    }
+  ]
+}

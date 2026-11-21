@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tools — Layoff Support</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body data-page="tools">
+
+<div class="dash">
+  <aside id="sidebar" class="dash__side"></aside>
+
+  <main class="dash__main">
+
+    <!-- ========= 1. TOPBAR ========= -->
+    <div class="dash__topbar">
+      <div class="dash__greeting">
+        <h1>Tools</h1>
+        <p>Mostly free. A few free for laid-off folks. Every claim verified.</p>
+      </div>
+    </div>
+
+    <!-- ========= 2. HOW THIS LIST WORKS ========= -->
+    <div class="panel">
+      <h3>How this list works</h3>
+      <p class="sub">No star ratings, no invented usage stats, no fake testimonials. Every tool below is in <a href="data/tools-data.json" style="color:var(--teal-700);">data/tools-data.json</a> with a public source. The test that proves it is <a href="data/verify-tools-data.js" style="color:var(--teal-700);">data/verify-tools-data.js</a> — run it and the page won't ship if a cost label doesn't match the data file.</p>
+    </div>
+
+    <!-- ========= 3. SEARCH + COST FILTER ========= -->
+    <div class="panel">
+      <h3>Find a tool</h3>
+      <input
+        type="search"
+        id="tool-search"
+        class="tool-search"
+        placeholder="Search by name, what it does, or what it's for…"
+        autocomplete="off"
+        aria-label="Search tools"
+      />
+
+      <div class="filter-cluster" style="margin-top:18px;">
+        <div class="filter-cluster__label">What can you afford right now?</div>
+        <div class="filter-cluster__tags tool-filters" data-filter-group="cost">
+          <span class="tag is-active" data-filter="all">All</span>
+          <span class="tag" data-filter="free">Free</span>
+          <span class="tag" data-filter="free-tier">Free tier</span>
+          <span class="tag" data-filter="unemployed">Free for laid-off</span>
+        </div>
+      </div>
+
+      <div class="filter-cluster">
+        <div class="filter-cluster__label">What you need help with</div>
+        <div class="filter-cluster__tags tool-filters" data-filter-group="tag">
+          <span class="tag is-active" data-filter="all">All</span>
+          <span class="tag" data-filter="resume">Resume</span>
+          <span class="tag" data-filter="interview">Interview</span>
+          <span class="tag" data-filter="job-tracking">Tracking apps</span>
+          <span class="tag" data-filter="ai">AI assistants</span>
+          <span class="tag" data-filter="salary">Salary research</span>
+          <span class="tag" data-filter="mentorship">Mentorship</span>
+          <span class="tag" data-filter="skills">Skills & learning</span>
+          <span class="tag" data-filter="money">Money</span>
+          <span class="tag" data-filter="mental-health">Mental health</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========= 4. STACKS ========= -->
+    <div class="panel">
+      <h3>Stacks for where you actually are</h3>
+      <p class="sub">Pre-built combinations for the four situations we hear about most. Click any chip to jump to that tool below.</p>
+
+      <div class="tool-stacks">
+
+        <div class="stack-card">
+          <h4>The silent-week stack</h4>
+          <p>For when you haven't told anyone yet and don't want to optimize anything. Breathe first.</p>
+          <div class="stack-card__chips">
+            <span class="stack-card__chip" data-tool-id="seven-cups">7 Cups</span>
+            <span class="stack-card__chip" data-tool-id="insight-timer">Insight Timer</span>
+            <span class="stack-card__chip" data-tool-id="ynab">YNAB</span>
+            <span class="stack-card__chip" data-tool-id="adplist">ADPList</span>
+          </div>
+        </div>
+
+        <div class="stack-card">
+          <h4>The free-stack</h4>
+          <p>Everything 100% free forever. No credit card, no trial-then-bill.</p>
+          <div class="stack-card__chips">
+            <span class="stack-card__chip" data-tool-id="freecodecamp">freeCodeCamp</span>
+            <span class="stack-card__chip" data-tool-id="khan-academy-tool">Khan Academy</span>
+            <span class="stack-card__chip" data-tool-id="adplist">ADPList</span>
+            <span class="stack-card__chip" data-tool-id="simplify">Simplify</span>
+            <span class="stack-card__chip" data-tool-id="pramp">Pramp</span>
+            <span class="stack-card__chip" data-tool-id="levels-fyi">levels.fyi</span>
+            <span class="stack-card__chip" data-tool-id="obsidian">Obsidian</span>
+          </div>
+        </div>
+
+        <div class="stack-card">
+          <h4>Back to applying</h4>
+          <p>The minimum stack to send five thoughtful applications a week without losing your mind.</p>
+          <div class="stack-card__chips">
+            <span class="stack-card__chip" data-tool-id="teal">Teal</span>
+            <span class="stack-card__chip" data-tool-id="resume-worded">Resume Worded</span>
+            <span class="stack-card__chip" data-tool-id="claude">Claude.ai</span>
+            <span class="stack-card__chip" data-tool-id="yoodli">Yoodli</span>
+            <span class="stack-card__chip" data-tool-id="simplify">Simplify</span>
+          </div>
+        </div>
+
+        <div class="stack-card">
+          <h4>The low-performance stack</h4>
+          <p>No streaks, no progress nudges, no cheerful upsell. Quiet tools that won't make you perform recovery.</p>
+          <div class="stack-card__chips">
+            <span class="stack-card__chip" data-tool-id="obsidian">Obsidian</span>
+            <span class="stack-card__chip" data-tool-id="claude">Claude.ai</span>
+            <span class="stack-card__chip" data-tool-id="insight-timer">Insight Timer</span>
+            <span class="stack-card__chip" data-tool-id="adplist">ADPList</span>
+            <span class="stack-card__chip" data-tool-id="notion">Notion</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========= 5. EXPLICIT UNEMPLOYED PROGRAMS SPOTLIGHT ========= -->
+    <div class="panel">
+      <h3>Tools that explicitly help laid-off folks</h3>
+      <p class="sub">The ones below have a public, written program for users who are unemployed or in financial hardship. There aren't many — but these two are the gold standard.</p>
+    </div>
+
+    <!-- ========= 6. TOOL GRID ========= -->
+    <div class="panel">
+      <h3>All tools</h3>
+      <p class="sub">Use the search and filters above. Click any tool to open its real homepage in a new tab.</p>
+
+      <div class="counseling__grid" id="tool-grid">
+
+        <!-- ============ free-for-unemployed ============ -->
+
+        <div class="tile" data-tool-id="ynab" data-cost="unemployed" data-tags="money planning" data-search="ynab you need a budget money planning unemployed runway envelope budget hardship">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#DDD6FE,#A5B4FC);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Yn</span>
+          </div>
+          <h3 class="tile__title">You Need A Budget (YNAB)</h3>
+          <p class="tile__desc">Envelope-style budgeting and runway planning. Free for one year if you email support and tell them you're unemployed.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--unemployed">Free for laid-off</span>
+            <span class="pledge">Money</span>
+          </div>
+          <a href="https://www.ynab.com/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit YNAB</a>
+        </div>
+
+        <div class="tile" data-tool-id="coursera" data-cost="unemployed" data-tags="skills learning" data-search="coursera courses university financial aid waiver hardship learn skills certificate specialization">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#BFDBFE,#93C5FD);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Co</span>
+          </div>
+          <h3 class="tile__title">Coursera</h3>
+          <p class="tile__desc">University-level courses; the financial-aid form on each course waives fees based on need.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--unemployed">Free for laid-off</span>
+            <span class="pledge">Skills</span>
+          </div>
+          <a href="https://www.coursera.org/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit Coursera</a>
+        </div>
+
+        <!-- ============ free ============ -->
+
+        <div class="tile" data-tool-id="freecodecamp" data-cost="free" data-tags="skills engineering learning" data-search="freecodecamp free code camp coding programming curriculum certificates projects engineering learning skills nonprofit">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#A7F3D0,#6EE7B7);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Fc</span>
+          </div>
+          <h3 class="tile__title">freeCodeCamp</h3>
+          <p class="tile__desc">Coding curriculum, certifications, and real projects. Non-profit; no upsell.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free">Free</span>
+            <span class="pledge">Skills</span>
+          </div>
+          <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit freeCodeCamp</a>
+        </div>
+
+        <div class="tile" data-tool-id="khan-academy-tool" data-cost="free" data-tags="skills learning" data-search="khan academy free learning education math computing finance nonprofit courses">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#BFDBFE,#93C5FD);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Kh</span>
+          </div>
+          <h3 class="tile__title">Khan Academy</h3>
+          <p class="tile__desc">Free non-profit learning across math, computing, and finance. Useful for technical-interview brush-ups.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free">Free</span>
+            <span class="pledge">Learning</span>
+          </div>
+          <a href="https://www.khanacademy.org/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit Khan Academy</a>
+        </div>
+
+        <div class="tile" data-tool-id="adplist" data-cost="free" data-tags="mentorship networking" data-search="adplist mentor mentorship 1:1 design product engineering marketing free community advice">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#FBCFE8,#F9A8D4);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Ad</span>
+          </div>
+          <h3 class="tile__title">ADPList</h3>
+          <p class="tile__desc">Book free 1:1 calls with mentors in product, design, engineering, and marketing.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free">Free</span>
+            <span class="pledge">Mentorship</span>
+          </div>
+          <a href="https://adplist.org/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit ADPList</a>
+        </div>
+
+        <div class="tile" data-tool-id="pramp" data-cost="free" data-tags="interview engineering" data-search="pramp peer mock technical interview engineering free anonymous pair">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#FED7AA,#FDBA74);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Pr</span>
+          </div>
+          <h3 class="tile__title">Pramp</h3>
+          <p class="tile__desc">Free peer-to-peer mock technical interviews with anonymous matching.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free">Free</span>
+            <span class="pledge">Interview</span>
+          </div>
+          <a href="https://www.pramp.com/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit Pramp</a>
+        </div>
+
+        <div class="tile" data-tool-id="simplify" data-cost="free" data-tags="job-tracking applications" data-search="simplify autofill job applications chrome extension fast tracker free">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#CCFBF1,#5EEAD4);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Si</span>
+          </div>
+          <h3 class="tile__title">Simplify</h3>
+          <p class="tile__desc">Browser extension that autofills job applications and pulls every reply into one inbox.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free">Free</span>
+            <span class="pledge">Applications</span>
+          </div>
+          <a href="https://simplify.jobs/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit Simplify</a>
+        </div>
+
+        <div class="tile" data-tool-id="levels-fyi" data-cost="free" data-tags="salary research" data-search="levels.fyi salary compensation tech engineer level research fang offer negotiate">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#FEF3C7,#FCD34D);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Lv</span>
+          </div>
+          <h3 class="tile__title">levels.fyi</h3>
+          <p class="tile__desc">Real comp data submitted by tech employees, broken down by level and location.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free">Free</span>
+            <span class="pledge">Salary</span>
+          </div>
+          <a href="https://www.levels.fyi/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit levels.fyi</a>
+        </div>
+
+        <div class="tile" data-tool-id="comprehensive" data-cost="free" data-tags="salary research" data-search="comprehensive salary pay transparency compensation jobs scraped research broader">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#A7F3D0,#6EE7B7);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Cm</span>
+          </div>
+          <h3 class="tile__title">Comprehensive</h3>
+          <p class="tile__desc">Compensation data scraped from public US job postings. Wider coverage than levels.fyi for non-tech roles.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free">Free</span>
+            <span class="pledge">Salary</span>
+          </div>
+          <a href="https://www.comprehensive.io/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit Comprehensive</a>
+        </div>
+
+        <div class="tile" data-tool-id="hackerrank" data-cost="free" data-tags="interview engineering" data-search="hackerrank coding challenges interview prep platform engineering practice take home">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#DDD6FE,#A5B4FC);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Hr</span>
+          </div>
+          <h3 class="tile__title">HackerRank</h3>
+          <p class="tile__desc">Coding challenges and interview prep. Often the platform companies use for take-homes.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free">Free</span>
+            <span class="pledge">Interview</span>
+          </div>
+          <a href="https://www.hackerrank.com/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit HackerRank</a>
+        </div>
+
+        <div class="tile" data-tool-id="obsidian" data-cost="free" data-tags="organization focus" data-search="obsidian local first markdown notes notebook offline neurodivergent quiet no streak">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#FEF3C7,#FCD34D);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Ob</span>
+          </div>
+          <h3 class="tile__title">Obsidian</h3>
+          <p class="tile__desc">Local-first markdown notebook. Files live on your laptop. No streaks, no nudges, no AI upsell.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free">Free</span>
+            <span class="pledge">Quiet</span>
+          </div>
+          <a href="https://obsidian.md/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit Obsidian</a>
+        </div>
+
+        <div class="tile" data-tool-id="insight-timer" data-cost="free" data-tags="mental-health focus" data-search="insight timer meditation mindfulness sleep anxiety free large library no streak">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#FBCFE8,#F9A8D4);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">In</span>
+          </div>
+          <h3 class="tile__title">Insight Timer</h3>
+          <p class="tile__desc">One of the largest free meditation libraries online. No paywall on the core content. For the 4am spiral.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free">Free</span>
+            <span class="pledge">Mental health</span>
+          </div>
+          <a href="https://insighttimer.com/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit Insight Timer</a>
+        </div>
+
+        <div class="tile" data-tool-id="seven-cups" data-cost="free" data-tags="mental-health support" data-search="7 cups seven cups peer support listener emotional mental health text chat free trained">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#CCFBF1,#5EEAD4);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">7c</span>
+          </div>
+          <h3 class="tile__title">7 Cups</h3>
+          <p class="tile__desc">Free emotional support from trained listeners over text chat. For when 'just call a friend' isn't going to happen.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free">Free</span>
+            <span class="pledge">Mental health</span>
+          </div>
+          <a href="https://www.7cups.com/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit 7 Cups</a>
+        </div>
+
+        <div class="tile" data-tool-id="lunchclub" data-cost="free" data-tags="networking" data-search="lunchclub networking calls 1:1 ai matched coffee chat new connections weekly intro">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#FED7AA,#FDBA74);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Lc</span>
+          </div>
+          <h3 class="tile__title">Lunchclub</h3>
+          <p class="tile__desc">AI-matched 1:1 networking video calls based on what you're working on. One curated intro per week.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free">Free</span>
+            <span class="pledge">Networking</span>
+          </div>
+          <a href="https://lunchclub.com/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit Lunchclub</a>
+        </div>
+
+        <!-- ============ free-tier ============ -->
+
+        <div class="tile" data-tool-id="claude" data-cost="free-tier" data-tags="ai writing cover-letter" data-search="claude ai anthropic writing cover letter free assistant chat code research">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#FED7AA,#FDBA74);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Cl</span>
+          </div>
+          <h3 class="tile__title">Claude.ai</h3>
+          <p class="tile__desc">Anthropic's general-purpose AI. Good for cover letters, story-mining old work, and rehearsing hard answers.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free-tier">Free tier</span>
+            <span class="pledge">AI</span>
+          </div>
+          <a href="https://claude.ai/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit Claude</a>
+        </div>
+
+        <div class="tile" data-tool-id="chatgpt" data-cost="free-tier" data-tags="ai writing cover-letter" data-search="chatgpt openai ai assistant free tier writing cover letter mock interview">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#A7F3D0,#6EE7B7);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Gp</span>
+          </div>
+          <h3 class="tile__title">ChatGPT</h3>
+          <p class="tile__desc">OpenAI's general-purpose AI assistant. Same use cases — cover letters, mock Qs, untangling job descriptions.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free-tier">Free tier</span>
+            <span class="pledge">AI</span>
+          </div>
+          <a href="https://chatgpt.com/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit ChatGPT</a>
+        </div>
+
+        <div class="tile" data-tool-id="gemini" data-cost="free-tier" data-tags="ai writing" data-search="google gemini ai assistant free workspace gmail docs writing research">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#BFDBFE,#93C5FD);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Gm</span>
+          </div>
+          <h3 class="tile__title">Google Gemini</h3>
+          <p class="tile__desc">Google's general-purpose AI; lives next to Gmail and Docs for drafts and quick research.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free-tier">Free tier</span>
+            <span class="pledge">AI</span>
+          </div>
+          <a href="https://gemini.google.com/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit Gemini</a>
+        </div>
+
+        <div class="tile" data-tool-id="teal" data-cost="free-tier" data-tags="resume job-tracking" data-search="teal tealhq resume builder ai tailoring job tracker chrome clipper match score">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#CCFBF1,#5EEAD4);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Te</span>
+          </div>
+          <h3 class="tile__title">Teal</h3>
+          <p class="tile__desc">Job tracker with a resume builder, AI tailoring, and a Chrome clipper. Generous free tier.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free-tier">Free tier</span>
+            <span class="pledge">Resume</span>
+          </div>
+          <a href="https://www.tealhq.com/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit Teal</a>
+        </div>
+
+        <div class="tile" data-tool-id="huntr" data-cost="free-tier" data-tags="job-tracking" data-search="huntr kanban job application tracker autofill contacts">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#DDD6FE,#A5B4FC);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Hu</span>
+          </div>
+          <h3 class="tile__title">Huntr</h3>
+          <p class="tile__desc">Kanban-style application tracker. Useful when applying-from-bed and you can't remember which company sent which rejection.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free-tier">Free tier</span>
+            <span class="pledge">Tracking</span>
+          </div>
+          <a href="https://huntr.co/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit Huntr</a>
+        </div>
+
+        <div class="tile" data-tool-id="resume-worded" data-cost="free-tier" data-tags="resume linkedin" data-search="resume worded ai score resume linkedin profile recruiter sanity check">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#FBCFE8,#F9A8D4);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Rw</span>
+          </div>
+          <h3 class="tile__title">Resume Worded</h3>
+          <p class="tile__desc">AI scoring for your resume and LinkedIn profile against real recruiter heuristics.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free-tier">Free tier</span>
+            <span class="pledge">Resume</span>
+          </div>
+          <a href="https://resumeworded.com/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit Resume Worded</a>
+        </div>
+
+        <div class="tile" data-tool-id="yoodli" data-cost="free-tier" data-tags="interview speaking ai" data-search="yoodli ai speech coach interview practice record filler words pacing">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#FEF3C7,#FCD34D);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Yo</span>
+          </div>
+          <h3 class="tile__title">Yoodli</h3>
+          <p class="tile__desc">AI speech coach. Practice answering "tell me about yourself" in private until your shoulders unclench.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free-tier">Free tier</span>
+            <span class="pledge">Interview</span>
+          </div>
+          <a href="https://yoodli.ai/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit Yoodli</a>
+        </div>
+
+        <div class="tile" data-tool-id="interviewing-io" data-cost="free-tier" data-tags="interview engineering" data-search="interviewing io anonymous mock senior engineer faang technical interview practice">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#A7F3D0,#6EE7B7);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Ii</span>
+          </div>
+          <h3 class="tile__title">Interviewing.io</h3>
+          <p class="tile__desc">Anonymous mock interviews with senior engineers. Records the call so you can review without re-living it live.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free-tier">Free tier</span>
+            <span class="pledge">Interview</span>
+          </div>
+          <a href="https://interviewing.io/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit Interviewing.io</a>
+        </div>
+
+        <div class="tile" data-tool-id="leetcode" data-cost="free-tier" data-tags="interview engineering" data-search="leetcode coding interview prep questions algorithms data structures by company">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#FED7AA,#FDBA74);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Lc</span>
+          </div>
+          <h3 class="tile__title">LeetCode</h3>
+          <p class="tile__desc">Coding interview prep questions sorted by company and topic. Pace yourself — the Hards on a Sunday burnout is real.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free-tier">Free tier</span>
+            <span class="pledge">Interview</span>
+          </div>
+          <a href="https://leetcode.com/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit LeetCode</a>
+        </div>
+
+        <div class="tile" data-tool-id="github" data-cost="free-tier" data-tags="portfolio engineering" data-search="github code hosting version control public portfolio recruiter open source">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#DDD6FE,#A5B4FC);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Gh</span>
+          </div>
+          <h3 class="tile__title">GitHub</h3>
+          <p class="tile__desc">Code hosting and a public portfolio surface. Free for unlimited public and private repos.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free-tier">Free tier</span>
+            <span class="pledge">Portfolio</span>
+          </div>
+          <a href="https://github.com/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit GitHub</a>
+        </div>
+
+        <div class="tile" data-tool-id="notion" data-cost="free-tier" data-tags="organization planning" data-search="notion workspace notes planning database job hunt one place runway target companies story bank">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#FBCFE8,#F9A8D4);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">No</span>
+          </div>
+          <h3 class="tile__title">Notion</h3>
+          <p class="tile__desc">A good "one place" for the job hunt — runway, target companies, story bank, follow-ups. Free for personal use.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free-tier">Free tier</span>
+            <span class="pledge">Planning</span>
+          </div>
+          <a href="https://www.notion.so/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit Notion</a>
+        </div>
+
+        <div class="tile" data-tool-id="edx" data-cost="free-tier" data-tags="skills learning" data-search="edx mit harvard university courses audit free certificate paid specializations">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#CCFBF1,#5EEAD4);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Ex</span>
+          </div>
+          <h3 class="tile__title">edX</h3>
+          <p class="tile__desc">University courses (MIT, Harvard, others). Most can be audited for free — you lose the cert, you keep the lectures.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free-tier">Free tier</span>
+            <span class="pledge">Learning</span>
+          </div>
+          <a href="https://www.edx.org/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit edX</a>
+        </div>
+
+        <div class="tile" data-tool-id="linkedin-learning" data-cost="free-tier" data-tags="skills learning" data-search="linkedin learning lynda video courses skills professional library card gale presents free trial">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#BFDBFE,#93C5FD);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Ll</span>
+          </div>
+          <h3 class="tile__title">LinkedIn Learning</h3>
+          <p class="tile__desc">Video courses on professional skills. Free 1-month trial direct, or free indefinitely via most US public library cards.</p>
+          <div class="soft-landing__badges">
+            <span class="cost-pill cost-pill--free-tier">Free tier</span>
+            <span class="pledge">Learning</span>
+          </div>
+          <a href="https://www.linkedin.com/learning/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit LinkedIn Learning</a>
+        </div>
+
+      </div>
+
+      <p id="tool-empty" class="sub" hidden style="text-align:center;padding:24px 0;">Nothing here yet. Try a broader search or pick a stack template above.</p>
+    </div>
+
+    <!-- ========= 7. ASK FOR FREE — THE SCRIPT ========= -->
+    <div class="panel">
+      <h3>Ask for free — the script</h3>
+      <p class="sub">Most paid tools don't advertise hardship pricing on their site. Many will quietly say yes if you ask. Copy this, paste it into the support inbox of any tool you're paying for, change the name, and send it.</p>
+      <div style="background:var(--ink-50);border-left:3px solid var(--teal-500);padding:14px 18px;border-radius:8px;margin-top:12px;font-size:14px;line-height:1.65;color:var(--ink-700);">
+        <p style="margin:0 0 8px;"><strong>Subject:</strong> Hardship request — recently laid off</p>
+        <p style="margin:0;">Hi — I've been a paying user since [date]. I was laid off [last week / last month] and I'm trying to keep the tools that are actually useful while I look for the next role. Do you have any kind of unemployed, hardship, or pause option? I'd rather ask than cancel. Thank you for considering it. — [Name]</p>
+      </div>
+      <p class="sub" style="margin-top:14px;">It works more often than you'd think. The worst they can do is say no.</p>
+    </div>
+
+    <!-- ========= 8. CRISIS FALLBACK ========= -->
+    <div class="panel crisis-panel">
+      <p class="crisis-panel__cormorant">If today isn't a tool-shopping day.</p>
+      <h3>That's allowed.</h3>
+      <p class="sub">No tool is going to fix the part of this that's just sad. The lists will still be here tomorrow.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;">
+        <a href="mentors.html" class="btn btn--primary">Talk to a mentor</a>
+        <a href="therapists.html" class="btn btn--ghost">Find a therapist</a>
+        <a href="https://988lifeline.org" target="_blank" rel="noopener" class="btn btn--ghost">988 Lifeline</a>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__cols">
+        <div class="footer__col">
+          <h4 class="footer__heading">Get through it</h4>
+          <ul class="footer__list">
+            <li><a href="plan.html">Your deadlines and plan</a></li>
+            <li><a href="plan.html#cover">Health coverage</a></li>
+            <li><a href="therapists.html">Affordable therapy</a></li>
+            <li><a href="mentors.html">Find a mentor</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">Find work</h4>
+          <ul class="footer__list">
+            <li><a href="marketplace.html">Jobs and gigs marketplace</a></li>
+            <li><a href="jobs.html">Job boards</a></li>
+            <li><a href="tools.html">Job search tools</a></li>
+            <li><a href="communities.html">Communities</a></li>
+            <li><a href="blog.html">Stories</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">In crisis right now?</h4>
+          <p class="footer__msg">In the US, call or text 988. Free, 24/7 and confidential. Elsewhere, call your local emergency number.</p>
+          <h4 class="footer__heading footer__heading--mt">About</h4>
+          <ul class="footer__list">
+            <li><a href="privacy.html">Privacy policy</a></li>
+            <li><a href="marketplace.html">Join the marketplace</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; <span data-year>2026</span> Layoff Support, a Data and AI Consulting project. General information, not legal, medical or financial advice.</p>
+        <a href="index.html" class="logo footer__logo" aria-label="Layoff Support home">
+          <span class="logo__mark" aria-hidden="true"><img src="assets/img/logo.avif" alt="" /></span>
+          <span class="logo__text"><span>layoff</span><span>support</span></span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

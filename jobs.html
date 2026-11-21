@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Board — Layoff Support</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body data-page="jobs">
+
+<div class="dash">
+  <aside id="sidebar" class="dash__side"></aside>
+
+  <main class="dash__main">
+
+    <!-- ========= 1. TOPBAR ========= -->
+    <div class="dash__topbar">
+      <div class="dash__greeting">
+        <h1>Job board</h1>
+        <p>Sixteen mission-driven employers. Hand-verified, no fake metrics.</p>
+      </div>
+    </div>
+
+    <!-- ========= 2. HOW THIS LIST WORKS ========= -->
+    <div class="panel">
+      <h3>How this list works</h3>
+      <p class="sub">No applicant counts, no "kindness" scores, no fabricated salary bands. Every company below is in <a href="data/jobs-data.json" style="color:var(--teal-700);">data/jobs-data.json</a> with a public source. The test that proves it is <a href="data/verify-jobs-data.js" style="color:var(--teal-700);">data/verify-jobs-data.js</a> — run it and the page won't ship if anything's invented.</p>
+    </div>
+
+    <!-- ========= 3. ENERGY BUDGET ========= -->
+    <div class="panel energy">
+      <h3>How much can you take on today?</h3>
+      <p class="sub">Pick a pace. We'll remember it.</p>
+      <div class="energy__options" role="radiogroup" aria-label="Energy budget">
+        <button type="button" class="energy__opt" data-energy="low" aria-pressed="false">
+          <span class="energy__dot energy__dot--low" aria-hidden="true"></span>
+          <span><span class="energy__label">Quiet day</span></span>
+        </button>
+        <button type="button" class="energy__opt is-active" data-energy="medium" aria-pressed="true">
+          <span class="energy__dot energy__dot--medium" aria-hidden="true"></span>
+          <span><span class="energy__label">Some fight in me</span></span>
+        </button>
+        <button type="button" class="energy__opt" data-energy="full" aria-pressed="false">
+          <span class="energy__dot energy__dot--full" aria-hidden="true"></span>
+          <span><span class="energy__label">Ready to swing</span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ========= 4. FILTERS ========= -->
+    <div class="panel">
+      <h3>Filter</h3>
+
+      <div class="filter-cluster">
+        <div class="filter-cluster__label">Shape of work</div>
+        <div class="filter-cluster__tags">
+          <span class="tag">Remote</span>
+          <span class="tag">Hybrid</span>
+          <span class="tag">Async-first</span>
+          <span class="tag">4-day week</span>
+        </div>
+      </div>
+
+      <div class="filter-cluster">
+        <div class="filter-cluster__label">Function</div>
+        <div class="filter-cluster__tags">
+          <span class="tag">Engineering</span>
+          <span class="tag">Product</span>
+          <span class="tag">Design</span>
+          <span class="tag">Ops / People</span>
+          <span class="tag">Customer</span>
+        </div>
+      </div>
+
+      <div class="filter-cluster">
+        <div class="filter-cluster__label">Structure</div>
+        <div class="filter-cluster__tags">
+          <span class="tag">Non-profit</span>
+          <span class="tag">Public Benefit Corp</span>
+          <span class="tag">B Corp</span>
+          <span class="tag">Employee-owned</span>
+          <span class="tag">Unionized</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========= 5. VERIFIED EMPLOYERS GRID ========= -->
+    <div class="panel">
+      <h3>Verified employers</h3>
+      <p class="sub">Click through to each company's actual careers page.</p>
+
+      <div class="counseling__grid">
+
+        <div class="tile">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#A7F3D0,#6EE7B7);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Pa</span>
+          </div>
+          <h3 class="tile__title">Patagonia</h3>
+          <p class="tile__desc">Outdoor apparel, environmental mission. On-site childcare since 1983.</p>
+          <div class="soft-landing__badges">
+            <span class="pledge">B Corp</span>
+            <span class="pledge">Family-friendly</span>
+          </div>
+          <a href="https://www.patagonia.com/careers/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Open roles</a>
+        </div>
+
+        <div class="tile">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#FED7AA,#FDBA74);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Mo</span>
+          </div>
+          <h3 class="tile__title">Mozilla</h3>
+          <p class="tile__desc">Open-source web platform. Backed by the non-profit Mozilla Foundation.</p>
+          <div class="soft-landing__badges">
+            <span class="pledge">Non-profit-backed</span>
+            <span class="pledge">Remote-friendly</span>
+          </div>
+          <a href="https://www.mozilla.org/en-US/careers/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Open roles</a>
+        </div>
+
+        <div class="tile">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#DDD6FE,#A5B4FC);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Wi</span>
+          </div>
+          <h3 class="tile__title">Wikimedia Foundation</h3>
+          <p class="tile__desc">501(c)(3) non-profit; runs Wikipedia. Public salary bands on every listing.</p>
+          <div class="soft-landing__badges">
+            <span class="pledge">Non-profit</span>
+            <span class="pledge">Transparent pay</span>
+          </div>
+          <a href="https://wikimediafoundation.org/about/jobs/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Open roles</a>
+        </div>
+
+        <div class="tile">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#FBCFE8,#F9A8D4);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Bu</span>
+          </div>
+          <h3 class="tile__title">Buffer</h3>
+          <p class="tile__desc">Publishes its salary formula and individual employee salaries. Four-day work week.</p>
+          <div class="soft-landing__badges">
+            <span class="pledge">Transparent pay</span>
+            <span class="pledge">4-day week</span>
+          </div>
+          <a href="https://buffer.com/journey" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Open roles</a>
+        </div>
+
+        <div class="tile">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#BFDBFE,#93C5FD);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Do</span>
+          </div>
+          <h3 class="tile__title">Doist</h3>
+          <p class="tile__desc">Maker of Todoist. Async-first by company policy; no scheduled meetings as a default.</p>
+          <div class="soft-landing__badges">
+            <span class="pledge">Async-first</span>
+            <span class="pledge">Remote-global</span>
+          </div>
+          <a href="https://doist.com/careers" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Open roles</a>
+        </div>
+
+        <div class="tile">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#FEF3C7,#FCD34D);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Cf</span>
+          </div>
+          <h3 class="tile__title">Code for America</h3>
+          <p class="tile__desc">Civic-tech non-profit. Workers unionized in 2020 (OPEIU Local 1010).</p>
+          <div class="soft-landing__badges">
+            <span class="pledge">Non-profit</span>
+            <span class="pledge">Unionized</span>
+          </div>
+          <a href="https://codeforamerica.org/jobs/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Open roles</a>
+        </div>
+
+        <div class="tile">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#CCFBF1,#5EEAD4);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Kh</span>
+          </div>
+          <h3 class="tile__title">Khan Academy</h3>
+          <p class="tile__desc">Education non-profit. Free, world-class learning for anyone. Fully remote-friendly.</p>
+          <div class="soft-landing__badges">
+            <span class="pledge">Non-profit</span>
+            <span class="pledge">Remote-friendly</span>
+          </div>
+          <a href="https://www.khanacademy.org/careers" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Open roles</a>
+        </div>
+
+        <div class="tile">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#A7F3D0,#6EE7B7);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Ki</span>
+          </div>
+          <h3 class="tile__title">Kickstarter PBC</h3>
+          <p class="tile__desc">First major US tech company to become a Public Benefit Corporation. Workers unionized 2020.</p>
+          <div class="soft-landing__badges">
+            <span class="pledge">PBC</span>
+            <span class="pledge">Unionized</span>
+          </div>
+          <a href="https://www.kickstarter.com/jobs" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Open roles</a>
+        </div>
+
+        <div class="tile">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#FED7AA,#FDBA74);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Kn</span>
+          </div>
+          <h3 class="tile__title">King Arthur Baking Co.</h3>
+          <p class="tile__desc">100% employee-owned (ESOP) since 2004. Certified B Corporation.</p>
+          <div class="soft-landing__badges">
+            <span class="pledge">Employee-owned</span>
+            <span class="pledge">B Corp</span>
+          </div>
+          <a href="https://www.kingarthurbaking.com/about/careers" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Open roles</a>
+        </div>
+
+        <div class="tile">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#DDD6FE,#A5B4FC);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Hc</span>
+          </div>
+          <h3 class="tile__title">Honeycomb</h3>
+          <p class="tile__desc">Observability tools for engineers. Co-founders write publicly about humane on-call.</p>
+          <div class="soft-landing__badges">
+            <span class="pledge">Engineer-led</span>
+          </div>
+          <a href="https://www.honeycomb.io/careers" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Open roles</a>
+        </div>
+
+        <div class="tile">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#FBCFE8,#F9A8D4);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Wa</span>
+          </div>
+          <h3 class="tile__title">Watershed</h3>
+          <p class="tile__desc">Climate-tech: carbon accounting platform for enterprise emissions reductions.</p>
+          <div class="soft-landing__badges">
+            <span class="pledge">Climate</span>
+          </div>
+          <a href="https://watershed.com/about/careers" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Open roles</a>
+        </div>
+
+        <div class="tile">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#BFDBFE,#93C5FD);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Na</span>
+          </div>
+          <h3 class="tile__title">Nava PBC</h3>
+          <p class="tile__desc">Public Benefit civic-tech firm. Built parts of healthcare.gov, Medicare, and the VA.</p>
+          <div class="soft-landing__badges">
+            <span class="pledge">PBC</span>
+            <span class="pledge">Civic-tech</span>
+          </div>
+          <a href="https://www.navapbc.com/careers" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Open roles</a>
+        </div>
+
+        <div class="tile">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#FEF3C7,#FCD34D);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Dc</span>
+          </div>
+          <h3 class="tile__title">DonorsChoose</h3>
+          <p class="tile__desc">Education non-profit; matches donors with public-school classroom needs.</p>
+          <div class="soft-landing__badges">
+            <span class="pledge">Non-profit</span>
+          </div>
+          <a href="https://www.donorschoose.org/about/jobs.html" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Open roles</a>
+        </div>
+
+        <div class="tile">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#CCFBF1,#5EEAD4);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Ai</span>
+          </div>
+          <h3 class="tile__title">Aira</h3>
+          <p class="tile__desc">Visual interpreter service for blind and low-vision users. Accessibility-first product.</p>
+          <div class="soft-landing__badges">
+            <span class="pledge">Accessibility</span>
+          </div>
+          <a href="https://aira.io/careers" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Open roles</a>
+        </div>
+
+        <div class="tile">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#A7F3D0,#6EE7B7);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Bs</span>
+          </div>
+          <h3 class="tile__title">Beneficial State Bank</h3>
+          <p class="tile__desc">Community development bank. Certified B Corp; CDFI; non-profit-owned.</p>
+          <div class="soft-landing__badges">
+            <span class="pledge">B Corp</span>
+            <span class="pledge">CDFI</span>
+          </div>
+          <a href="https://beneficialstatebank.com/about/careers" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Open roles</a>
+        </div>
+
+        <div class="tile">
+          <div class="tile__photo" style="background:linear-gradient(135deg,#FED7AA,#FDBA74);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:600;color:rgba(0,0,0,.55);">Ct</span>
+          </div>
+          <h3 class="tile__title">Crisis Text Line</h3>
+          <p class="tile__desc">Mental-health non-profit; free 24/7 text-based crisis support.</p>
+          <div class="soft-landing__badges">
+            <span class="pledge">Non-profit</span>
+            <span class="pledge">Mental health</span>
+          </div>
+          <a href="https://www.crisistextline.org/careers/" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Open roles</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========= 6. ILLUSTRATIVE STORY ========= -->
+    <div class="panel">
+      <h3>People who landed</h3>
+      <p class="sub">Real testimonials will live here once we have signed-off ones from community members. The note below is illustrative — written to show tone, not attributed to a real person.</p>
+
+      <div class="story-grid">
+        <article class="story" data-illustrative="true">
+          <div class="story__avatar"><img src="https://i.pravatar.cc/200?img=12" alt=""/></div>
+          <div class="story__body">
+            <div class="story__name">Illustrative example</div>
+            <div class="story__role">The tone we're going for</div>
+            <p class="story__quote">"I took the first decent offer in my queue because COBRA was bleeding me. Six months in, I'm still tired and I still cry on Sundays sometimes. But I sleep most nights now. Fine is enough right now. Fine is a lot."</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- ========= 7. WHAT TO LOOK FOR ========= -->
+    <div class="panel">
+      <h3>What to look for</h3>
+      <ul style="padding-left:20px;color:var(--ink-600);font-size:14px;line-height:1.85;">
+        <li><strong style="color:var(--ink-900);">Pay band or skip it.</strong> If a listing won't show pay, you'll be negotiating in the dark against someone who does this every day.</li>
+        <li><strong style="color:var(--ink-900);">Read the interview process before the JD.</strong> Four rounds plus a take-home is a part-time job you're doing for free.</li>
+        <li><strong style="color:var(--ink-900);">A "gap" is not a red flag to anyone worth working for.</strong> If a recruiter flinches at the word "layoff," note it and move on.</li>
+      </ul>
+    </div>
+
+    <!-- ========= 8. OTHER BOARDS ========= -->
+    <div class="panel">
+      <h3>Other boards worth checking</h3>
+      <p class="sub">Use more than one.</p>
+      <div class="quick-grid">
+        <a href="https://www.linkedin.com/jobs" target="_blank" rel="noopener" class="quick">
+          <div class="quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+          <h4>LinkedIn Jobs</h4><p>Largest general listings.</p>
+        </a>
+        <a href="https://wellfound.com" target="_blank" rel="noopener" class="quick">
+          <div class="quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg></div>
+          <h4>Wellfound</h4><p>Startup roles, equity-heavy.</p>
+        </a>
+        <a href="https://www.workatastartup.com" target="_blank" rel="noopener" class="quick">
+          <div class="quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg></div>
+          <h4>Work at a Startup</h4><p>Y Combinator's job board.</p>
+        </a>
+        <a href="https://www.welcometothejungle.com" target="_blank" rel="noopener" class="quick">
+          <div class="quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div>
+          <h4>Welcome to the Jungle</h4><p>Curated; EU- and UK-friendly.</p>
+        </a>
+        <a href="https://layoffs.fyi" target="_blank" rel="noopener" class="quick">
+          <div class="quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v8h8"/></svg></div>
+          <h4>Layoffs.fyi Talent Pool</h4><p>Free directory of recently laid-off folks.</p>
+        </a>
+        <a href="https://remote.com/jobs" target="_blank" rel="noopener" class="quick">
+          <div class="quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div>
+          <h4>Remote.com Jobs</h4><p>Globally remote roles.</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- ========= 9. CRISIS FALLBACK ========= -->
+    <div class="panel crisis-panel">
+      <p class="crisis-panel__cormorant">If today isn't a job-hunting day.</p>
+      <h3>That's allowed.</h3>
+      <p class="sub">The jobs will still be here tomorrow, and so will we.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;">
+        <a href="mentors.html" class="btn btn--primary">Talk to a mentor</a>
+        <a href="therapists.html" class="btn btn--ghost">Find a therapist</a>
+        <a href="https://988lifeline.org" target="_blank" rel="noopener" class="btn btn--ghost">988 Lifeline</a>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__cols">
+        <div class="footer__col">
+          <h4 class="footer__heading">Get through it</h4>
+          <ul class="footer__list">
+            <li><a href="plan.html">Your deadlines and plan</a></li>
+            <li><a href="plan.html#cover">Health coverage</a></li>
+            <li><a href="therapists.html">Affordable therapy</a></li>
+            <li><a href="mentors.html">Find a mentor</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">Find work</h4>
+          <ul class="footer__list">
+            <li><a href="marketplace.html">Jobs and gigs marketplace</a></li>
+            <li><a href="jobs.html">Job boards</a></li>
+            <li><a href="tools.html">Job search tools</a></li>
+            <li><a href="communities.html">Communities</a></li>
+            <li><a href="blog.html">Stories</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">In crisis right now?</h4>
+          <p class="footer__msg">In the US, call or text 988. Free, 24/7 and confidential. Elsewhere, call your local emergency number.</p>
+          <h4 class="footer__heading footer__heading--mt">About</h4>
+          <ul class="footer__list">
+            <li><a href="privacy.html">Privacy policy</a></li>
+            <li><a href="marketplace.html">Join the marketplace</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; <span data-year>2026</span> Layoff Support, a Data and AI Consulting project. General information, not legal, medical or financial advice.</p>
+        <a href="index.html" class="logo footer__logo" aria-label="Layoff Support home">
+          <span class="logo__mark" aria-hidden="true"><img src="assets/img/logo.avif" alt="" /></span>
+          <span class="logo__text"><span>layoff</span><span>support</span></span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

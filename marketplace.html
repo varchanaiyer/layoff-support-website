@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jobs and gigs marketplace — Layoff Support</title>
+  <meta name="description" content="Sign up for the Layoff Support jobs and gigs marketplace: freelance, contract and full-time work after a layoff." />
+  <link rel="icon" href="assets/img/logo.avif" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/home.css" />
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="logo" aria-label="Layoff Support home">
+        <span class="logo__mark" aria-hidden="true"><img src="assets/img/logo.avif" alt="" /></span>
+        <span class="logo__text"><span>layoff</span><span>support</span></span>
+      </a>
+      <button class="site-nav__toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <a href="plan.html">Your plan</a>
+        <a href="jobs.html">Job boards</a>
+        <a href="therapists.html">Therapy</a>
+        <a href="mentors.html">Mentors</a>
+        <a href="communities.html">Communities</a>
+        <a href="blog.html">Stories</a>
+        <a href="marketplace.html" class="btn btn--primary btn--sm site-nav__cta">Join the marketplace</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <div class="container page__narrow">
+      <p class="h-eyebrow">Jobs and gigs marketplace</p>
+      <h1>Find your next role, or a gig to bridge the gap</h1>
+      <p class="h-lead">Tell us what you do and what kind of work you want next. We'll email you when matching freelance, contract and full-time opportunities open up in the marketplace. Free to join.</p>
+
+      <form id="marketplace-form" class="form-card" action="https://submit-form.com/FORMSPARK_FORM_ID" method="POST" novalidate>
+        <input type="hidden" name="_source" value="Layoff Support website: marketplace" />
+        <div class="hp" aria-hidden="true">
+          <label for="mk-hp">Leave this empty</label>
+          <input id="mk-hp" type="text" name="_honeypot" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="field">
+          <label for="mk-name">Your name</label>
+          <input id="mk-name" type="text" name="name" autocomplete="name" required />
+        </div>
+
+        <div class="field">
+          <label for="mk-email">Email</label>
+          <input id="mk-email" type="email" name="email" autocomplete="email" required />
+          <small>We'll only use this to tell you about the marketplace.</small>
+        </div>
+
+        <div class="field">
+          <label for="mk-field">What kind of work do you do?</label>
+          <select id="mk-field" name="field" required>
+            <option value="">Choose one</option>
+            <option>Engineering</option>
+            <option>Product</option>
+            <option>Design</option>
+            <option>Data</option>
+            <option>Marketing</option>
+            <option>Sales</option>
+            <option>Ops or People</option>
+            <option>Something else</option>
+          </select>
+        </div>
+
+        <fieldset class="field">
+          <legend>What are you open to?</legend>
+          <div class="choices">
+            <label class="choice"><input type="checkbox" name="open_to" value="Freelance gigs" /><span>Freelance gigs</span></label>
+            <label class="choice"><input type="checkbox" name="open_to" value="Contract" /><span>Contract</span></label>
+            <label class="choice"><input type="checkbox" name="open_to" value="Full-time" /><span>Full-time</span></label>
+            <label class="choice"><input type="checkbox" name="open_to" value="Part-time" /><span>Part-time</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="mk-country">Where are you based?</label>
+          <input id="mk-country" type="text" name="location" autocomplete="country-name" placeholder="Country, or city and country" />
+        </div>
+
+        <div class="field">
+          <label for="mk-link">LinkedIn or portfolio <span style="font-weight:400;color:var(--ink-500)">(optional)</span></label>
+          <input id="mk-link" type="url" name="link" placeholder="https://" />
+        </div>
+
+        <div class="field">
+          <label for="mk-notes">Anything else we should know? <span style="font-weight:400;color:var(--ink-500)">(optional)</span></label>
+          <textarea id="mk-notes" name="notes" placeholder="Skills, the roles you're targeting, when you can start"></textarea>
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" name="consent" value="yes" required />
+          <span>I'm happy for Layoff Support to email me about the marketplace. I can unsubscribe at any time. See our <a href="privacy.html">privacy policy</a>.</span>
+        </label>
+
+        <div id="mk-status" class="form-status" role="status" aria-live="polite" hidden></div>
+        <button type="submit" class="btn btn--primary">Sign up for the marketplace</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__cols">
+        <div class="footer__col">
+          <h4 class="footer__heading">Get through it</h4>
+          <ul class="footer__list">
+            <li><a href="plan.html">Your deadlines and plan</a></li>
+            <li><a href="plan.html#cover">Health coverage</a></li>
+            <li><a href="therapists.html">Affordable therapy</a></li>
+            <li><a href="mentors.html">Find a mentor</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">Find work</h4>
+          <ul class="footer__list">
+            <li><a href="marketplace.html">Jobs and gigs marketplace</a></li>
+            <li><a href="jobs.html">Job boards</a></li>
+            <li><a href="tools.html">Job search tools</a></li>
+            <li><a href="communities.html">Communities</a></li>
+            <li><a href="blog.html">Stories</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">In crisis right now?</h4>
+          <p class="footer__msg">In the US, call or text 988. Free, 24/7 and confidential. Elsewhere, call your local emergency number.</p>
+          <h4 class="footer__heading footer__heading--mt">About</h4>
+          <ul class="footer__list">
+            <li><a href="privacy.html">Privacy policy</a></li>
+            <li><a href="marketplace.html">Join the marketplace</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; <span data-year>2026</span> Layoff Support, a Data and AI Consulting project. General information, not legal, medical or financial advice.</p>
+        <a href="index.html" class="logo footer__logo" aria-label="Layoff Support home">
+          <span class="logo__mark" aria-hidden="true"><img src="assets/img/logo.avif" alt="" /></span>
+          <span class="logo__text"><span>layoff</span><span>support</span></span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/script.js"></script>
+  <script>
+  (function () {
+    var form = document.getElementById('marketplace-form');
+    var status = document.getElementById('mk-status');
+    function say(msg, ok) {
+      status.hidden = false;
+      status.textContent = msg;
+      status.className = 'form-status ' + (ok ? 'form-status--ok' : 'form-status--err');
+    }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (form.action.indexOf('FORMSPARK_FORM_ID') !== -1) {
+        say('Sign-ups open very soon. Please check back in a few days.', false);
+        return;
+      }
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      var btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      var data = {};
+      new FormData(form).forEach(function (v, k) {
+        if (data[k]) data[k] = [].concat(data[k], v); else data[k] = v;
+      });
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (r) {
+        if (!r.ok) throw new Error('bad status');
+        form.reset();
+        say("You're on the list. We'll email you when the marketplace opens to you.", true);
+      }).catch(function () {
+        say('Something went wrong sending that. Please try again in a moment.', false);
+      }).finally(function () { btn.disabled = false; });
+    });
+  })();
+  </script>
+</body>
+</html>
