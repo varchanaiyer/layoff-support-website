@@ -36,7 +36,7 @@
     c.className = 'calm-waves';
     c.setAttribute('aria-hidden', 'true');
     host.insertBefore(c, host.firstChild);
-    const f = { host, c, ctx: c.getContext('2d'), w: 0, h: 0, visible: true, lines: opts.lines || 6, cap: opts.cap || 680 };
+    const f = { host, c, ctx: c.getContext('2d'), w: 0, h: 0, visible: false, lines: opts.lines || 4, cap: opts.cap || 680, rgb: opts.rgb || '20,184,166', offset: opts.offset || 0, band: opts.band || 0.5 };
     fields.push(f);
     size(f);
     if ('IntersectionObserver' in window) new IntersectionObserver((es) => { f.visible = es[0].isIntersecting; }).observe(host);
@@ -63,21 +63,21 @@
     const mx = ptr.sx - r.left, my = ptr.sy - r.top;
     const reach = Math.max(180, Math.min(320, w * 0.22));
     const breath = (1 - Math.cos((t % BREATH_MS) / BREATH_MS * Math.PI * 2)) / 2; // 0..1..0
-    const lines = 4;
+    const lines = f.lines;
     for (let i = 0; i < lines; i++) {
-      const base = h * (0.5 + i * 0.1) - breath * 10;
+      const base = h * (f.band + i * 0.1) - breath * 10;
       const amp = 14 + breath * 6;
       const k = 0.0032;
       const drift = t * 0.00005;
       ctx.beginPath();
       for (let x = -10; x <= w + 10; x += 6) {
-        let y = base + Math.sin(x * k + drift + i * 0.55) * amp;
+        let y = base + Math.sin(x * k + drift + i * 0.55 + f.offset) * amp;
         const dx = x - mx, dy = base - my;
         const g = Math.exp(-(dx * dx + dy * dy) / (2 * reach * reach));
         if (g > 0.003) y += (dy >= 0 ? 1 : -1) * g * (10 + 16 * ptr.energy);
         if (x === -10) ctx.moveTo(x, y); else ctx.lineTo(x, y);
       }
-      ctx.strokeStyle = 'rgba(20,184,166,' + (0.22 - i * 0.035) + ')';
+      ctx.strokeStyle = 'rgba(' + f.rgb + ',' + (0.22 - i * 0.035) + ')';
       ctx.lineWidth = 1.6;
       ctx.stroke();
     }
@@ -102,7 +102,16 @@
 
   function init() {
     const st = document.createElement('style'); st.textContent = STYLE; document.head.appendChild(st);
-    document.querySelectorAll('.h-hero, main.page, .dash__main, [data-waves]').forEach((el) => attach(el, {}));
+    // Soft palette that changes gently from section to section
+    const PALETTE = ['20,184,166', '139,124,246', '244,152,96', '56,170,230', '16,185,129', '226,110,160'];
+    const hosts = Array.from(document.querySelectorAll('.h-hero, body > section, main > section, main.page, .dash__main, [data-waves]'))
+      .filter((el) => !el.closest('footer') && !el.closest('header') && !el.parentElement.closest('.calm-host, .h-hero, main.page, .dash__main'));
+    hosts.forEach((el, i) => attach(el, {
+      rgb: PALETTE[i % PALETTE.length],
+      offset: i * 1.3,
+      band: i === 0 ? 0.5 : 0.36,
+      cap: i === 0 ? 680 : 1600,
+    }));
     if (glow) document.body.appendChild(glow);
     fields.forEach((f) => draw(f, 0));
     if (reduce) return;
