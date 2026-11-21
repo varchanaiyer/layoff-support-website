@@ -793,3 +793,15 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .jb3__overlay[data-f="remote"]::before { background: #3b9be8; }
 .jb3__overlay[data-f="mission"]::before { background: #3f9b4f; }
 .jb3__overlay[data-f="salary"]::before { background: #e9a23b; }
+
+/* Hug -> heart -> leaves */
+.hh__extra { fill: none; stroke-width: 3; stroke-linecap: round; }
+.hh__extra.hh__vein { stroke-width: 2.4; }
+.hh__extra--a { stroke: #0f766e; }
+.hh__extra--b { stroke: #8b7cf6; }
+.hh__leaffill { opacity: 0; transition: opacity 1.6s ease; }
+.hh__leaffill--a { fill: #ccfbf1; }
+.hh__leaffill--b { fill: #ede9fe; }
+.hugheart.is-leaf .hh__leaffill { opacity: .8; }
+.hugheart.is-opening .hh__fill { opacity: 0; transition: opacity .8s ease; }
+.hugheart.is-heart figcaption, .hugheart.is-opening figcaption, .hugheart.is-leaf figcaption { opacity: 1; transform: none; }
