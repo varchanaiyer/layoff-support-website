@@ -838,3 +838,13 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .hugstory.is-still .lf__s { stroke-dasharray: none !important; }
 .hugstory.is-still .hs__people, .hugstory.is-still .hs__waves { display: none; }
 .hugstory.is-still .lf__fill, .hugstory.is-still figcaption { opacity: 1; transition: none; }
+
+/* Natural, outline-only ending; the waves stay */
+.hugstory .hg__s, .hugstory .wv { stroke-width: 2.2 !important; }
+.hugstory .lf__s { stroke-width: 3.4 !important; }
+.hugstory.is-people .hs__waves, .hugstory.is-leaves .hs__waves { opacity: 1 !important; }
+.lf__fill { display: none; }
+.hs__sway { transform-box: view-box; transform-origin: 200px 368px; }
+.hugstory.is-leaves .hs__sway { animation: hs-sway 7s ease-in-out 3s infinite; }
+@keyframes hs-sway { 0%, 100% { transform: rotate(0deg); } 30% { transform: rotate(2.5deg); } 70% { transform: rotate(-2deg); } }
+@media (prefers-reduced-motion: reduce) { .hugstory .hs__sway { animation: none !important; } }
