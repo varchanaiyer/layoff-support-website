@@ -215,7 +215,7 @@ input[type=range]{width:100%;accent-color:var(--teal)}
         </div>
 
         <div class="panel">
-          <div class="row"><h3>Your circle this week</h3><span class="chip c-lav">2 seats left</span></div>
+          <div class="row"><h3>Your circle this week</h3><span class="chip c-lav">Starting soon</span></div>
           <div class="circle" style="padding:0">
             <div class="when">THU<span>6pm PT</span></div>
             <div><b>H1B / visa holders circle</b><p class="small muted">Zoom, 8 people max, facilitator was laid off too</p></div>
@@ -247,7 +247,12 @@ input[type=range]{width:100%;accent-color:var(--teal)}
             <label class="check"><input type="checkbox" id="fed"> I was a federal employee</label>
             <label class="check"><input type="checkbox" id="fsa"> I have money left in an FSA</label>
           </div>
-          <p class="proto">Saved only in this browser. Rules vary by plan and state, so check each one against your paperwork.</p>
+          <p class="proto">Rules vary by plan and state, so check each one against your paperwork.</p>
+          <div class="ls-nudge" style="margin-top:0">
+            <p data-signed-out><b>Don't lose these dates.</b> Save them to a free account and get an email before each one.</p>
+            <p data-signed-in hidden><b>Saved to your account.</b> Turn on reminders on <a href="account.html#about">your progress page</a>.</p>
+            <button class="btn" data-signed-out data-require-signin="Save your deadlines to a free account, and get an email before each one is due.">Save my dates</button>
+          </div>
         </div>
         <div class="panel">
           <div class="row"><h3>Your timeline</h3><span class="small muted" id="todayLbl"></span></div>
@@ -324,7 +329,7 @@ input[type=range]{width:100%;accent-color:var(--teal)}
             <p class="small muted">Six people in the same field meet every Monday for 8 weeks. You share targets, swap referrals and run mock interviews with each other. Matched by role and time zone.</p>
             <div class="field"><label for="podRole">Your field</label><select id="podRole"><option>Engineering</option><option>Product</option><option>Design</option><option>Data</option><option>Marketing</option><option>Ops / People</option></select></div>
             <button class="btn" id="podBtn">Put me on the next pod</button>
-            <p class="proto" id="podMsg">Prototype: nothing is sent yet.</p>
+            <p class="proto" id="podMsg">Free. We'll email you when a pod in your field is ready.</p>
           </div>
           <div class="panel">
             <h3>A few months ahead</h3>
@@ -464,9 +469,9 @@ input[type=range]{width:100%;accent-color:var(--teal)}
 
   /* circles (from communities.html) */
   var C=[['SUN','9am PT','Sunday morning circle',4],['TUE','7:30pm ET','Tuesday evening circle',6],['WED','12pm PT','Parents who were laid off',5],['THU','6pm PT','H1B / visa holders circle',6],['SAT','8pm IST','India / APAC time zone circle',3]];
-  $('circleList').innerHTML+=C.map(function(c,i){var s='';for(var k=0;k<8;k++)s+='<i class="'+(k<c[3]?'':'free')+'"></i>';return '<div class="circle"><div class="when">'+c[0]+'<span>'+c[1]+'</span></div><div><b>'+c[2]+'</b><p class="small muted">Zoom, '+(8-c[3])+' of 8 seats open</p><div class="seats" aria-hidden="true">'+s+'</div></div><button class="btn ghost" data-seat="'+i+'">Save a seat</button></div>'}).join('');
-  $('circleList').addEventListener('click',function(e){var b=e.target.closest('[data-seat]');if(b){b.textContent='Seat saved';b.disabled=true}});
-  $('podBtn').addEventListener('click',function(){$('podMsg').textContent='Prototype: you\'d be matched with the next '+$('podRole').value+' pod. Nothing is sent yet.'});
+  $('circleList').innerHTML+=C.map(function(c,i){var s='';for(var k=0;k<8;k++)s+='<i class="'+(k<c[3]?'':'free')+'"></i>';return '<div class="circle"><div class="when">'+c[0]+'<span>'+c[1]+'</span></div><div><b>'+c[2]+'</b><p class="small muted">Zoom, 8 people at most. Starting soon.</p></div><button class="btn ghost" data-seat="'+i+'">Get an invite</button></div>'}).join('');
+  $('circleList').addEventListener('click',function(e){var b=e.target.closest('[data-seat]');if(!b)return;var c=C[+b.dataset.seat];lsInterest('circle:'+c[2],'Sign in and we\'ll email you an invite when the '+c[2]+' opens.').then(function(){b.textContent='We\'ll invite you';b.disabled=true})});
+  $('podBtn').addEventListener('click',function(){var r=$('podRole').value;lsInterest('pod:'+r,'Sign in and we\'ll match you with the next '+r+' pod.').then(function(){$('podMsg').textContent='You\'re on the list for the next '+r+' pod. We\'ll email you when it\'s matched.'})});
 
   /* notes */
   var N=[
@@ -486,4 +491,45 @@ input[type=range]{width:100%;accent-color:var(--teal)}
 })();
 </script>
 
+<script src="assets/auth.js"></script>
+<script>
+  // Sign-in features on the plan page: save the plan to the account, and record circle/pod interest.
+  function lsInterest(tag, reason) {
+    return LS.requireSignIn(reason).then(async function (u) {
+      var r = await LS.db.from('member_profiles').select('needs').eq('id', u.id).maybeSingle();
+      var needs = new Set((r.data && r.data.needs) || []); needs.add(tag);
+      await LS.db.from('member_profiles').update({ needs: Array.from(needs), updated_at: new Date().toISOString() }).eq('id', u.id);
+    });
+  }
+  (function () {
+    var KEYS = ['clock', 'pace'];
+    function local() { var o = {}; KEYS.forEach(function (k) { try { var v = localStorage.getItem('ls_' + k); if (v != null) o[k] = JSON.parse(v); } catch (e) {} }); return o; }
+    var timer;
+    function push() {
+      if (!LS.user) return;
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        var now = new Date().toISOString();
+        LS.db.from('member_plans').upsert({ user_id: LS.user.id, data: Object.assign(local(), { saved_at: now }), updated_at: now });
+        var c = local().clock;
+        if (c && c.last) LS.db.from('member_profiles').update({ layoff_date: c.last }).eq('id', LS.user.id);
+      }, 800);
+    }
+    document.addEventListener('change', push);
+    document.addEventListener('click', function (e) { if (e.target.closest('[data-pace]')) push(); });
+    LS.onUser(async function (u) {
+      if (!u) return;
+      var r = await LS.db.from('member_plans').select('data').eq('user_id', u.id).maybeSingle();
+      var remote = r.data && r.data.data, loc = local();
+      var localEmpty = !loc.clock || !loc.clock.last;
+      if (remote && remote.clock && remote.clock.last && localEmpty && !sessionStorage.getItem('ls_plan_pulled')) {
+        KEYS.forEach(function (k) { if (remote[k] !== undefined) localStorage.setItem('ls_' + k, JSON.stringify(remote[k])); });
+        sessionStorage.setItem('ls_plan_pulled', '1');
+        location.reload();
+        return;
+      }
+      if (!localEmpty) push();
+    });
+  })();
+</script>
 </body></html>

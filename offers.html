@@ -42,6 +42,12 @@
       <nav class="picks__jump" aria-label="Jump to">
         <a href="#health">Health coverage</a><a href="#therapy">Therapy</a><a href="#legal">Legal help</a><a href="#coaching">Coaches and mentors</a><a href="#tools">Job-search tools</a><a href="#avoid">What to avoid</a>
       </nav>
+      <div class="ls-nudge">
+        <p data-signed-out><b>Not sure which apply to you?</b> Tell us your state and situation, and we'll show the options that fit.</p>
+        <p data-signed-in hidden><b>Matched to you:</b> see the options for your state on your progress page.</p>
+        <a href="account.html#for-you" class="btn btn--primary btn--sm" data-signed-out data-require-signin="Tell us your state and what you need, and we'll show which of these options apply to you.">Match to my state</a>
+        <a href="account.html#for-you" class="btn btn--primary btn--sm" data-signed-in hidden>See my matches</a>
+      </div>
       <section class="picks" id="health">
         <h2>Health coverage</h2>
         <p class="picks__intro">Don't pay for COBRA by default. For most people one of these is far cheaper.</p>
@@ -377,5 +383,6 @@
   </footer>
 
   <script src="assets/script.js"></script>
+  <script src="assets/auth.js"></script>
 </body>
 </html>

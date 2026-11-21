@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your progress — Layoff Support</title>
+  <meta name="robots" content="noindex" />
+  <meta name="description" content="Sign in to save your layoff plan, track your checklist and get help that fits your situation." />
+  <link rel="icon" href="assets/img/logo.avif" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/home.css" />
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="logo" aria-label="Layoff Support home">
+        <span class="logo__mark" aria-hidden="true"><img src="assets/img/logo.avif" alt="" /></span>
+        <span class="logo__text"><span>layoff</span><span>support</span></span>
+      </a>
+      <button class="site-nav__toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <a href="plan.html">Your plan</a>
+        <a href="offers.html">Our picks</a>
+        <a href="jobs.html">Job boards</a>
+        <a href="therapists.html">Therapy</a>
+        <a href="mentors.html">Mentors</a>
+        <a href="communities.html">Communities</a>
+        <a href="blog.html">Stories</a>
+        <a href="marketplace.html" class="btn btn--primary btn--sm site-nav__cta">Join Next Chapter</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <div class="container page__narrow">
+
+      <!-- Signed out -->
+      <div data-signed-out>
+        <p class="h-eyebrow">Your progress</p>
+        <h1>Keep your next steps in one place</h1>
+        <p>A free account saves your plan and checklist, so you can pick up where you left off on any device. We'll also send you a reminder before a deadline is due, and help that fits your state and situation.</p>
+        <ul>
+          <li>Your deadlines and health coverage plan, saved</li>
+          <li>A checklist of the steps that matter, with your progress</li>
+          <li>Options matched to your state, plus severance and reference email templates</li>
+        </ul>
+        <div class="acct-actions">
+          <button class="btn btn--primary" id="signinBtn">Sign in or create an account</button>
+          <span class="page__meta">No password needed.</span>
+        </div>
+        <p class="page__meta" style="margin-top:20px">Were you a member on our old site? Sign in with the same email and we'll recognise you.</p>
+      </div>
+
+      <!-- Signed in -->
+      <div data-signed-in hidden>
+        <p class="h-eyebrow" id="hello-eyebrow">Your progress</p>
+        <h1 id="hello">Welcome</h1>
+        <p id="hello-sub">Here's where you are, and what's next.</p>
+
+        <section class="acct-card" id="checklist">
+          <h2>Your checklist</h2>
+          <p class="page__meta" id="progress-label">0 of 0 done</p>
+          <div class="progress-bar"><span id="progress-fill" style="width:0%"></span></div>
+          <ul class="todo" id="todo"></ul>
+        </section>
+
+        <section class="acct-card" id="about">
+          <h2>About you</h2>
+          <p class="page__meta">This shapes the help we show you. Only you can see it.</p>
+          <form id="profileForm" class="acct-grid" style="margin-top:14px">
+            <div><label class="lbl" for="p-first">First name</label><input type="text" id="p-first" autocomplete="given-name" /></div>
+            <div><label class="lbl" for="p-state">State</label><select id="p-state"><option value="">Choose your state</option><option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option><option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="DC">District of Columbia</option><option value="FL">Florida</option><option value="GA">Georgia</option><option value="HI">Hawaii</option><option value="ID">Idaho</option><option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option><option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option><option value="ME">Maine</option><option value="MD">Maryland</option><option value="MA">Massachusetts</option><option value="MI">Michigan</option><option value="MN">Minnesota</option><option value="MS">Mississippi</option><option value="MO">Missouri</option><option value="MT">Montana</option><option value="NE">Nebraska</option><option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option><option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option><option value="ND">North Dakota</option><option value="OH">Ohio</option><option value="OK">Oklahoma</option><option value="OR">Oregon</option><option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option><option value="SC">South Carolina</option><option value="SD">South Dakota</option><option value="TN">Tennessee</option><option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option><option value="VA">Virginia</option><option value="WA">Washington</option><option value="WV">West Virginia</option><option value="WI">Wisconsin</option><option value="WY">Wyoming</option><option value="XX">Outside the US</option></select></div>
+            <div><label class="lbl" for="p-field">Your field</label>
+              <select id="p-field"><option value="">Choose one</option><option>Engineering</option><option>Product</option><option>Design</option><option>Data and AI</option><option>Marketing</option><option>Sales</option><option>Operations</option><option>People and HR</option><option>Finance</option><option>Customer support</option><option>Other</option></select></div>
+            <div><label class="lbl" for="p-date">Last day of work</label><input type="date" id="p-date" /></div>
+            <div class="field-full"><span class="lbl">What do you need help with?</span>
+              <div class="chips" id="p-needs">
+                <label><input type="checkbox" value="health" /> Health coverage</label>
+                <label><input type="checkbox" value="therapy" /> Therapy</label>
+                <label><input type="checkbox" value="legal" /> Severance or legal</label>
+                <label><input type="checkbox" value="coaching" /> Coaching</label>
+                <label><input type="checkbox" value="jobs" /> Finding a job</label>
+                <label><input type="checkbox" value="freelance" /> Freelance or gigs</label>
+              </div></div>
+            <label class="check-line field-full"><input type="checkbox" id="p-emails" /> Email me reminders before my deadlines and help that fits my situation. Unsubscribe any time.</label>
+            <div class="acct-actions field-full"><button class="btn btn--primary" type="submit">Save</button><span class="saved-msg" id="savedMsg" role="status"></span></div>
+          </form>
+        </section>
+
+        <section class="acct-card" id="for-you">
+          <h2>For your situation</h2>
+          <div class="foryou" id="foryou"><p class="page__meta">Add your state and what you need above, and we'll show what applies to you.</p></div>
+        </section>
+
+        <section class="acct-card" id="templates">
+          <h2>Members' templates</h2>
+          <p class="page__meta">Copy, edit the parts in [brackets], and send.</p>
+          <h3 style="margin-top:16px">Asking for a better severance package</h3>
+          <div class="template" id="t-sev">Hi [name],
+
+Thank you for the severance offer. Before I sign, I'd like to ask for a few changes, given [my X years with the company / the role I played in Y / how close I am to my bonus or vesting date]:
+
+- [Severance pay: e.g. 12 weeks instead of 8]
+- [Health coverage: the company paying COBRA premiums for the same period]
+- [Equity: accelerated vesting of shares due before (date)]
+- [A neutral reference and agreed wording for the departure]
+
+I'd also like until [date] to review the agreement. Happy to talk this week.
+
+Thanks,
+[Your name]</div>
+          <button class="btn btn--outline btn--sm" data-copy="t-sev" style="margin-top:10px">Copy</button>
+
+          <h3 style="margin-top:22px">Asking a former manager for a reference</h3>
+          <div class="template" id="t-ref">Hi [name],
+
+I hope you're doing well. As you know, my role was cut in the recent layoff. I'm applying for [type of role] and would be grateful if you'd be a reference for me.
+
+If it helps, here are a few things we worked on together: [project or result], [project or result].
+
+No pressure at all if now isn't a good time.
+
+Thanks,
+[Your name]</div>
+          <button class="btn btn--outline btn--sm" data-copy="t-ref" style="margin-top:10px">Copy</button>
+        </section>
+
+        <section class="acct-card">
+          <h2>Your account</h2>
+          <p>Signed in as <b id="acct-email"></b>.</p>
+          <div class="acct-actions">
+            <button class="btn btn--outline btn--sm" id="signoutBtn">Sign out</button>
+            <button class="btn btn--outline btn--sm" id="deleteBtn">Delete my data</button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__cols">
+        <div class="footer__col">
+          <h4 class="footer__heading">Get through it</h4>
+          <ul class="footer__list">
+            <li><a href="plan.html">Your deadlines and plan</a></li>
+            <li><a href="offers.html">Our picks: best low-cost help</a></li>
+            <li><a href="plan.html#cover">Health coverage</a></li>
+            <li><a href="therapists.html">Affordable therapy</a></li>
+            <li><a href="mentors.html">Find a mentor</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">Find work</h4>
+          <ul class="footer__list">
+            <li><a href="marketplace.html">Next Chapter: jobs and gigs</a></li>
+            <li><a href="jobs.html">Job boards</a></li>
+            <li><a href="tools.html">Job search tools</a></li>
+            <li><a href="communities.html">Communities</a></li>
+            <li><a href="blog.html">Stories</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">In crisis right now?</h4>
+          <p class="footer__msg">In the US, call or text 988. Free, 24/7 and confidential. Elsewhere, call your local emergency number.</p>
+          <h4 class="footer__heading footer__heading--mt">About</h4>
+          <ul class="footer__list">
+            <li><a href="privacy.html">Privacy policy</a></li>
+            <li><a href="marketplace.html">Join Next Chapter</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; <span data-year>2026</span> Layoff Support, a Data and AI Consulting project. General information, not legal, medical or financial advice.</p>
+        <a href="index.html" class="logo footer__logo" aria-label="Layoff Support home">
+          <span class="logo__mark" aria-hidden="true"><img src="assets/img/logo.avif" alt="" /></span>
+          <span class="logo__text"><span>layoff</span><span>support</span></span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/script.js"></script>
+  <script src="assets/auth.js"></script>
+  <script>
+  (function () {
+    const ITEMS = [
+      ['unemployment', 'File for unemployment', 'Do it in your first week, even if you got severance.', 'https://www.careeronestop.org/LocalHelp/UnemploymentBenefits/find-unemployment-benefits.aspx', 'Find your state\'s office'],
+      ['deadlines', 'Work out your deadlines', 'Severance, health coverage, visa and FSA dates, from your last day.', 'plan.html', 'Open your plan'],
+      ['severance', 'Read your severance agreement before signing', 'If you\'re 40 or over, you get at least 21 days (45 in a group layoff).', 'offers.html#legal', 'Low-cost legal help'],
+      ['coverage', 'Choose your health coverage', 'You have 60 days from losing job coverage. Compare before paying for COBRA.', 'offers.html#health', 'Compare your options'],
+      ['talk', 'Talk to someone', 'A friend, a support group or a counselor. Low-cost options are listed.', 'offers.html#therapy', 'Find support'],
+      ['resume', 'Update your resume and LinkedIn', 'Free tools can tailor them to each job.', 'offers.html#tools', 'Free job-search tools'],
+      ['mentor', 'Book a free session with a coach or mentor', 'Your local American Job Center and alumni office are free.', 'offers.html#coaching', 'Free coaching'],
+      ['nextchapter', 'Join Next Chapter', 'Hear about freelance, contract and full-time roles.', 'marketplace.html', 'Join'],
+      ['apply', 'Send your first five applications', 'Five thoughtful ones beat fifty rushed ones.', 'jobs.html', 'Job boards'],
+    ];
+    const NON_EXPANSION = ['AL','FL','GA','KS','MS','SC','TN','TX','WI','WY'];
+    const $ = (id) => document.getElementById(id);
+    let profile = null, done = {};
+
+    $('signinBtn').addEventListener('click', () => LS.requireSignIn());
+    $('signoutBtn').addEventListener('click', () => LS.signOut());
+    document.querySelectorAll('[data-copy]').forEach((b) => b.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText($(b.dataset.copy).textContent); b.textContent = 'Copied'; setTimeout(() => (b.textContent = 'Copy'), 1500); } catch (e) {}
+    }));
+
+    function renderTodo() {
+      const ul = $('todo'); ul.innerHTML = '';
+      ITEMS.forEach(([key, title, detail, href, linkText]) => {
+        const li = document.createElement('li'); if (done[key]) li.className = 'is-done';
+        li.innerHTML = '<label><input type="checkbox"' + (done[key] ? ' checked' : '') + ' /><span><b></b><small></small><a></a></span></label>';
+        li.querySelector('b').textContent = title;
+        li.querySelector('small').textContent = detail;
+        const a = li.querySelector('a'); a.href = href; a.textContent = linkText + ' \u2192';
+        if (href.startsWith('http')) { a.target = '_blank'; a.rel = 'noopener'; }
+        li.querySelector('input').addEventListener('change', async (e) => {
+          done[key] = e.target.checked; li.className = done[key] ? 'is-done' : ''; renderCount();
+          await LS.db.from('member_progress').upsert({ user_id: LS.user.id, item: key, done: done[key], updated_at: new Date().toISOString() });
+        });
+        ul.appendChild(li);
+      });
+      renderCount();
+    }
+    function renderCount() {
+      const n = ITEMS.filter(([k]) => done[k]).length;
+      $('progress-label').textContent = n + ' of ' + ITEMS.length + ' done';
+      $('progress-fill').style.width = Math.round(100 * n / ITEMS.length) + '%';
+    }
+
+    function renderForYou() {
+      const box = $('foryou'); const p = profile || {}; const out = [];
+      const needs = p.needs || [];
+      if (p.state && p.state !== 'XX') {
+        const name = $('p-state').querySelector('option[value="' + p.state + '"]').textContent;
+        if (NON_EXPANSION.includes(p.state)) out.push('<div class="note"><b>Health coverage in ' + name + ':</b> ' + name + ' hasn\'t expanded Medicaid, so most adults without children don\'t qualify. A Marketplace plan with savings is likely your best option. <a href="offers.html#health">See options</a></div>');
+        else out.push('<div class="note"><b>Health coverage in ' + name + ':</b> ' + name + ' has expanded Medicaid. If your income has dropped to about $1,835 a month or less (for one person), you may get free coverage now. <a href="https://www.healthcare.gov" target="_blank" rel="noopener">Check on HealthCare.gov</a></div>');
+        out.push('<div class="note"><b>Unemployment in ' + name + ':</b> file with your state\'s unemployment office, ideally in your first week. <a href="https://www.careeronestop.org/LocalHelp/UnemploymentBenefits/find-unemployment-benefits.aspx" target="_blank" rel="noopener">Find the office</a></div>');
+      } else if (p.state === 'XX') {
+        out.push('<div class="note">Most of our guides are for the US. The <a href="offers.html#tools">job-search tools</a> and <a href="offers.html#coaching">mentors</a> work anywhere.</div>');
+      }
+      const MAP = { health: ['Health coverage', 'offers.html#health'], therapy: ['Low-cost therapy', 'offers.html#therapy'], legal: ['Severance and legal help', 'offers.html#legal'], coaching: ['Free coaching and mentors', 'offers.html#coaching'], jobs: ['Free job-search tools', 'offers.html#tools'], freelance: ['Next Chapter: freelance and gigs', 'marketplace.html'] };
+      needs.forEach((n) => { if (MAP[n]) out.push('<div class="note"><b>' + MAP[n][0] + ':</b> our researched picks. <a href="' + MAP[n][1] + '">Open</a></div>'); });
+      if (p.layoff_date) {
+        const days = Math.floor((Date.now() - new Date(p.layoff_date + 'T00:00:00')) / 86400000);
+        if (days >= 0 && days <= 60) out.push('<div class="note"><b>Day ' + days + ' since your last day.</b> You have about ' + (60 - days) + ' days left to pick health coverage through your job-loss special enrollment, or to elect COBRA.</div>');
+      }
+      box.innerHTML = out.length ? out.join('') : '<p class="page__meta">Add your state and what you need above, and we\'ll show what applies to you.</p>';
+    }
+
+    function fillForm() {
+      const p = profile || {};
+      $('p-first').value = p.first_name || '';
+      $('p-state').value = p.state || '';
+      $('p-field').value = p.field || '';
+      $('p-date').value = p.layoff_date || '';
+      $('p-emails').checked = !!p.email_ok;
+      document.querySelectorAll('#p-needs input').forEach((i) => (i.checked = (p.needs || []).includes(i.value)));
+    }
+    function greet() {
+      const p = profile || {};
+      $('hello').textContent = p.first_name ? (p.returning_member ? 'Welcome back, ' : 'Hi, ') + p.first_name : 'Welcome';
+      $('hello-sub').textContent = p.returning_member ? 'Good to see you again. Here\'s where you are, and what\'s next.' : 'Here\'s where you are, and what\'s next.';
+    }
+
+    $('profileForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const row = {
+        id: LS.user.id, email: LS.user.email,
+        first_name: $('p-first').value.trim() || null, state: $('p-state').value || null, field: $('p-field').value || null,
+        layoff_date: $('p-date').value || null, email_ok: $('p-emails').checked,
+        needs: [...document.querySelectorAll('#p-needs input:checked')].map((i) => i.value).concat(((profile && profile.needs) || []).filter((n) => n.includes(':'))),
+        updated_at: new Date().toISOString(),
+      };
+      const { error } = await LS.db.from('member_profiles').upsert(row);
+      $('savedMsg').textContent = error ? 'Couldn\'t save. Please try again.' : 'Saved';
+      if (!error) { profile = Object.assign({}, profile, row); greet(); renderForYou(); setTimeout(() => ($('savedMsg').textContent = ''), 2000); }
+    });
+
+    $('deleteBtn').addEventListener('click', async () => {
+      if (!confirm('Delete your profile, checklist and saved plan? This can\'t be undone.')) return;
+      const id = LS.user.id;
+      await LS.db.from('member_progress').delete().eq('user_id', id);
+      await LS.db.from('member_plans').delete().eq('user_id', id);
+      await LS.db.from('member_profiles').delete().eq('id', id);
+      alert('Your data has been deleted.');
+      LS.signOut();
+    });
+
+    LS.onUser(async (u) => {
+      if (!u) return;
+      $('acct-email').textContent = u.email;
+      const [{ data: p }, { data: prog }] = await Promise.all([
+        LS.db.from('member_profiles').select('*').eq('id', u.id).maybeSingle(),
+        LS.db.from('member_progress').select('item,done').eq('user_id', u.id),
+      ]);
+      profile = p || {}; done = {};
+      (prog || []).forEach((r) => (done[r.item] = r.done));
+      greet(); fillForm(); renderTodo(); renderForYou();
+    });
+  })();
+  </script>
+</body>
+</html>

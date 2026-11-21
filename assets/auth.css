@@ -1,0 +1,34 @@
+/* Sign-in pop-up and "save this" prompts (loaded by auth.js) */
+.ls-modal { position: fixed; inset: 0; z-index: 1000; background: rgba(15, 23, 32, .45); display: grid; place-items: center; padding: 20px; }
+.ls-modal[hidden] { display: none; }
+.ls-modal__card { position: relative; width: min(440px, 100%); background: #fff; border-radius: 22px; padding: 30px 28px 24px; box-shadow: 0 24px 60px rgba(15, 23, 32, .25); }
+.ls-modal__close { position: absolute; top: 12px; right: 14px; border: 0; background: none; font-size: 26px; line-height: 1; color: #5b6b66; cursor: pointer; padding: 4px 8px; }
+.ls-modal__eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #0f766e; margin: 0 0 6px; }
+.ls-modal h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 30px; font-weight: 600; line-height: 1.1; color: #10201c; margin: 0 0 8px; }
+.ls-modal__reason { color: #34433f; font-size: 15px; line-height: 1.55; margin: 0 0 18px; }
+.ls-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 12px 16px; border-radius: 999px; font: 600 15px/1.2 inherit; font-family: inherit; cursor: pointer; }
+.ls-btn--google { background: #fff; border: 1px solid #d5dcd9; color: #10201c; }
+.ls-btn--google:hover { background: #f6f8f7; }
+.ls-btn--primary { background: #14b8a6; border: 0; color: #fff; margin-top: 10px; }
+.ls-btn--primary:disabled { opacity: .6; }
+.ls-modal__or { display: flex; align-items: center; gap: 12px; color: #5b6b66; font-size: 13px; margin: 16px 0; }
+.ls-modal__or::before, .ls-modal__or::after { content: ''; flex: 1; height: 1px; background: #e3e8e6; }
+.ls-modal__form label { display: block; font-size: 14px; font-weight: 600; color: #10201c; margin-bottom: 6px; }
+.ls-modal__form input { width: 100%; padding: 12px 14px; border: 1px solid #d5dcd9; border-radius: 12px; font: inherit; font-size: 16px; }
+.ls-modal__status { font-size: 14px; margin: 12px 0 0; min-height: 0; }
+.ls-modal__status.is-ok { color: #0f766e; }
+.ls-modal__status.is-err { color: #b42318; }
+.ls-modal__small { font-size: 12.5px; color: #5b6b66; margin: 14px 0 0; line-height: 1.5; }
+.ls-modal__small a { color: #0f766e; }
+
+/* Soft "save this" prompts placed inside pages */
+.ls-nudge { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 16px 20px; border: 1px dashed #b9e4dc; border-radius: 16px; background: #f4fbf9; margin-top: 24px; }
+.ls-nudge p { margin: 0 !important; font-size: 15px !important; color: #34433f; }
+.ls-nudge b { color: #10201c; }
+.ls-nudge .btn { white-space: nowrap; }
+
+
+.ls-modal *, .ls-modal *::before, .ls-modal *::after { box-sizing: border-box; }
+.ls-modal__card { font-family: Inter, system-ui, -apple-system, sans-serif; }
+
+[data-signed-in][hidden], [data-signed-out][hidden], .ls-modal[hidden] { display: none !important; }
