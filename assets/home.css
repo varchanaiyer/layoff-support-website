@@ -641,7 +641,7 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .h-country__select select option, .h-country__select select optgroup { background: #fff; color: var(--ink-900, #0f172a); }
 
 /* Job boards demo */
-.jb3__stage { position: relative; border-radius: 28px; padding: 28px; background: rgba(255,255,255,.6); border: 1px solid var(--ink-200, #e2e8f0); overflow: hidden; min-height: 430px; }
+.jb3__stage { position: relative; border-radius: 28px; padding: 28px; background: rgba(255,255,255,.6); border: 1px solid var(--ink-200, #e2e8f0); overflow: hidden; min-height: 560px; }
 .jb3__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 26px; position: relative; z-index: 3; }
 .jb3__chip { padding: 11px 18px; border: 1px solid var(--ink-200, #e2e8f0); border-radius: 999px; background: #fff; font: inherit; font-size: 15px; font-weight: 600; color: var(--ink-700, #334155); cursor: pointer; transition: transform .2s ease, background .4s, color .4s, border-color .4s, box-shadow .4s; }
 .jb3__chip:hover { border-color: var(--teal-400, #2dd4bf); }
