@@ -8,8 +8,8 @@
   <meta property="og:title" content="Layoff Support — You are not alone in this" />
   <meta property="og:description" content="Every deadline your layoff started, health coverage options and people who get it. Free and private." />
   <link rel="icon" href="assets/img/logo.avif" />
-  <link rel="stylesheet" href="assets/styles.css?v=202611212323" />
-  <link rel="stylesheet" href="assets/home.css?v=202611212323" />
+  <link rel="stylesheet" href="assets/styles.css?v=202611212326" />
+  <link rel="stylesheet" href="assets/home.css?v=202611212326" />
 </head>
 <body>
 
@@ -387,9 +387,9 @@
     </div>
   </footer>
 
-  <script src="assets/script.js?v=202611212323"></script>
-  <script src="assets/auth.js?v=202611212323"></script>
-  <script src="assets/calm.js?v=202611212323"></script>
+  <script src="assets/script.js?v=202611212326"></script>
+  <script src="assets/auth.js?v=202611212326"></script>
+  <script src="assets/calm.js?v=202611212326"></script>
   <script>
   (function () {
     // Two people hugging: they lean toward the cursor, hold each other a little tighter
@@ -493,6 +493,7 @@
     // r/layoffs typing feed. Add real posts to POSTS (title + link) and they're typed instead of topics.
     var POSTS = [
       // { title: 'Post title exactly as written', url: 'https://www.reddit.com/r/layoffs/comments/...' },
+      { title: 'Today I find myself unemployed for the first time\u2026', url: 'https://www.reddit.com/r/Layoffs/comments/1ttus5e/today_i_find_myself_unemployed_for_the_first_time/' },
     ];
     var TOPICS = [
       'Negotiating a better severance package',
@@ -504,8 +505,9 @@
       'Finally landed a new role, and how it happened',
     ];
     var list = document.getElementById('redditLines'); if (!list) return;
-    var items = POSTS.length ? POSTS : TOPICS.map(function (t) { return { title: t }; });
-    if (POSTS.length) document.getElementById('redditLabel').textContent = 'Recent posts from r/layoffs';
+    // Real posts come first (linked to their threads); topics fill in until there are enough posts.
+    var items = POSTS.length >= 6 ? POSTS : POSTS.concat(TOPICS.map(function (t) { return { title: t }; }));
+    document.getElementById('redditLabel').textContent = POSTS.length >= 6 ? 'Posts from r/layoffs' : 'From r/layoffs, and what people talk about there';
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var MAX = 4, i = 0;
     function addLine(item, done) {
@@ -513,15 +515,16 @@
       var el = item.url ? document.createElement('a') : document.createElement('span');
       if (item.url) { el.href = item.url; el.target = '_blank'; el.rel = 'noopener'; }
       li.appendChild(el);
+      if (item.url) li.classList.add('is-post');
       list.appendChild(li);
       while (list.children.length > MAX) list.removeChild(list.firstChild);
       if (reduce) { el.textContent = item.title; return done(); }
-      li.className = 'is-typing';
+      li.classList.add('is-typing');
       var n = 0;
       (function type() {
         el.textContent = item.title.slice(0, ++n);
         if (n < item.title.length) setTimeout(type, 28 + Math.random() * 40);
-        else { li.className = ''; setTimeout(done, 1600); }
+        else { li.classList.remove('is-typing'); setTimeout(done, item.url ? 2600 : 1600); }
       })();
     }
     var running = false;
