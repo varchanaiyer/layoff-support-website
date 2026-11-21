@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jobs and gigs marketplace — Layoff Support</title>
-  <meta name="description" content="Sign up for the Layoff Support jobs and gigs marketplace: freelance, contract and full-time work after a layoff." />
+  <title>Next Chapter: jobs and gigs — Layoff Support</title>
+  <meta name="description" content="Sign up for Next Chapter, the Layoff Support jobs and gigs network: freelance, contract and full-time work after a layoff." />
   <link rel="icon" href="assets/img/logo.avif" />
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="stylesheet" href="assets/home.css" />
@@ -27,16 +27,16 @@
         <a href="mentors.html">Mentors</a>
         <a href="communities.html">Communities</a>
         <a href="blog.html">Stories</a>
-        <a href="marketplace.html" class="btn btn--primary btn--sm site-nav__cta">Join the marketplace</a>
+        <a href="marketplace.html" class="btn btn--primary btn--sm site-nav__cta">Join Next Chapter</a>
       </nav>
     </div>
   </header>
 
   <main id="main" class="page">
     <div class="container page__narrow">
-      <p class="h-eyebrow">Jobs and gigs marketplace</p>
+      <p class="h-eyebrow">Next Chapter: jobs and gigs</p>
       <h1>Find your next role, or a gig to bridge the gap</h1>
-      <p class="h-lead">Tell us what you do and what kind of work you want next. We'll email you when matching freelance, contract and full-time opportunities open up in the marketplace. Free to join.</p>
+      <p class="h-lead">Tell us what you do and what kind of work you want next. We'll email you when matching freelance, contract and full-time opportunities open up in Next Chapter. Free to join.</p>
 
       <form id="marketplace-form" class="form-card" action="https://submit-form.com/sJzhhkPeT" method="POST" novalidate>
         <input type="hidden" name="signup_type" value="Marketplace sign-up" />
@@ -53,7 +53,7 @@
         <div class="field">
           <label for="mk-email">Email</label>
           <input id="mk-email" type="email" name="email" autocomplete="email" required />
-          <small>We'll only use this to tell you about the marketplace.</small>
+          <small>We'll only use this to tell you about Next Chapter.</small>
         </div>
 
         <div class="field">
@@ -98,11 +98,11 @@
 
         <label class="consent">
           <input type="checkbox" name="consent" value="yes" required />
-          <span>I'm happy for Layoff Support to email me about the marketplace. I can unsubscribe at any time. See our <a href="privacy.html">privacy policy</a>.</span>
+          <span>I'm happy for Layoff Support to email me about Next Chapter. I can unsubscribe at any time. See our <a href="privacy.html">privacy policy</a>.</span>
         </label>
 
         <div id="mk-status" class="form-status" role="status" aria-live="polite" hidden></div>
-        <button type="submit" class="btn btn--primary">Sign up for the marketplace</button>
+        <button type="submit" class="btn btn--primary">Join Next Chapter</button>
       </form>
     </div>
   </main>
@@ -123,7 +123,7 @@
         <div class="footer__col">
           <h4 class="footer__heading">Find work</h4>
           <ul class="footer__list">
-            <li><a href="marketplace.html">Jobs and gigs marketplace</a></li>
+            <li><a href="marketplace.html">Next Chapter: jobs and gigs</a></li>
             <li><a href="jobs.html">Job boards</a></li>
             <li><a href="tools.html">Job search tools</a></li>
             <li><a href="communities.html">Communities</a></li>
@@ -137,7 +137,7 @@
           <h4 class="footer__heading footer__heading--mt">About</h4>
           <ul class="footer__list">
             <li><a href="privacy.html">Privacy policy</a></li>
-            <li><a href="marketplace.html">Join the marketplace</a></li>
+            <li><a href="marketplace.html">Join Next Chapter</a></li>
           </ul>
         </div>
       </div>
@@ -185,7 +185,7 @@
       }).then(function (r) {
         if (!r.ok) throw new Error('bad status');
         form.reset();
-        say("You're on the list. We'll email you when the marketplace opens to you.", true);
+        say("You're on the list. We'll email you when Next Chapter opens to you.", true);
       }).catch(function () {
         say('Something went wrong sending that. Please try again in a moment.', false);
       }).finally(function () { btn.disabled = false; });
