@@ -805,3 +805,11 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .hugheart.is-leaf .hh__leaffill { opacity: .8; }
 .hugheart.is-opening .hh__fill { opacity: 0; transition: opacity .8s ease; }
 .hugheart.is-heart figcaption, .hugheart.is-opening figcaption, .hugheart.is-leaf figcaption { opacity: 1; transform: none; }
+
+/* Hand-drawn hug in the hero */
+.hugheart { display: none; }
+.hugline2 { margin: 0; text-align: center; }
+.hugline2 svg { width: 100%; max-width: 420px; height: auto; display: block; margin: 0 auto; overflow: visible; }
+.hg__s { fill: none; stroke: #1f4a45; stroke-linecap: round; stroke-linejoin: round; }
+.hugline2 figcaption { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px; font-style: italic; color: var(--ink-700, #334155); margin-top: 8px; opacity: 0; transform: translateY(6px); transition: opacity 1.4s ease, transform 1.4s ease; }
+.hugline2.is-drawn figcaption { opacity: 1; transform: none; }
