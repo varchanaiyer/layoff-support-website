@@ -8,8 +8,8 @@
   <meta property="og:title" content="Layoff Support — You are not alone in this" />
   <meta property="og:description" content="Every deadline your layoff started, health coverage options and people who get it. Free and private." />
   <link rel="icon" href="assets/img/logo.avif" />
-  <link rel="stylesheet" href="assets/styles.css?v=202611212343" />
-  <link rel="stylesheet" href="assets/home.css?v=202611212343" />
+  <link rel="stylesheet" href="assets/styles.css?v=202611212346" />
+  <link rel="stylesheet" href="assets/home.css?v=202611212346" />
 </head>
 <body>
 
@@ -269,7 +269,7 @@
           <h3 class="jb3__title" id="jb3Title"></h3>
           <p class="jb3__sub" id="jb3Sub"></p>
           <div class="jb3__cards" id="jb3Cards"></div>
-          <div class="jb3__photo" id="jb3Photo" aria-hidden="true"><img alt="" /><span></span></div>
+          <div class="jb3__photo" id="jb3Photo" aria-hidden="true"></div>
         </div>
         <svg class="jb3__pointer" id="jb3Pointer" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l14 7.5-6.2 1.6L10 18.5z" fill="#fff" stroke="#0f766e" stroke-width="1.6" stroke-linejoin="round"/></svg>
       </div>
@@ -377,9 +377,9 @@
     </div>
   </footer>
 
-  <script src="assets/script.js?v=202611212343"></script>
-  <script src="assets/auth.js?v=202611212343"></script>
-  <script src="assets/calm.js?v=202611212343"></script>
+  <script src="assets/script.js?v=202611212346"></script>
+  <script src="assets/auth.js?v=202611212346"></script>
+  <script src="assets/calm.js?v=202611212346"></script>
   <script>
   (function () {
     // Two people lean in and hug, and their embrace becomes a heart.
@@ -477,7 +477,33 @@
   (function () {
     // Job boards demo: a soft pointer "clicks" each filter in turn and an overlay shows
     // the matching boards. Stops as soon as the visitor clicks something themselves.
-    var DATA = {"inclusive": {"title": "Inclusive hiring", "sub": "For people with disabilities, mental health conditions, chronic illness or neurodivergence. Ask for the support you need, without having to explain yourself.", "boards": [{"name": "Inclusively", "why": "Filter jobs by the support you need at work, with no need to disclose a diagnosis. Covers disability, mental health and chronic illness.", "url": "https://www.inclusively.com/job-seekers", "mono": "In", "bg": "#e6f7f3", "fg": "#0f766e", "host": "inclusively.com", "img": "assets/img/boards/inclusively.jpg"}, {"name": "Mentra", "why": "Built for neurodivergent people. Employers see your strengths and reach out to you, and there's a free AI career coach.", "url": "https://mentra.com", "mono": "Me", "bg": "#efeafd", "fg": "#5b46b8", "host": "mentra.com", "img": "assets/img/boards/mentra.jpg"}, {"name": "abilityJOBS", "why": "Every listing comes from an employer actively looking to hire people with disabilities.", "url": "https://abilityjobs.com", "mono": "aJ", "bg": "#e9f2fb", "fg": "#2b5b8a", "host": "abilityjobs.com", "img": "assets/img/boards/abilityjobs.jpg"}, {"name": "Hire Autism", "why": "A nonprofit board for autistic adults, with free help on resumes and interviews.", "url": "https://www.hireautism.org", "mono": "HA", "bg": "#fdf1e6", "fg": "#9a4b12", "host": "hireautism.org"}], "photo": "assets/img/counsel-3.jpg", "alt": "Two friends holding each other close"}, "remote": {"title": "Remote-friendly", "sub": "Work from home, or from anywhere. Less commuting, more time to look after yourself.", "boards": [{"name": "We Work Remotely", "why": "A large, long-running remote board. Browse and apply without an account (skip the paid Pro plan).", "url": "https://weworkremotely.com", "mono": "WR", "bg": "#e6f7f3", "fg": "#0f766e", "host": "weworkremotely.com"}, {"name": "Himalayas", "why": "Over 100,000 remote jobs and a free application tracker. Shows salary when the employer gives it.", "url": "https://himalayas.app", "mono": "Hi", "bg": "#efeafd", "fg": "#5b46b8", "host": "himalayas.app", "img": "assets/img/boards/himalayas.jpg"}, {"name": "Working Nomads", "why": "A curated list of fully remote jobs worldwide, with free email alerts.", "url": "https://www.workingnomads.com/jobs", "mono": "WN", "bg": "#e9f6ea", "fg": "#2f7a3a", "host": "workingnomads.com"}, {"name": "Wellfound", "why": "Startup jobs, many remote. Apply straight to founders, with salary and equity often shown up front.", "url": "https://wellfound.com", "mono": "Wf", "bg": "#fbe9f1", "fg": "#9b2c5f", "host": "wellfound.com", "img": "assets/img/boards/wellfound.jpg"}], "photo": "assets/img/counsel-2.jpg", "alt": "A woman smiling with her arms open"}, "mission": {"title": "Nonprofit and mission-driven", "sub": "Jobs where the work itself does some good.", "boards": [{"name": "Idealist", "why": "The biggest nonprofit job board, plus volunteer roles and a salary explorer to check fair pay.", "url": "https://www.idealist.org", "mono": "Id", "bg": "#fdf1e6", "fg": "#9a4b12", "host": "idealist.org", "img": "assets/img/boards/idealist.jpg"}, {"name": "Work for Good", "why": "Nonprofit jobs searchable by cause and role. Many listings show the salary range.", "url": "https://workforgood.org", "mono": "WG", "bg": "#e6f7f3", "fg": "#0f766e", "host": "workforgood.org", "img": "assets/img/boards/workforgood.jpg"}, {"name": "Probably Good", "why": "A wide range of high-impact roles in health, policy, climate and more, with email alerts.", "url": "https://jobs.probablygood.org", "mono": "PG", "bg": "#e9f6ea", "fg": "#2f7a3a", "host": "jobs.probablygood.org", "img": "assets/img/boards/probablygood.jpg"}, {"name": "Climatebase", "why": "The main board for climate jobs. Employers can find your profile. The board is free.", "url": "https://climatebase.org", "mono": "Cb", "bg": "#e9f2fb", "fg": "#2b5b8a", "host": "climatebase.org"}], "photo": "assets/img/counsel-1.jpg", "alt": "Two friends bumping fists"}, "salary": {"title": "Salary shown up front", "sub": "No guessing games. See the pay before you spend time applying.", "boards": [{"name": "Levels.fyi Jobs", "why": "Jobs next to real, verified pay data, so you can check an offer before you negotiate. Mostly tech.", "url": "https://www.levels.fyi/jobs", "mono": "Lv", "bg": "#f1f0f6", "fg": "#3f3d56", "host": "levels.fyi"}, {"name": "Built In", "why": "Most listings show a salary range and you can filter by pay. Tech and business roles across US cities.", "url": "https://builtin.com/jobs", "mono": "BI", "bg": "#efeafd", "fg": "#5b46b8", "host": "builtin.com", "img": "assets/img/boards/builtin.jpg"}, {"name": "Wellfound", "why": "Startup jobs, many remote. Apply straight to founders, with salary and equity often shown up front.", "url": "https://wellfound.com", "mono": "Wf", "bg": "#fbe9f1", "fg": "#9b2c5f", "host": "wellfound.com", "img": "assets/img/boards/wellfound.jpg"}, {"name": "Welcome to the Jungle", "why": "Formerly Otta. Detailed company profiles and a long push for employers to publish salaries.", "url": "https://www.welcometothejungle.com", "mono": "WJ", "bg": "#fdf1e6", "fg": "#9a4b12", "host": "welcometothejungle.com"}]}};
+    var DATA = {"inclusive": {"title": "Inclusive hiring", "sub": "For people with disabilities, mental health conditions, chronic illness or neurodivergence. Ask for the support you need, without having to explain yourself.", "boards": [{"name": "Inclusively", "why": "Filter jobs by the support you need at work, with no need to disclose a diagnosis. Covers disability, mental health and chronic illness.", "url": "https://www.inclusively.com/job-seekers", "mono": "In", "bg": "#e6f7f3", "fg": "#0f766e", "host": "inclusively.com", "img": "assets/img/boards/inclusively.jpg"}, {"name": "Mentra", "why": "Built for neurodivergent people. Employers see your strengths and reach out to you, and there's a free AI career coach.", "url": "https://mentra.com", "mono": "Me", "bg": "#efeafd", "fg": "#5b46b8", "host": "mentra.com", "img": "assets/img/boards/mentra.jpg"}, {"name": "abilityJOBS", "why": "Every listing comes from an employer actively looking to hire people with disabilities.", "url": "https://abilityjobs.com", "mono": "aJ", "bg": "#e9f2fb", "fg": "#2b5b8a", "host": "abilityjobs.com", "img": "assets/img/boards/abilityjobs.jpg"}, {"name": "Hire Autism", "why": "A nonprofit board for autistic adults, with free help on resumes and interviews.", "url": "https://www.hireautism.org", "mono": "HA", "bg": "#fdf1e6", "fg": "#9a4b12", "host": "hireautism.org"}]}, "remote": {"title": "Remote-friendly", "sub": "Work from home, or from anywhere. Less commuting, more time to look after yourself.", "boards": [{"name": "We Work Remotely", "why": "A large, long-running remote board. Browse and apply without an account (skip the paid Pro plan).", "url": "https://weworkremotely.com", "mono": "WR", "bg": "#e6f7f3", "fg": "#0f766e", "host": "weworkremotely.com"}, {"name": "Himalayas", "why": "Over 100,000 remote jobs and a free application tracker. Shows salary when the employer gives it.", "url": "https://himalayas.app", "mono": "Hi", "bg": "#efeafd", "fg": "#5b46b8", "host": "himalayas.app", "img": "assets/img/boards/himalayas.jpg"}, {"name": "Working Nomads", "why": "A curated list of fully remote jobs worldwide, with free email alerts.", "url": "https://www.workingnomads.com/jobs", "mono": "WN", "bg": "#e9f6ea", "fg": "#2f7a3a", "host": "workingnomads.com"}, {"name": "Wellfound", "why": "Startup jobs, many remote. Apply straight to founders, with salary and equity often shown up front.", "url": "https://wellfound.com", "mono": "Wf", "bg": "#fbe9f1", "fg": "#9b2c5f", "host": "wellfound.com", "img": "assets/img/boards/wellfound.jpg"}]}, "mission": {"title": "Nonprofit and mission-driven", "sub": "Jobs where the work itself does some good.", "boards": [{"name": "Idealist", "why": "The biggest nonprofit job board, plus volunteer roles and a salary explorer to check fair pay.", "url": "https://www.idealist.org", "mono": "Id", "bg": "#fdf1e6", "fg": "#9a4b12", "host": "idealist.org", "img": "assets/img/boards/idealist.jpg"}, {"name": "Work for Good", "why": "Nonprofit jobs searchable by cause and role. Many listings show the salary range.", "url": "https://workforgood.org", "mono": "WG", "bg": "#e6f7f3", "fg": "#0f766e", "host": "workforgood.org", "img": "assets/img/boards/workforgood.jpg"}, {"name": "Probably Good", "why": "A wide range of high-impact roles in health, policy, climate and more, with email alerts.", "url": "https://jobs.probablygood.org", "mono": "PG", "bg": "#e9f6ea", "fg": "#2f7a3a", "host": "jobs.probablygood.org", "img": "assets/img/boards/probablygood.jpg"}, {"name": "Climatebase", "why": "The main board for climate jobs. Employers can find your profile. The board is free.", "url": "https://climatebase.org", "mono": "Cb", "bg": "#e9f2fb", "fg": "#2b5b8a", "host": "climatebase.org"}]}, "salary": {"title": "Salary shown up front", "sub": "No guessing games. See the pay before you spend time applying.", "boards": [{"name": "Levels.fyi Jobs", "why": "Jobs next to real, verified pay data, so you can check an offer before you negotiate. Mostly tech.", "url": "https://www.levels.fyi/jobs", "mono": "Lv", "bg": "#f1f0f6", "fg": "#3f3d56", "host": "levels.fyi"}, {"name": "Built In", "why": "Most listings show a salary range and you can filter by pay. Tech and business roles across US cities.", "url": "https://builtin.com/jobs", "mono": "BI", "bg": "#efeafd", "fg": "#5b46b8", "host": "builtin.com", "img": "assets/img/boards/builtin.jpg"}, {"name": "Wellfound", "why": "Startup jobs, many remote. Apply straight to founders, with salary and equity often shown up front.", "url": "https://wellfound.com", "mono": "Wf", "bg": "#fbe9f1", "fg": "#9b2c5f", "host": "wellfound.com", "img": "assets/img/boards/wellfound.jpg"}, {"name": "Welcome to the Jungle", "why": "Formerly Otta. Detailed company profiles and a long push for employers to publish salaries.", "url": "https://www.welcometothejungle.com", "mono": "WJ", "bg": "#fdf1e6", "fg": "#9a4b12", "host": "welcometothejungle.com"}]}};
+
+    var T = 'class="a1"', V = 'class="a2"';
+    var ART = {
+      inclusive:
+        '<circle ' + T + ' cx="110" cy="84" r="20"/><path ' + T + ' d="M82,236 C82,164 94,120 110,120 C126,120 138,164 138,236"/>' +
+        '<circle ' + V + ' cx="200" cy="100" r="20"/><path ' + V + ' d="M186,188 C186,160 192,136 200,136 C208,136 214,160 214,188 L232,188 L242,226"/>' +
+        '<circle ' + V + ' cx="196" cy="214" r="30"/><circle ' + V + ' cx="246" cy="236" r="7"/>' +
+        '<circle ' + T + ' cx="290" cy="84" r="20"/><path ' + T + ' d="M262,236 C262,164 274,120 290,120 C306,120 318,164 318,236"/>' +
+        '<path ' + T + ' d="M136,150 C158,170 174,170 188,160"/><path ' + T + ' d="M212,160 C228,170 244,170 264,150"/>' +
+        '<path ' + V + ' d="M200,40 C195,32 184,32 184,42 C184,50 200,58 200,58 C200,58 216,50 216,42 C216,32 205,32 200,40 Z"/>',
+      remote:
+        '<path ' + T + ' d="M70,132 L200,46 L330,132"/><path ' + T + ' d="M96,116 L96,240 L304,240 L304,116"/>' +
+        '<circle ' + V + ' cx="160" cy="146" r="17"/><path ' + V + ' d="M138,236 C138,196 148,172 160,172 C172,172 182,196 182,212"/>' +
+        '<path ' + T + ' d="M196,170 L252,170 L252,206 L196,206 Z"/><path ' + T + ' d="M184,214 L266,214"/>' +
+        '<circle ' + V + ' cx="312" cy="52" r="12"/><path ' + V + ' d="M312,30 L312,24 M334,52 L340,52 M328,36 L333,31 M296,36 L291,31"/>',
+      mission:
+        '<path ' + T + ' d="M104,168 C110,226 168,244 200,244 C232,244 290,226 296,168"/>' +
+        '<path ' + T + ' d="M104,168 C98,150 112,140 124,152 M296,168 C302,150 288,140 276,152"/>' +
+        '<path ' + V + ' d="M200,238 C200,196 200,156 204,112"/>' +
+        '<path ' + V + ' d="M203,146 C182,124 158,126 146,144 C166,156 188,156 203,146 Z"/>' +
+        '<path ' + V + ' d="M205,122 C226,98 254,100 264,116 C246,130 224,132 205,122 Z"/>',
+      salary:
+        '<path ' + T + ' d="M122,72 L246,72 L314,140 L246,208 L122,208 C108,208 98,198 98,184 L98,96 C98,82 108,72 122,72 Z"/>' +
+        '<circle ' + V + ' cx="270" cy="140" r="10"/>' +
+        '<path ' + V + ' d="M190,104 C168,96 146,104 148,122 C150,140 192,138 194,158 C196,176 168,184 146,174 M170,90 L170,190"/>',
+    };
     var stage = document.getElementById('jb3'); if (!stage) return;
     var overlay = document.getElementById('jb3Overlay'), pointer = document.getElementById('jb3Pointer');
     var chips = [].slice.call(stage.querySelectorAll('.jb3__chip'));
@@ -502,22 +528,20 @@
       }).join('');
       var ph = document.getElementById('jb3Photo');
       overlay.classList.remove('is-reveal');
-      if (d.photo) {
-        ph.querySelector('img').src = d.photo;
-        ph.querySelector('img').alt = d.alt || '';
-        ph.querySelector('span').textContent = d.title;
-        ph.style.background = '';
-      } else {
-        ph.querySelector('img').removeAttribute('src');
-        ph.querySelector('span').textContent = d.title;
-        ph.style.background = 'linear-gradient(135deg,#e6f7f3,#efeafd)';
-      }
+      ph.innerHTML = '<svg viewBox="40 30 320 230" aria-hidden="true">' + (ART[f] || '') + '</svg><span></span>';
+      ph.querySelector('span').textContent = d.title;
+      // draw the outline in, one stroke after another
+      [].slice.call(ph.querySelectorAll('path, circle')).forEach(function (el, i) {
+        var L = el.getTotalLength ? el.getTotalLength() : 200;
+        el.style.strokeDasharray = L; el.style.strokeDashoffset = reduce ? 0 : L;
+        if (!reduce) { void el.getBoundingClientRect(); el.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(.45,0,.25,1) ' + (i * 0.12) + 's'; el.style.strokeDashoffset = 0; }
+      });
       overlay.hidden = false;
       stage.classList.add('has-overlay');
       overlay.classList.remove('is-in'); void overlay.offsetWidth; overlay.classList.add('is-in');
       // Hold the photo for a moment, then let it blur away into the websites
       clearTimeout(show._t);
-      show._t = setTimeout(function () { overlay.classList.add('is-reveal'); }, reduce ? 0 : (auto ? 1900 : 1000));
+      show._t = setTimeout(function () { overlay.classList.add('is-reveal'); }, reduce ? 0 : (auto ? 2900 : 2200));
     }
     function hide() {
       overlay.classList.remove('is-in');
