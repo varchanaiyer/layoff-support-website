@@ -698,3 +698,16 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 
 .jb3__cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 @media (max-width: 900px) { .jb3__cards { grid-template-columns: 1fr; } .jb3__stage { min-height: 900px; } }
+
+/* Continuous-line hug in the hero */
+.hug { display: none; }
+.hugline { margin: 0; text-align: center; }
+.hugline svg { width: 100%; height: auto; overflow: visible; transform-origin: 50% 80%; will-change: transform; }
+.hugline__line, .hugline__echo { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.hugline__line { stroke: #0f766e; stroke-width: 2.6; }
+.hugline__echo { stroke: #a99cf0; stroke-width: 2; opacity: .55; }
+.hugline.is-drawing .hugline__line { transition: stroke-dashoffset 4.6s cubic-bezier(.45,0,.25,1); stroke-dashoffset: 0 !important; }
+.hugline.is-drawing .hugline__echo { transition: stroke-dashoffset 4.6s cubic-bezier(.45,0,.25,1) .7s; stroke-dashoffset: 0 !important; }
+.hugline figcaption { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px; font-style: italic; color: var(--ink-700, #334155); margin-top: 6px; opacity: 0; transform: translateY(6px); transition: opacity 1.4s ease, transform 1.4s ease; }
+.hugline.is-drawn figcaption { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .hugline figcaption { opacity: 1; transform: none; transition: none; } }
