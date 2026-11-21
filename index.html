@@ -8,8 +8,8 @@
   <meta property="og:title" content="Layoff Support — You are not alone in this" />
   <meta property="og:description" content="Every deadline your layoff started, health coverage options and people who get it. Free and private." />
   <link rel="icon" href="assets/img/logo.avif" />
-  <link rel="stylesheet" href="assets/styles.css?v=202611212312" />
-  <link rel="stylesheet" href="assets/home.css?v=202611212312" />
+  <link rel="stylesheet" href="assets/styles.css?v=202611212322" />
+  <link rel="stylesheet" href="assets/home.css?v=202611212322" />
 </head>
 <body>
 
@@ -35,6 +35,22 @@
 
     <!-- HERO -->
     <section class="h-hero">
+      <svg class="hug" id="hug" viewBox="0 0 400 460" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="hugA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fdccb"/><stop offset="1" stop-color="#7fdccb" stop-opacity="0"/></linearGradient>
+          <linearGradient id="hugB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9a9f2"/><stop offset="1" stop-color="#b9a9f2" stop-opacity="0"/></linearGradient>
+        </defs>
+        <g class="hug__a" id="hugA">
+          <circle cx="164" cy="98" r="35" fill="#7fdccb"/>
+          <path d="M136 138 C104 152 90 204 88 262 L84 460 L226 460 L222 262 C220 204 204 154 184 139 Z" fill="url(#hugA)"/>
+          <path class="hug__arm" d="M150 186 C196 160 262 168 292 214 C298 226 294 238 284 242" fill="none" stroke="#7fdccb" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <g class="hug__b" id="hugB">
+          <circle cx="226" cy="126" r="31" fill="#b9a9f2"/>
+          <path d="M218 158 C250 164 290 204 300 262 L312 460 L176 460 L192 262 C196 212 204 172 218 158 Z" fill="url(#hugB)"/>
+          <path class="hug__arm" d="M250 214 C214 250 140 262 100 234 C92 228 92 218 98 212" fill="none" stroke="#b9a9f2" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+      </svg>
       <div class="container h-hero__grid">
         <div>
           <p class="h-eyebrow">Solidarity in transition</p>
@@ -128,8 +144,8 @@
     <section class="counseling">
     <div class="container">
       <div class="counseling__head">
-        <p class="eyebrow">Accessible Counseling Options</p>
-        <h2 class="section-title" style="margin-bottom: 8px;">Cost-Effective Support When You Need It Most</h2>
+        <p class="eyebrow">Affordable counselling</p>
+        <h2 class="section-title" style="margin-bottom: 8px;">Support that fits your budget</h2>
         <a href="therapists.html" class="btn btn--dark counseling__cta">
           See all therapy options
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -248,77 +264,24 @@
 
 
 
-    <section class="job-boards jb2">
+    <section class="job-boards jb3">
     <div class="container">
       <div class="job-boards__head">
         <p class="eyebrow">Better places to look</p>
         <h2 class="section-title">Job boards that treat you like a person</h2>
-        <p class="job-boards__sub">Salaries shown up front, remote-friendly roles, and employers that care about inclusion and impact. Pick what matters to you.</p>
+        <p class="job-boards__sub">Pick what matters to you, and we'll show you the boards that do it well.</p>
       </div>
-      <div class="jb2__filters" role="group" aria-label="Show boards that are">
-        <button type="button" class="is-on" data-f="all">All</button>
-        <button type="button" data-f="salary">Salary shown</button>
-        <button type="button" data-f="remote">Remote-friendly</button>
-        <button type="button" data-f="mission">Mission-driven</button>
-        <button type="button" data-f="inclusive">Inclusive hiring</button>
-      </div>
-      <div class="jb2__grid" id="jb2Grid">
-          <a class="jb2__card" href="https://www.welcometothejungle.com" target="_blank" rel="noopener" data-tags="salary tech" style="--d:0ms">
-            <span class="jb2__mono" style="background:#e6f7f3;color:#0f766e">WJ</span>
-            <h3>Welcome to the Jungle</h3>
-            <p>Formerly Otta. Shows company culture, benefits and, on most roles, the salary up front.</p>
-            <div class="jb2__tags"><span class="jb2__tag" data-t="salary">Salary shown</span><span class="jb2__tag" data-t="tech">Tech and startups</span></div>
-            <span class="jb2__go">Visit &rarr;</span>
-          </a>
-          <a class="jb2__card" href="https://wellfound.com" target="_blank" rel="noopener" data-tags="salary remote tech" style="--d:70ms">
-            <span class="jb2__mono" style="background:#efeafd;color:#5b46b8">Wf</span>
-            <h3>Wellfound</h3>
-            <p>Startup jobs with salary and equity listed before you apply.</p>
-            <div class="jb2__tags"><span class="jb2__tag" data-t="salary">Salary shown</span><span class="jb2__tag" data-t="remote">Remote-friendly</span><span class="jb2__tag" data-t="tech">Tech and startups</span></div>
-            <span class="jb2__go">Visit &rarr;</span>
-          </a>
-          <a class="jb2__card" href="https://www.idealist.org" target="_blank" rel="noopener" data-tags="mission" style="--d:140ms">
-            <span class="jb2__mono" style="background:#fdf1e6;color:#9a4b12">Id</span>
-            <h3>Idealist</h3>
-            <p>Free board for nonprofit and social-impact jobs, volunteering and internships.</p>
-            <div class="jb2__tags"><span class="jb2__tag" data-t="mission">Mission-driven</span></div>
-            <span class="jb2__go">Visit &rarr;</span>
-          </a>
-          <a class="jb2__card" href="https://climatebase.org" target="_blank" rel="noopener" data-tags="mission" style="--d:210ms">
-            <span class="jb2__mono" style="background:#e9f6ea;color:#2f7a3a">Cb</span>
-            <h3>Climatebase</h3>
-            <p>Jobs at companies and nonprofits working on climate.</p>
-            <div class="jb2__tags"><span class="jb2__tag" data-t="mission">Mission-driven</span></div>
-            <span class="jb2__go">Visit &rarr;</span>
-          </a>
-          <a class="jb2__card" href="https://jobs.80000hours.org" target="_blank" rel="noopener" data-tags="mission" style="--d:280ms">
-            <span class="jb2__mono" style="background:#e9f2fb;color:#2b5b8a">80</span>
-            <h3>80,000 Hours</h3>
-            <p>A hand-picked list of high-impact roles, with career advice to match.</p>
-            <div class="jb2__tags"><span class="jb2__tag" data-t="mission">Mission-driven</span></div>
-            <span class="jb2__go">Visit &rarr;</span>
-          </a>
-          <a class="jb2__card" href="https://powertofly.com" target="_blank" rel="noopener" data-tags="inclusive remote" style="--d:350ms">
-            <span class="jb2__mono" style="background:#fbe9f1;color:#9b2c5f">PF</span>
-            <h3>PowerToFly</h3>
-            <p>Connects women and underrepresented talent with employers committed to inclusive hiring.</p>
-            <div class="jb2__tags"><span class="jb2__tag" data-t="inclusive">Inclusive hiring</span><span class="jb2__tag" data-t="remote">Remote-friendly</span></div>
-            <span class="jb2__go">Visit &rarr;</span>
-          </a>
-          <a class="jb2__card" href="https://weworkremotely.com" target="_blank" rel="noopener" data-tags="remote" style="--d:420ms">
-            <span class="jb2__mono" style="background:#e6f7f3;color:#0f766e">WR</span>
-            <h3>We Work Remotely</h3>
-            <p>One of the largest remote-only job boards.</p>
-            <div class="jb2__tags"><span class="jb2__tag" data-t="remote">Remote-friendly</span></div>
-            <span class="jb2__go">Visit &rarr;</span>
-          </a>
-          <a class="jb2__card" href="https://www.teamblind.com" target="_blank" rel="noopener" data-tags="salary inclusive tech" style="--d:490ms">
-            <span class="jb2__mono" style="background:#f1f0f6;color:#3f3d56">Bl</span>
-            <h3>Blind</h3>
-            <p>Anonymous community where employees share real salaries and what it's like inside.</p>
-            <div class="jb2__tags"><span class="jb2__tag" data-t="salary">Salary shown</span><span class="jb2__tag" data-t="inclusive">Inclusive hiring</span><span class="jb2__tag" data-t="tech">Tech and startups</span></div>
-            <span class="jb2__go">Visit &rarr;</span>
-          </a>
+      <div class="jb3__stage" id="jb3">
+        <div class="jb3__chips" role="group" aria-label="Show job boards that are"><button type="button" class="jb3__chip" data-f="inclusive">Inclusive hiring</button><button type="button" class="jb3__chip" data-f="remote">Remote-friendly</button><button type="button" class="jb3__chip" data-f="mission">Nonprofit and mission-driven</button><button type="button" class="jb3__chip" data-f="salary">Salary shown up front</button></div>
+        <div class="jb3__wall" aria-label="All job boards"><a class="jb3__tile" href="https://www.welcometothejungle.com" target="_blank" rel="noopener" style="--i:0"><span class="jb3__mono" style="background:#e6f7f3;color:#0f766e">WJ</span>Welcome to the Jungle</a><a class="jb3__tile" href="https://wellfound.com" target="_blank" rel="noopener" style="--i:1"><span class="jb3__mono" style="background:#efeafd;color:#5b46b8">Wf</span>Wellfound</a><a class="jb3__tile" href="https://www.idealist.org" target="_blank" rel="noopener" style="--i:2"><span class="jb3__mono" style="background:#fdf1e6;color:#9a4b12">Id</span>Idealist</a><a class="jb3__tile" href="https://climatebase.org" target="_blank" rel="noopener" style="--i:3"><span class="jb3__mono" style="background:#e9f6ea;color:#2f7a3a">Cb</span>Climatebase</a><a class="jb3__tile" href="https://jobs.80000hours.org" target="_blank" rel="noopener" style="--i:4"><span class="jb3__mono" style="background:#e9f2fb;color:#2b5b8a">80</span>80,000 Hours</a><a class="jb3__tile" href="https://powertofly.com" target="_blank" rel="noopener" style="--i:5"><span class="jb3__mono" style="background:#fbe9f1;color:#9b2c5f">PF</span>PowerToFly</a><a class="jb3__tile" href="https://weworkremotely.com" target="_blank" rel="noopener" style="--i:6"><span class="jb3__mono" style="background:#e6f7f3;color:#0f766e">WR</span>We Work Remotely</a><a class="jb3__tile" href="https://www.teamblind.com" target="_blank" rel="noopener" style="--i:7"><span class="jb3__mono" style="background:#f1f0f6;color:#3f3d56">Bl</span>Blind</a></div>
+        <div class="jb3__overlay" id="jb3Overlay" role="region" aria-live="polite" hidden>
+          <button type="button" class="jb3__close" aria-label="Close">&times;</button>
+          <p class="jb3__kicker" id="jb3Kicker"></p>
+          <h3 class="jb3__title" id="jb3Title"></h3>
+          <p class="jb3__sub" id="jb3Sub"></p>
+          <div class="jb3__cards" id="jb3Cards"></div>
+        </div>
+        <svg class="jb3__pointer" id="jb3Pointer" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l14 7.5-6.2 1.6L10 18.5z" fill="#fff" stroke="#0f766e" stroke-width="1.6" stroke-linejoin="round"/></svg>
       </div>
       <p class="jb2__more"><a href="jobs.html">See verified mission-driven employers &rarr;</a></p>
     </div>
@@ -424,38 +387,105 @@
     </div>
   </footer>
 
-  <script src="assets/script.js?v=202611212312"></script>
-  <script src="assets/auth.js?v=202611212312"></script>
-  <script src="assets/calm.js?v=202611212312"></script>
+  <script src="assets/script.js?v=202611212322"></script>
+  <script src="assets/auth.js?v=202611212322"></script>
+  <script src="assets/calm.js?v=202611212322"></script>
   <script>
   (function () {
-    // Job boards: gentle staggered reveal, and filters that softly highlight matching boards.
-    var grid = document.getElementById('jb2Grid'); if (!grid) return;
-    var cards = [].slice.call(grid.querySelectorAll('.jb2__card'));
-    var btns = [].slice.call(document.querySelectorAll('.jb2__filters button'));
+    // Two people hugging: they lean toward the cursor, hold each other a little tighter
+    // as it comes close, and breathe slowly together when it's still.
+    var svg = document.getElementById('hug'); if (!svg) return;
+    var A = document.getElementById('hugA'), B = document.getElementById('hugB');
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function apply(f) {
-      btns.forEach(function (b) { b.classList.toggle('is-on', b.dataset.f === f); b.setAttribute('aria-pressed', b.dataset.f === f); });
-      cards.forEach(function (c) {
-        var on = f === 'all' || c.dataset.tags.split(' ').indexOf(f) > -1;
-        c.classList.toggle('is-dim', !on);
-        c.querySelectorAll('.jb2__tag').forEach(function (t) { t.classList.toggle('is-hit', t.dataset.t === f); });
-      });
+    if (reduce) return;
+    var tx = 0, ty = 0, near = 0, sx = 0, sy = 0, sn = 0;
+    window.addEventListener('pointermove', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      var r = svg.getBoundingClientRect();
+      var cx = r.left + r.width / 2, cy = r.top + r.height * 0.35;
+      tx = Math.max(-1, Math.min(1, (e.clientX - cx) / (window.innerWidth / 2)));
+      ty = Math.max(-1, Math.min(1, (e.clientY - cy) / (window.innerHeight / 2)));
+      var d = Math.hypot(e.clientX - cx, e.clientY - cy);
+      near = Math.max(0, 1 - d / 420);
+    }, { passive: true });
+    var visible = true;
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(svg);
+    function frame(t) {
+      sx += (tx - sx) * 0.03; sy += (ty - sy) * 0.03; sn += (near - sn) * 0.04;
+      if (visible && !document.hidden) {
+        var breath = Math.sin(t / 5500 * Math.PI * 2) * 0.5 + 0.5; // slow, shared breath
+        var lean = sx * 3.2, lift = breath * 0.012;
+        var hugIn = sn * 7;
+        A.setAttribute('transform', 'translate(' + (sx * 6 + hugIn).toFixed(2) + ' ' + (sy * 3).toFixed(2) + ') rotate(' + (lean + sn * 1.5).toFixed(2) + ' 155 460) scale(' + (1 + lift).toFixed(4) + ')');
+        B.setAttribute('transform', 'translate(' + (sx * 10 - hugIn).toFixed(2) + ' ' + (sy * 4).toFixed(2) + ') rotate(' + (lean * 1.25 - sn * 2).toFixed(2) + ' 245 460) scale(' + (1 + lift).toFixed(4) + ')');
+      }
+      requestAnimationFrame(frame);
     }
-    var order = ['salary', 'remote', 'mission', 'inclusive', 'all'], k = 0, timer = null;
-    function stop() { if (timer) { clearInterval(timer); timer = null; } }
-    btns.forEach(function (b) { b.addEventListener('click', function () { stop(); apply(b.dataset.f); }); });
-    grid.addEventListener('mouseenter', stop);
-    if (reduce || !('IntersectionObserver' in window)) { grid.classList.add('is-in'); return; }
-    new IntersectionObserver(function (es, ob) {
-      if (!es[0].isIntersecting) return;
-      ob.disconnect();
-      grid.classList.add('is-in');
-      // After the cards settle, slowly show what makes each board better, then rest on "All".
-      setTimeout(function () {
-        timer = setInterval(function () { apply(order[k]); k++; if (k >= order.length) stop(); }, 2600);
-      }, 1400);
-    }, { threshold: 0.25 }).observe(grid);
+    requestAnimationFrame(frame);
+  })();
+  </script>
+  <script>
+  (function () {
+    // Job boards demo: a soft pointer "clicks" each filter in turn and an overlay shows
+    // the matching boards. Stops as soon as the visitor clicks something themselves.
+    var DATA = {"inclusive": {"title": "Inclusive hiring", "sub": "Employers who have committed to hiring and supporting women and underrepresented people, and honest insight into how companies treat staff.", "boards": [{"name": "PowerToFly", "why": "Connects women and underrepresented talent with employers committed to inclusive hiring.", "url": "https://powertofly.com", "mono": "PF", "bg": "#fbe9f1", "fg": "#9b2c5f"}, {"name": "Blind", "why": "Anonymous community where employees share real pay and what it's really like inside, so you can check how a company treats people.", "url": "https://www.teamblind.com", "mono": "Bl", "bg": "#f1f0f6", "fg": "#3f3d56"}]}, "remote": {"title": "Remote-friendly", "sub": "Work from home, or from anywhere. Less commuting, more time to look after yourself.", "boards": [{"name": "We Work Remotely", "why": "One of the largest remote-only job boards.", "url": "https://weworkremotely.com", "mono": "WR", "bg": "#e6f7f3", "fg": "#0f766e"}, {"name": "Wellfound", "why": "Startup jobs with salary and equity listed before you apply, and lots of remote roles.", "url": "https://wellfound.com", "mono": "Wf", "bg": "#efeafd", "fg": "#5b46b8"}, {"name": "Welcome to the Jungle", "why": "Formerly Otta. Company culture, benefits and, on most roles, the salary shown up front.", "url": "https://www.welcometothejungle.com", "mono": "WJ", "bg": "#e6f7f3", "fg": "#0f766e"}]}, "mission": {"title": "Nonprofit and mission-driven", "sub": "Jobs where the work itself does some good.", "boards": [{"name": "Idealist", "why": "Free board for nonprofit and social-impact jobs, volunteering and internships.", "url": "https://www.idealist.org", "mono": "Id", "bg": "#fdf1e6", "fg": "#9a4b12"}, {"name": "Climatebase", "why": "Jobs at companies and nonprofits working on climate.", "url": "https://climatebase.org", "mono": "Cb", "bg": "#e9f6ea", "fg": "#2f7a3a"}, {"name": "80,000 Hours", "why": "A hand-picked list of high-impact roles, with career advice to match.", "url": "https://jobs.80000hours.org", "mono": "80", "bg": "#e9f2fb", "fg": "#2b5b8a"}]}, "salary": {"title": "Salary shown up front", "sub": "No guessing games. See the pay before you spend time applying.", "boards": [{"name": "Welcome to the Jungle", "why": "Formerly Otta. Company culture, benefits and, on most roles, the salary shown up front.", "url": "https://www.welcometothejungle.com", "mono": "WJ", "bg": "#e6f7f3", "fg": "#0f766e"}, {"name": "Wellfound", "why": "Startup jobs with salary and equity listed before you apply, and lots of remote roles.", "url": "https://wellfound.com", "mono": "Wf", "bg": "#efeafd", "fg": "#5b46b8"}, {"name": "Blind", "why": "Anonymous community where employees share real pay and what it's really like inside, so you can check how a company treats people.", "url": "https://www.teamblind.com", "mono": "Bl", "bg": "#f1f0f6", "fg": "#3f3d56"}]}};
+    var stage = document.getElementById('jb3'); if (!stage) return;
+    var overlay = document.getElementById('jb3Overlay'), pointer = document.getElementById('jb3Pointer');
+    var chips = [].slice.call(stage.querySelectorAll('.jb3__chip'));
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var auto = !reduce, timers = [];
+    function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+    function stopAuto() { auto = false; timers.forEach(clearTimeout); timers = []; pointer.classList.remove('is-on'); }
+    function esc(t) { var d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+    function show(f, n) {
+      var d = DATA[f];
+      chips.forEach(function (c) { c.classList.toggle('is-on', c.dataset.f === f); c.setAttribute('aria-pressed', c.dataset.f === f); });
+      document.getElementById('jb3Kicker').textContent = d.boards.length + ' boards we recommend';
+      document.getElementById('jb3Title').textContent = d.title;
+      document.getElementById('jb3Sub').textContent = d.sub;
+      document.getElementById('jb3Cards').innerHTML = d.boards.map(function (b, i) {
+        return '<a class="jb3__card" style="--i:' + i + '" href="' + b.url + '" target="_blank" rel="noopener">' +
+          '<span class="jb3__mono jb3__mono--lg" style="background:' + b.bg + ';color:' + b.fg + '">' + esc(b.mono) + '</span>' +
+          '<b>' + esc(b.name) + '</b><span>' + esc(b.why) + '</span><em>Visit ' + esc(b.name) + ' &rarr;</em></a>';
+      }).join('');
+      overlay.hidden = false;
+      stage.classList.add('has-overlay');
+      overlay.classList.remove('is-in'); void overlay.offsetWidth; overlay.classList.add('is-in');
+    }
+    function hide() {
+      overlay.classList.remove('is-in');
+      stage.classList.remove('has-overlay');
+      chips.forEach(function (c) { c.classList.remove('is-on'); c.setAttribute('aria-pressed', 'false'); });
+      later(function () { if (!overlay.classList.contains('is-in')) overlay.hidden = true; }, 500);
+    }
+    chips.forEach(function (c) { c.addEventListener('click', function (e) { if (e.isTrusted) stopAuto(); show(c.dataset.f); }); });
+    overlay.querySelector('.jb3__close').addEventListener('click', function () { stopAuto(); hide(); });
+
+    // The pretend pointer glides to a chip, presses it, then the overlay opens.
+    var order = ['inclusive', 'remote', 'mission'], k = 0;
+    function step() {
+      if (!auto) return;
+      var f = order[k++ % order.length];
+      var chip = chips.filter(function (c) { return c.dataset.f === f; })[0];
+      var sr = stage.getBoundingClientRect(), cr = chip.getBoundingClientRect();
+      pointer.classList.add('is-on');
+      pointer.style.transform = 'translate(' + (cr.left - sr.left + cr.width * 0.55) + 'px,' + (cr.top - sr.top + cr.height * 0.45) + 'px)';
+      later(function () {
+        chip.classList.add('is-pressed');
+        later(function () { chip.classList.remove('is-pressed'); show(f); }, 260);
+      }, 1300);
+      later(function () { hide(); }, 6600);
+      later(step, 7600);
+    }
+    if (auto && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (es, ob) {
+        if (!es[0].isIntersecting) return;
+        ob.disconnect();
+        var sr = stage.getBoundingClientRect();
+        pointer.style.transform = 'translate(' + sr.width * 0.5 + 'px,' + sr.height * 0.7 + 'px)';
+        later(step, 900);
+      }, { threshold: 0.45 }).observe(stage);
+    }
   })();
   </script>
   <script>

@@ -93,6 +93,93 @@
     if (!reduce) requestAnimationFrame(frame);
   }
 
+
+  // ---------- Leaves that follow the cursor ----------
+  // As the cursor moves, a few tiny leaves (like the logo) sprout behind it and float
+  // gently down, swaying and fading. A click sends out a soft ripple and two leaves.
+  function startLeaves() {
+    const cv = document.createElement('canvas');
+    cv.setAttribute('aria-hidden', 'true');
+    cv.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1100';
+    document.body.appendChild(cv);
+    const ctx = cv.getContext('2d');
+    let W = 0, H = 0, dpr = 1;
+    function fit() { dpr = Math.min(2, window.devicePixelRatio || 1); W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
+    fit(); addEventListener('resize', fit);
+    const TINTS = ['20,184,166', '45,212,191', '139,124,246', '16,185,129', '244,152,96'];
+    const leaves = [], rings = [];
+    let lx = null, ly = null, running = false, lastSpawn = 0;
+    function leaf(x, y, burst) {
+      if (leaves.length > 36) leaves.shift();
+      leaves.push({
+        x, y, born: performance.now(), life: 2600 + Math.random() * 1200,
+        vx: (Math.random() - 0.5) * (burst ? 1.4 : 0.5), vy: 0.25 + Math.random() * 0.35 - (burst ? 0.9 : 0),
+        rot: Math.random() * Math.PI * 2, spin: (Math.random() - 0.5) * 0.03,
+        size: 5 + Math.random() * 4, sway: Math.random() * Math.PI * 2,
+        tint: TINTS[(Math.random() * TINTS.length) | 0],
+      });
+      run();
+    }
+    addEventListener('pointermove', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      const now = performance.now();
+      if (lx !== null) {
+        const d = Math.hypot(e.clientX - lx, e.clientY - ly);
+        if (d > 34 && now - lastSpawn > 70) { leaf(e.clientX, e.clientY, false); lastSpawn = now; lx = e.clientX; ly = e.clientY; }
+      } else { lx = e.clientX; ly = e.clientY; }
+    }, { passive: true });
+    addEventListener('pointerdown', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      rings.push({ x: e.clientX, y: e.clientY, born: performance.now() });
+      leaf(e.clientX, e.clientY, true); leaf(e.clientX, e.clientY, true);
+    }, { passive: true });
+    function drawLeaf(l, a) {
+      ctx.save();
+      ctx.translate(l.x, l.y);
+      ctx.rotate(l.rot);
+      const s = l.size;
+      ctx.beginPath();
+      ctx.moveTo(0, -s);
+      ctx.quadraticCurveTo(s * 0.95, -s * 0.15, 0, s);
+      ctx.quadraticCurveTo(-s * 0.95, -s * 0.15, 0, -s);
+      ctx.fillStyle = 'rgba(' + l.tint + ',' + (0.5 * a).toFixed(3) + ')';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(0, -s * 0.7); ctx.lineTo(0, s * 0.85);
+      ctx.strokeStyle = 'rgba(255,255,255,' + (0.6 * a).toFixed(3) + ')';
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+      ctx.restore();
+    }
+    function tick(now) {
+      ctx.clearRect(0, 0, W, H);
+      for (let i = leaves.length - 1; i >= 0; i--) {
+        const l = leaves[i], age = (now - l.born) / l.life;
+        if (age >= 1) { leaves.splice(i, 1); continue; }
+        l.vy = Math.min(0.75, l.vy + 0.012);          // drift down gently
+        l.vx *= 0.985;
+        l.x += l.vx + Math.sin(now / 650 + l.sway) * 0.35; // sway side to side
+        l.y += l.vy;
+        l.rot += l.spin + Math.sin(now / 900 + l.sway) * 0.004;
+        const a = age < 0.15 ? age / 0.15 : 1 - (age - 0.15) / 0.85;
+        drawLeaf(l, Math.max(0, a));
+      }
+      for (let i = rings.length - 1; i >= 0; i--) {
+        const r = rings[i], age = (now - r.born) / 1100;
+        if (age >= 1) { rings.splice(i, 1); continue; }
+        const e = 1 - Math.pow(1 - age, 3);
+        ctx.beginPath();
+        ctx.arc(r.x, r.y, 6 + e * 46, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(20,184,166,' + (0.35 * (1 - age)).toFixed(3) + ')';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
+      if (leaves.length || rings.length) requestAnimationFrame(tick);
+      else { running = false; ctx.clearRect(0, 0, W, H); }
+    }
+    function run() { if (!running) { running = true; requestAnimationFrame(tick); } }
+  }
+
   // ---------- One-minute breather ----------
   let room = null, timer = null;
   function buildRoom() {
@@ -178,6 +265,8 @@
       .filter((el) => !el.closest('footer') && !el.closest('header') && !el.parentElement.closest('.calm-host, .h-hero, main.page, .dash__main'));
     hosts.forEach((el, i) => attach(el, i));
     frame(0);
+    // Leaves trail is available but switched off; call startLeaves() to turn it on.
+    if (document.body.hasAttribute('data-leaves') && !reduce && window.matchMedia('(pointer: fine)').matches) startLeaves();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
