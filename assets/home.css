@@ -813,3 +813,28 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .hg__s { fill: none; stroke: #1f4a45; stroke-linecap: round; stroke-linejoin: round; }
 .hugline2 figcaption { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px; font-style: italic; color: var(--ink-700, #334155); margin-top: 8px; opacity: 0; transform: translateY(6px); transition: opacity 1.4s ease, transform 1.4s ease; }
 .hugline2.is-drawn figcaption { opacity: 1; transform: none; }
+
+/* Waves -> hug -> leaves */
+.hugline2 { display: none; }
+.hugstory { margin: 0; text-align: center; }
+.hugstory svg { width: 100%; max-width: 460px; height: auto; display: block; margin: 0 auto; overflow: visible; cursor: pointer; }
+.hugstory .hg__s, .hugstory .lf__s, .hugstory .wv { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.hugstory .hg__a { stroke: #0f766e; }
+.hugstory .hg__b { stroke: #8b7cf6; }
+.hugstory .wv { stroke-width: 3; }
+.hugstory .wv--a { stroke: #0f766e; }
+.hugstory .wv--b { stroke: #8b7cf6; }
+.hs__waves { transition: opacity 2s ease; }
+.hugstory.is-people .hs__waves { opacity: .35; }
+.hs__people { transform-box: view-box; transform-origin: 320px 600px; transition: opacity 1.6s ease, transform 2s cubic-bezier(.45,0,.3,1), filter 1.6s ease; }
+.hugstory.is-leaves .hs__people { opacity: 0; transform: scale(.25); filter: blur(4px); }
+.hugstory.is-leaves .hs__waves { opacity: .2; }
+.lf__fill { opacity: 0; transition: opacity 1.8s ease 1.6s; }
+.lf__fill--a { fill: #ccfbf1; }
+.lf__fill--b { fill: #ede9fe; }
+.hugstory.is-leaves .lf__fill { opacity: .85; }
+.hugstory figcaption { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px; font-style: italic; color: var(--ink-700, #334155); margin-top: 8px; opacity: 0; transform: translateY(6px); transition: opacity 1.4s ease, transform 1.4s ease; }
+.hugstory.is-held figcaption, .hugstory.is-leaves figcaption { opacity: 1; transform: none; }
+.hugstory.is-still .lf__s { stroke-dasharray: none !important; }
+.hugstory.is-still .hs__people, .hugstory.is-still .hs__waves { display: none; }
+.hugstory.is-still .lf__fill, .hugstory.is-still figcaption { opacity: 1; transition: none; }
