@@ -22,7 +22,7 @@
     const signedIn = !!(window.LS && LS.user);
     const code = !t.offer.code ? '' : signedIn
       ? '<span class="tm-code"><b>' + esc(t.offer.code) + '</b><button type="button" class="tm-copy" data-code="' + esc(t.offer.code) + '">Copy</button></span>'
-      : '<span class="tm-code tm-code--locked"><b aria-hidden="true">&bull;&bull;&bull;&bull;&bull;&bull;</b><a href="#" class="tm-copy" data-require-signin="Sign in free to see member codes. They\u2019re for people who\u2019ve been laid off, so we keep them for members.">Sign in to see the code</a></span>';
+      : '<a href="#" class="tm-reveal" data-require-signin="Sign in free to get member codes. No password needed.">Get the code &rarr;</a>';
     return '<div class="tm-offer tm-offer--' + esc(t.offer.kind || 'deal') + '"><p class="tm-offer__label">' + esc(t.offer.label || 'Deal') + '</p><p>' + esc(t.offer.text) + '</p>' + code +
       (t.offer.how ? '<p class="tm-offer__how">' + esc(t.offer.how) + '</p>' : '') + '</div>';
   }
