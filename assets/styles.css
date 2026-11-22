@@ -1565,7 +1565,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
    ============================================================ */
 .dash {
   display: grid;
-  grid-template-columns: 260px 1fr;
+  grid-template-columns: 260px minmax(0,1fr);
   min-height: 100vh;
 }
 
@@ -2881,7 +2881,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .quick-grid { grid-template-columns: repeat(2, 1fr); }
   .footer__grid { grid-template-columns: 1fr 1fr; }
-  .dash { grid-template-columns: 1fr; }
+  .dash { grid-template-columns: minmax(0,1fr); }
   .dash__side { position: static; height: auto; }
   .dash__main { padding: 32px 24px; }
   .energy__options { grid-template-columns: 1fr; }
@@ -3085,3 +3085,18 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   text-transform: uppercase !important;
   color: var(--teal-700) !important;
 }
+
+/* ---------- Phones and tablets: the side menu becomes a top bar ---------- */
+.dash__toggle { display: none; }
+@media (max-width: 1024px) {
+  .dash { align-content: start; }
+  .dash__side { align-self: start; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 14px 20px !important; position: static !important; height: auto !important; border-right: 0 !important; border-bottom: 1px solid #F1F5F9; }
+  .dash__side .logo { margin-bottom: 0 !important; }
+  .dash__toggle { display: inline-flex; align-items: center; font: 600 14px/1 Inter, system-ui, sans-serif; color: #0F172A; background: #fff; border: 1px solid #E2E8F0; border-radius: 999px; padding: 10px 18px; cursor: pointer; }
+  .dash__wrap { display: none; flex-basis: 100%; padding-top: 12px; }
+  .dash__side.is-open .dash__wrap { display: block; }
+  .dash__side-foot { margin-top: 16px !important; }
+}
+
+@media (max-width: 760px) { .footer__cols { grid-template-columns: 1fr 1fr; gap: 32px; } }
+@media (max-width: 480px) { .footer__cols { grid-template-columns: 1fr; gap: 28px; } }

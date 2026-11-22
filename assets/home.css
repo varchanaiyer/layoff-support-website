@@ -1111,3 +1111,15 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 
 .pick__link { color: var(--teal-700); font-weight: 600; text-decoration: none; }
 .pick__link:hover { text-decoration: underline; }
+
+/* Phones: the stepping stones become a simple gentle list */
+@media (max-width: 600px) {
+  .path { aspect-ratio: auto; max-width: none; display: grid; gap: 12px; margin-top: 8px; padding-left: 18px; border-left: 2px dashed color-mix(in srgb, #14b8a6 40%, transparent); }
+  .path svg { display: none; }
+  .stone, .stone--l, .stone--r { position: static; transform: none; flex-direction: row; text-align: left; width: auto; }
+  .path:not(.is-in) .stone { transform: translateY(8px); }
+  .stone__dot { width: 34px; height: 30px; }
+  .stone__txt { width: auto; max-width: none; flex: 1; }
+  .stone__txt small { max-height: none; opacity: 1; }
+  .path figcaption { position: static; font-size: 20px; text-align: left; }
+}

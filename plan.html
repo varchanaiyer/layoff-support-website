@@ -75,8 +75,8 @@ main{padding:32px clamp(16px,4vw,48px) 72px;min-width:0}
 .title{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4vw,42px);letter-spacing:-.01em;color:var(--ink)}
 .sub{color:var(--muted);max-width:62ch}
 
-.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
-.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;gap:14px;align-content:start;min-width:0}
 .panel h3{font-size:16px;font-weight:600}
 .muted{color:var(--muted)}
@@ -206,7 +206,18 @@ input[type=range]{width:100%;accent-color:var(--teal)}
 .nav.tabs button[aria-current="page"]{background:var(--teal);border-color:var(--teal);color:#fff}
 .nav.tabs small{font-size:11.5px;opacity:.85;display:inline}
 .tabcrisis{margin:8px 0 0;font-size:12.5px;color:var(--rose,#be123c)}
-@media (max-width:900px){.app{grid-template-columns:1fr}.dash__side{position:static;height:auto;border-right:0;border-bottom:1px solid #F1F5F9}.tabs-wrap{margin-top:0}}
+@media (max-width:900px){.app{grid-template-columns:minmax(0,1fr)}.grid2[style]{grid-template-columns:minmax(0,1fr)!important}.dash__side{position:static;height:auto;border-right:0;border-bottom:1px solid #F1F5F9}.tabs-wrap{margin-top:0}}
+
+/* ---------- Phones and tablets: the side menu becomes a top bar ---------- */
+.dash__toggle { display: none; }
+@media (max-width: 1024px) {
+  .dash__side { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 14px 20px !important; position: static !important; height: auto !important; border-right: 0 !important; border-bottom: 1px solid #F1F5F9; }
+  .dash__side .logo { margin-bottom: 0 !important; }
+  .dash__toggle { display: inline-flex; align-items: center; font: 600 14px/1 Inter, system-ui, sans-serif; color: #0F172A; background: #fff; border: 1px solid #E2E8F0; border-radius: 999px; padding: 10px 18px; cursor: pointer; }
+  .dash__wrap { display: none; flex-basis: 100%; padding-top: 12px; }
+  .dash__side.is-open .dash__wrap { display: block; }
+  .dash__side-foot { margin-top: 16px !important; }
+}
 </style>
 </head><body data-page="plan">
 
@@ -602,10 +613,10 @@ input[type=range]{width:100%;accent-color:var(--teal)}
 })();
 </script>
 
-<script src="assets/script.js?v=202611220134"></script>
-<script src="assets/auth.js?v=202611220134"></script>
-  <script src="assets/boards.js?v=202611220134"></script>
-  <script src="assets/jobprefs.js?v=202611220134"></script>
+<script src="assets/script.js?v=202611220142"></script>
+<script src="assets/auth.js?v=202611220142"></script>
+  <script src="assets/boards.js?v=202611220142"></script>
+  <script src="assets/jobprefs.js?v=202611220142"></script>
 <script>
   // Sign-in features on the plan page: save the plan to the account, and record circle/pod interest.
   function lsInterest(tag, reason) {

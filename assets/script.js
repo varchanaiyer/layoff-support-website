@@ -34,6 +34,8 @@ function renderSidebar(active) {
       <span class="logo__mark" aria-hidden="true"><img src="assets/img/logo.avif" alt="" /></span>
       <span class="logo__text"><span>layoff</span><span>support</span></span>
     </a>
+    <button type="button" class="dash__toggle" aria-expanded="false" aria-controls="dashMenuWrap">Menu</button>
+    <div class="dash__wrap" id="dashMenuWrap">
     <ul class="dash__menu">
       ${NAV_ITEMS.map(it => `
         <li>
@@ -48,7 +50,14 @@ function renderSidebar(active) {
       <p>Members can find freelance, contract and full-time roles on the Work Board.</p>
       <a href="marketplace.html" class="btn btn--primary btn--sm">Open the Work Board</a>
     </div>
+    </div>
   `;
+  const tg = target.querySelector('.dash__toggle');
+  tg.addEventListener('click', () => {
+    const open = target.classList.toggle('is-open');
+    tg.setAttribute('aria-expanded', String(open));
+    tg.textContent = open ? 'Close' : 'Menu';
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
