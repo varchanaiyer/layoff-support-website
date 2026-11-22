@@ -377,16 +377,16 @@ input[type=range]{width:100%;accent-color:var(--teal)}
       <div class="vhead">
         <span class="eyebrow">Job boards</span>
         <h1 class="title">Your job search, in one place</h1>
-        <p class="sub">Your preferences, today's matches and the jobs you've saved.</p>
+        <p class="sub">What matters to you, the boards that fit, and anything you've saved.</p>
       </div>
       <div data-signed-in hidden style="display:grid;gap:20px">
         <div class="panel" id="prefsPanel"><p class="small muted">Loading…</p></div>
         <div class="panel" id="matchPanel" hidden><h3>Matches for you today</h3><div id="matchOut"></div></div>
-        <div class="panel"><h3>Saved jobs</h3><div id="savedOut"><p class="small muted">Loading…</p></div></div>
+        <div class="panel"><h3>Saved</h3><div id="savedOut"><p class="small muted">Loading…</p></div></div>
       </div>
       <div class="panel" data-signed-out>
-        <h3>Get jobs matched to you</h3>
-        <p>Set the role, place and pay you're after, and save jobs you like. It's free, and there's no password.</p>
+        <h3>Get job boards matched to you</h3>
+        <p>Tell us what matters to you, and save the boards you like. It's free, and there's no password.</p>
         <div class="row" style="justify-content:flex-start;margin-top:12px"><button class="btn" data-job-prefs>Set my preferences</button><a class="btn ghost" href="jobs.html">Browse jobs</a></div>
       </div>
     </section>
@@ -551,9 +551,10 @@ input[type=range]{width:100%;accent-color:var(--teal)}
 })();
 </script>
 
-<script src="assets/script.js?v=202611220058"></script>
-<script src="assets/auth.js?v=202611220058"></script>
-  <script src="assets/jobprefs.js?v=202611220058"></script>
+<script src="assets/script.js?v=202611220125"></script>
+<script src="assets/auth.js?v=202611220125"></script>
+  <script src="assets/boards.js?v=202611220125"></script>
+  <script src="assets/jobprefs.js?v=202611220125"></script>
 <script>
   // Sign-in features on the plan page: save the plan to the account, and record circle/pod interest.
   function lsInterest(tag, reason) {
@@ -607,12 +608,17 @@ input[type=range]{width:100%;accent-color:var(--teal)}
     }
     function draw(rows) {
       cnt.textContent = rows.length ? rows.length : '';
-      if (!rows.length) { out.innerHTML = '<p>No saved jobs yet. <a href="jobs.html">Browse the job board</a> and tap <b>Save</b> on any job you like.</p>'; return; }
+      if (!rows.length) { out.innerHTML = '<p>Nothing saved yet. <a href="jobs.html">Browse the job boards</a> and tap <b>Save</b> on any you like.</p>'; return; }
       out.innerHTML = '<div class="saved-list">' + rows.map(function (r) {
-        var j = r.job || {}, pay = money(j);
-        return '<div class="saved-row" data-id="' + esc(r.job_id) + '"><div><b>' + esc(j.title) + '</b><p class="small muted">' + esc(j.company) + (pay ? ' \u00b7 ' + esc(pay) : '') + (j.type ? ' \u00b7 ' + esc(j.type) : '') + '</p></div>' +
+        var j = r.job || {};
+        if (j.kind === 'board') {
+          return '<div class="saved-row" data-id="' + esc(r.job_id) + '"><div><b>' + esc(j.name) + '</b><p class="small muted">Job board \u00b7 for ' + esc((j.for || '').charAt(0).toLowerCase() + (j.for || '').slice(1)) + '</p></div>' +
+            '<div class="row" style="gap:8px"><a class="btn" href="' + esc(window.LS_refLink ? LS_refLink(j.url) : j.url) + '" target="_blank" rel="noopener">Visit</a><button class="btn ghost" data-unsave="' + esc(r.job_id) + '">Remove</button></div></div>';
+        }
+        var pay = money(j);
+        return '<div class="saved-row" data-id="' + esc(r.job_id) + '"><div><b>' + esc(j.title) + '</b><p class="small muted">' + esc(j.company) + (pay ? ' \u00b7 ' + esc(pay) : '') + '</p></div>' +
           '<div class="row" style="gap:8px"><a class="btn" href="' + esc(j.link) + '" target="_blank" rel="noopener">Apply</a><button class="btn ghost" data-unsave="' + esc(r.job_id) + '">Remove</button></div></div>';
-      }).join('') + '</div><p class="small muted" style="margin-top:10px">Jobs from <a href="https://himalayas.app" target="_blank" rel="noopener">Himalayas</a>. Listings can close, so apply soon if one feels right.</p>';
+      }).join('') + '</div>';
     }
     var rows = [];
     function load(u) {
@@ -629,44 +635,34 @@ input[type=range]{width:100%;accent-color:var(--teal)}
         if (!r.error) { rows = rows.filter(function (x) { return x.job_id !== id; }); draw(rows); }
       });
     });
-    // Preferences and today's matches
+    // Preferences and the boards that fit them
     var prefsPanel = document.getElementById('prefsPanel'), matchPanel = document.getElementById('matchPanel'), matchOut = document.getElementById('matchOut');
-    var EUROPE = ['United Kingdom','Ireland','Germany','France','Spain','Portugal','Italy','Netherlands','Belgium','Switzerland','Austria','Poland','Denmark','Sweden','Norway','Finland'];
-    var TYPE = { full: 'Full time', contract: 'Contract', part: 'Part time' };
+    var TAGS = window.LS_BOARD_TAGS || {}, BOARDS = window.LS_BOARDS || [];
     function prefsText(p) {
       var bits = [];
       if (p.q) bits.push('<b>' + esc(p.q) + '</b>');
-      bits.push(p.where ? (p.where === 'europe' ? 'Europe' : esc(p.where)) : 'anywhere');
-      if (p.types && p.types.length) bits.push(p.types.map(function (t) { return TYPE[t]; }).join(' or '));
-      if (p.min) bits.push('$' + Math.round(p.min / 1000) + 'k or more');
-      return bits.join(' \u00b7 ');
+      if (p.where) bits.push(p.where === 'europe' ? 'Europe' : esc(p.where));
+      if (p.tags && p.tags.length) bits.push(p.tags.map(function (t) { return esc(TAGS[t] || t); }).join(', '));
+      return bits.join(' \u00b7 ') || 'No preferences yet';
     }
-    function matchJobs(p, jobs) {
-      var words = (p.q || '').toLowerCase().split(/[\s,]+/).filter(Boolean);
-      return jobs.filter(function (j) {
-        var w = j.where || [];
-        if (p.where && w.length) { if (p.where === 'europe' ? !w.some(function (c) { return EUROPE.indexOf(c) > -1; }) : w.indexOf(p.where) < 0) return false; }
-        if (p.types && p.types.length && !p.types.some(function (t) { return (j.type || '').toLowerCase().indexOf(t) > -1; })) return false;
-        if (p.min && !((j.max || j.min || 0) >= p.min)) return false;
-        if (words.length) { var hay = (j.title + ' ' + (j.cats || []).join(' ') + ' ' + j.about).toLowerCase(); return words.some(function (x) { return hay.indexOf(x) > -1; }); }
-        return true;
-      });
+    function matchBoards(p) {
+      var tags = p.tags || [];
+      var scored = BOARDS.map(function (b) { return { b: b, s: b.tags.filter(function (t) { return tags.indexOf(t) > -1; }).length }; });
+      var hits = scored.filter(function (x) { return x.s > 0; }).sort(function (a, b) { return b.s - a.s; }).map(function (x) { return x.b; });
+      return hits.length ? hits : BOARDS.slice(0, 4);
     }
     function showPrefs(p) {
       if (!p || !p.updated) {
-        prefsPanel.innerHTML = '<h3>Get jobs matched to you</h3><p class="small muted">Tell us the role, place and pay you\u2019re after, and we\u2019ll show matching jobs here.</p><div class="row" style="justify-content:flex-start;margin-top:10px"><button class="btn" data-job-prefs>Set my preferences</button></div>';
+        prefsPanel.innerHTML = '<h3>Get job boards matched to you</h3><p class="small muted">Tell us what matters to you, and we\u2019ll show the boards that fit here.</p><div class="row" style="justify-content:flex-start;margin-top:10px"><button class="btn" data-job-prefs>Match me to boards</button></div>';
         matchPanel.hidden = true; return;
       }
-      prefsPanel.innerHTML = '<div class="row"><h3>Your job preferences</h3><button class="btn ghost" data-job-prefs>Edit</button></div><p>' + prefsText(p) + '</p>' + (p.email ? '<p class="small muted">We\u2019ll email you new matches once a week.</p>' : '');
-      fetch('data/live-jobs.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (d) {
-        var m = matchJobs(p, d.jobs || []);
-        matchPanel.hidden = false;
-        matchOut.innerHTML = m.length ? '<div class="saved-list">' + m.slice(0, 6).map(function (j) {
-          var pay = money(j);
-          return '<div class="saved-row"><div><b>' + esc(j.title) + '</b><p class="small muted">' + esc(j.company) + (pay ? ' \u00b7 ' + esc(pay) : '') + (j.type ? ' \u00b7 ' + esc(j.type) : '') + '</p></div><a class="btn" href="' + esc(j.link) + '" target="_blank" rel="noopener">Apply</a></div>';
-        }).join('') + '</div><p class="small muted" style="margin-top:10px">' + m.length + ' matching jobs today. <a href="jobs.html">See them all on the job board</a>. Jobs from <a href="https://himalayas.app" target="_blank" rel="noopener">Himalayas</a>.</p>'
-          : '<p class="small muted">No matches today. Try widening your preferences, or check back tomorrow: new jobs arrive every day.</p>';
-      });
+      prefsPanel.innerHTML = '<div class="row"><h3>What matters to you</h3><button class="btn ghost" data-job-prefs>Edit</button></div><p>' + prefsText(p) + '</p>' + (p.email ? '<p class="small muted">We\u2019ll email you when we add a board that fits.</p>' : '');
+      var m = matchBoards(p);
+      matchPanel.hidden = false;
+      matchPanel.querySelector('h3').textContent = 'Boards for you';
+      matchOut.innerHTML = '<div class="saved-list">' + m.slice(0, 6).map(function (b) {
+        return '<div class="saved-row"><div><b>' + esc(b.name) + '</b><p class="small muted">For ' + esc(/^[A-Z][a-z]/.test(b.for) ? b.for.charAt(0).toLowerCase() + b.for.slice(1) : b.for) + '</p></div><a class="btn" href="' + esc(window.LS_refLink ? LS_refLink(b.url) : b.url) + '" target="_blank" rel="noopener">Visit</a></div>';
+      }).join('') + '</div><p class="small muted" style="margin-top:10px"><a href="jobs.html">See every board we recommend</a>.</p>';
     }
     function loadPrefs(u) {
       if (!u) return;

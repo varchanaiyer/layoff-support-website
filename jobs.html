@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Find work: a searchable job board — Layoff Support</title>
-  <link rel="stylesheet" href="assets/styles.css?v=202611220058" />
-  <link rel="stylesheet" href="assets/home.css?v=202611220058" />
+  <title>Find work: the job boards worth your time — Layoff Support</title>
+  <link rel="stylesheet" href="assets/styles.css?v=202611220125" />
+  <link rel="stylesheet" href="assets/home.css?v=202611220125" />
 </head>
 <body data-page="jobs">
 
@@ -18,68 +18,48 @@
     <div class="dash__topbar">
       <div class="dash__greeting">
         <h1>Find work</h1>
-        <p>Fresh remote jobs, updated every day. Save the ones you like, and they'll wait for you in your plan.</p>
+        <p>The job boards worth your time. We've checked every one, and they're all free for job seekers.</p>
       </div>
-      <a href="plan.html#saved" class="jb-savedlink" id="jbSavedLink" hidden>Saved jobs <b>0</b></a>
+      <a href="plan.html#saved" class="jb-savedlink" id="jbSavedLink" hidden>Saved boards <b>0</b></a>
     </div>
 
-    <!-- ========= 2. SEARCH ========= -->
-    <form class="panel jb-search" id="jbForm" role="search">
-      <div class="jb-search__q">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-        <label for="jbQ" class="sr-only">Search jobs</label>
-        <input id="jbQ" type="search" placeholder="Job title, skill or company" autocomplete="off" />
-      </div>
-      <div class="jb-search__row">
-        <label>Where
-          <select id="jbLoc">
-            <option value="">Anywhere</option>
-            <option value="United States" selected>United States</option>
-            <option value="Canada">Canada</option>
-            <option value="United Kingdom">United Kingdom</option>
-            <option value="europe">Europe</option>
-            <option value="India">India</option>
-            <option value="Australia">Australia</option>
-          </select>
-        </label>
-        <label>Type
-          <select id="jbType">
-            <option value="">Any</option>
-            <option value="full">Full time</option>
-            <option value="contract">Contract</option>
-            <option value="part">Part time</option>
-          </select>
-        </label>
-        <label>Sort
-          <select id="jbSort">
-            <option value="new">Newest first</option>
-            <option value="pay">Highest pay</option>
-          </select>
-        </label>
-        <label class="jb-check"><input type="checkbox" id="jbPay" /> Salary shown</label>
-      </div>
-    </form>
+    <!-- ========= 2. WHO ARE YOU LOOKING AS? ========= -->
+    <div class="panel bd-filter">
+      <p class="bd-q">Show me boards for…</p>
+      <div id="bdChips"></div>
+    </div>
 
-    <!-- ========= MATCHED JOBS PROMPT ========= -->
+    <!-- ========= MATCHED BOARDS PROMPT ========= -->
     <div class="jp-prompt">
-      <div><b>Get jobs matched to you</b><p>Tell us the role, place and pay you're after. Matches will wait for you in your plan.</p></div>
-      <button type="button" class="btn btn--primary btn--sm" data-job-prefs>Set my preferences</button>
+      <div><b>Not sure where to start?</b><p>Tell us what matters to you, and we'll keep the boards that fit in your plan.</p></div>
+      <button type="button" class="btn btn--primary btn--sm" data-job-prefs>Match me to boards</button>
     </div>
 
-    <!-- ========= 3. RESULTS ========= -->
-    <div class="jb-results">
-      <div class="jb-results__head">
-        <p id="jbCount" aria-live="polite"></p>
-        <p class="jb-credit">Jobs from <a href="https://himalayas.app" target="_blank" rel="noopener">Himalayas</a> <span id="jbUpdated"></span></p>
-      </div>
-      <p class="jb-note" id="jbNote" role="status"></p>
-      <div id="jbList" class="jb-list"><div class="jb-empty"><p>Loading jobs…</p></div></div>
-      <button type="button" class="btn btn--outline jb-more" id="jbMore" hidden>Show more jobs</button>
+    <!-- ========= 3. BOARDS ========= -->
+    <div class="bd-head"><p id="bdCount" aria-live="polite"></p><p class="jb-note" id="jbNote" role="status"></p></div>
+    <div class="bd-grid" id="bdGrid"></div>
+
+    <!-- ========= 4. FOR JOB BOARDS ========= -->
+    <div class="panel bd-partner">
+      <h3>Run an inclusive job board?</h3>
+      <p class="sub">We send people who've just been laid off to boards that treat them well. If yours is free for job seekers and you'd like to be featured, we'd love to hear from you.</p>
     </div>
 
+    <!-- ========= 7. WHAT TO LOOK FOR ========= -->
+    <div class="panel">
+      <h3>What to look for</h3>
+      <ul style="padding-left:20px;color:var(--ink-600);font-size:14px;line-height:1.85;">
+        <li><strong style="color:var(--ink-900);">Pay band or skip it.</strong> If a listing won't show pay, you'll be negotiating in the dark against someone who does this every day.</li>
+        <li><strong style="color:var(--ink-900);">Read the interview process before the JD.</strong> Four rounds plus a take-home is a part-time job you're doing for free.</li>
+        <li><strong style="color:var(--ink-900);">A "gap" is not a red flag to anyone worth working for.</strong> If a recruiter flinches at the word "layoff," note it and move on.</li>
+      </ul>
+    </div>
+
+    <details class="tools-all">
+      <summary>Mission-driven employers we've checked directly</summary>
     <!-- ========= 5. VERIFIED EMPLOYERS GRID ========= -->
     <div class="panel">
-      <h3>Employers we've checked</h3>
+      <h3>Mission-driven employers we've checked</h3>
       <p class="sub">Click through to each company's actual careers page.</p>
 
       <div class="counseling__grid">
@@ -291,64 +271,7 @@
       </div>
     </div>
 
-    <!-- ========= 6. ILLUSTRATIVE STORY ========= -->
-    <div class="panel">
-      <h3>People who landed</h3>
-      <p class="sub">Real testimonials will live here once we have signed-off ones from community members. The note below is illustrative — written to show tone, not attributed to a real person.</p>
-
-      <div class="story-grid">
-        <article class="story" data-illustrative="true">
-          <div class="story__avatar"><img src="https://i.pravatar.cc/200?img=12" alt=""/></div>
-          <div class="story__body">
-            <div class="story__name">Illustrative example</div>
-            <div class="story__role">The tone we're going for</div>
-            <p class="story__quote">"I took the first decent offer in my queue because COBRA was bleeding me. Six months in, I'm still tired and I still cry on Sundays sometimes. But I sleep most nights now. Fine is enough right now. Fine is a lot."</p>
-          </div>
-        </article>
-      </div>
-    </div>
-
-    <!-- ========= 7. WHAT TO LOOK FOR ========= -->
-    <div class="panel">
-      <h3>What to look for</h3>
-      <ul style="padding-left:20px;color:var(--ink-600);font-size:14px;line-height:1.85;">
-        <li><strong style="color:var(--ink-900);">Pay band or skip it.</strong> If a listing won't show pay, you'll be negotiating in the dark against someone who does this every day.</li>
-        <li><strong style="color:var(--ink-900);">Read the interview process before the JD.</strong> Four rounds plus a take-home is a part-time job you're doing for free.</li>
-        <li><strong style="color:var(--ink-900);">A "gap" is not a red flag to anyone worth working for.</strong> If a recruiter flinches at the word "layoff," note it and move on.</li>
-      </ul>
-    </div>
-
-    <!-- ========= 8. OTHER BOARDS ========= -->
-    <div class="panel">
-      <h3>Other boards worth checking</h3>
-      <p class="sub">Use more than one.</p>
-      <div class="quick-grid">
-        <a href="https://www.linkedin.com/jobs" target="_blank" rel="noopener" class="quick">
-          <div class="quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
-          <h4>LinkedIn Jobs</h4><p>Largest general listings.</p>
-        </a>
-        <a href="https://wellfound.com" target="_blank" rel="noopener" class="quick">
-          <div class="quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/></svg></div>
-          <h4>Wellfound</h4><p>Startup roles, equity-heavy.</p>
-        </a>
-        <a href="https://www.workatastartup.com" target="_blank" rel="noopener" class="quick">
-          <div class="quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg></div>
-          <h4>Work at a Startup</h4><p>Y Combinator's job board.</p>
-        </a>
-        <a href="https://www.welcometothejungle.com" target="_blank" rel="noopener" class="quick">
-          <div class="quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div>
-          <h4>Welcome to the Jungle</h4><p>Curated; EU- and UK-friendly.</p>
-        </a>
-        <a href="https://layoffs.fyi" target="_blank" rel="noopener" class="quick">
-          <div class="quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v8h8"/></svg></div>
-          <h4>Layoffs.fyi Talent Pool</h4><p>Free directory of recently laid-off folks.</p>
-        </a>
-        <a href="https://remote.com/jobs" target="_blank" rel="noopener" class="quick">
-          <div class="quick__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div>
-          <h4>Remote.com Jobs</h4><p>Globally remote roles.</p>
-        </a>
-      </div>
-    </div>
+    </details>
 
     <!-- ========= 9. CRISIS FALLBACK ========= -->
     <div class="panel crisis-panel">
@@ -413,10 +336,11 @@
     </div>
   </footer>
 
-<script src="assets/script.js?v=202611220058"></script>
-  <script src="assets/auth.js?v=202611220058"></script>
-  <script src="assets/jobprefs.js?v=202611220058"></script>
-  <script src="assets/calm.js?v=202611220058"></script>
-  <script src="assets/jobs.js?v=202611220058"></script>
+<script src="assets/script.js?v=202611220125"></script>
+  <script src="assets/auth.js?v=202611220125"></script>
+  <script src="assets/boards.js?v=202611220125"></script>
+  <script src="assets/jobprefs.js?v=202611220125"></script>
+  <script src="assets/calm.js?v=202611220125"></script>
+  <script src="assets/jobs.js?v=202611220125"></script>
 </body>
 </html>

@@ -37,7 +37,7 @@
   .jp-toast a{color:#fff;margin-left:8px}
   @keyframes jp-pulse{0%,100%{box-shadow:0 0 0 0 rgba(20,184,166,.45)}50%{box-shadow:0 0 0 10px rgba(20,184,166,0)}}`;
 
-  const DEMO = { q: 'Product designer', where: 'United States', types: ['full'], min: 90000, email: true };
+  const DEMO = { q: 'Product design', where: 'United States', tags: ['remote', 'salary'], email: true };
   let modal, demoTimers = [], demoRunning = false;
   const fmt = (n) => (n ? '$' + Math.round(n / 1000) + 'k+' : 'Any');
 
@@ -48,24 +48,21 @@
     modal.innerHTML = `
       <div class="jp-card" role="dialog" aria-modal="true" aria-labelledby="jp-title">
         <button class="jp-close" type="button" aria-label="Close">&times;</button>
-        <p class="jp-eyebrow">Jobs matched to you</p>
-        <h2 id="jp-title">What kind of work are you after?</h2>
-        <p class="jp-sub">Tell us once. We'll show matching jobs in your plan, and can email you new ones each week.</p>
-        <label class="jp-field"><span>Role or skills</span><input type="text" id="jp-q" placeholder="e.g. Product designer, data analyst" autocomplete="off"></label>
+        <p class="jp-eyebrow">Job boards matched to you</p>
+        <h2 id="jp-title">What matters to you in your next job?</h2>
+        <p class="jp-sub">Tell us once. We'll keep the job boards that fit you in your plan.</p>
+        <label class="jp-field"><span>What kind of work do you do?</span><input type="text" id="jp-q" placeholder="e.g. Product design, data, customer support" autocomplete="off"></label>
         <label class="jp-field"><span>Where</span>
           <select id="jp-where"><option value="">Anywhere</option><option>United States</option><option>Canada</option><option>United Kingdom</option><option value="europe">Europe</option><option>India</option><option>Australia</option></select></label>
-        <div class="jp-field"><span>Type of work</span>
-          <div class="jp-chips" id="jp-types"><button type="button" data-t="full" aria-pressed="false">Full time</button><button type="button" data-t="contract" aria-pressed="false">Contract</button><button type="button" data-t="part" aria-pressed="false">Part time</button></div></div>
-        <div class="jp-field"><span>Minimum salary</span>
-          <div class="jp-range"><input type="range" id="jp-min" min="0" max="250000" step="5000" value="0"><b id="jp-minOut">Any</b></div></div>
-        <label class="jp-check"><input type="checkbox" id="jp-email"> Email me new matches once a week. Unsubscribe any time.</label>
+        <div class="jp-field"><span>What matters to you? Pick any</span>
+          <div class="jp-chips" id="jp-types">${Object.entries(window.LS_BOARD_TAGS || {}).map(([k, v]) => '<button type="button" data-t="' + k + '" aria-pressed="false">' + v + '</button>').join('')}</div></div>
+        <label class="jp-check"><input type="checkbox" id="jp-email"> Email me when we add a board that fits. Unsubscribe any time.</label>
         <div class="jp-actions"><button type="button" class="jp-save" id="jp-save">Save my preferences</button><button type="button" class="jp-later">Not now</button></div>
         <p class="jp-hint" id="jp-hint" role="status"></p>
         <svg class="jp-pointer" id="jp-pointer" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l14 7.5-6.2 1.6L10 18.5z" fill="#fff" stroke="#0f766e" stroke-width="1.6" stroke-linejoin="round"/></svg>
       </div>`;
     document.body.appendChild(modal);
     const $ = (id) => modal.querySelector('#' + id);
-    $('jp-min').addEventListener('input', () => { $('jp-minOut').textContent = fmt(+$('jp-min').value); });
     $('jp-types').addEventListener('click', (e) => { const b = e.target.closest('[data-t]'); if (b) b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') !== 'true'); });
     modal.querySelector('.jp-close').addEventListener('click', close);
     modal.querySelector('.jp-later').addEventListener('click', close);
@@ -81,8 +78,7 @@
     return {
       q: el('jp-q').value.trim(),
       where: el('jp-where').value,
-      types: [...modal.querySelectorAll('#jp-types [aria-pressed="true"]')].map((b) => b.dataset.t),
-      min: +el('jp-min').value || 0,
+      tags: [...modal.querySelectorAll('#jp-types [aria-pressed="true"]')].map((b) => b.dataset.t),
       email: el('jp-email').checked,
       updated: new Date().toISOString(),
     };
@@ -91,8 +87,7 @@
     p = p || {};
     el('jp-q').value = p.q || '';
     el('jp-where').value = p.where != null ? p.where : 'United States';
-    modal.querySelectorAll('#jp-types [data-t]').forEach((b) => b.setAttribute('aria-pressed', (p.types || []).includes(b.dataset.t)));
-    el('jp-min').value = p.min || 0; el('jp-minOut').textContent = fmt(p.min || 0);
+    modal.querySelectorAll('#jp-types [data-t]').forEach((b) => b.setAttribute('aria-pressed', (p.tags || []).includes(b.dataset.t)));
     el('jp-email').checked = !!p.email;
   }
 
@@ -120,15 +115,13 @@
     t += 1000;
     later(() => { el('jp-where').value = DEMO.where; }, t);
     t += 500;
-    const full = modal.querySelector('#jp-types [data-t="full"]');
-    later(() => { el('jp-where').classList.remove('jp-glow'); pointTo(full); }, t);
-    t += 1000;
-    later(() => { full.setAttribute('aria-pressed', 'true'); }, t);
-    t += 500;
-    later(() => { pointTo(el('jp-min')); }, t);
-    t += 900;
-    for (let v = 0, k = 0; v <= DEMO.min; v += 10000, k++) later(() => { el('jp-min').value = v; el('jp-minOut').textContent = fmt(v); }, t + k * 70);
-    t += 900;
+    DEMO.tags.forEach((tag) => {
+      const chip = modal.querySelector('#jp-types [data-t="' + tag + '"]');
+      later(() => { el('jp-where').classList.remove('jp-glow'); pointTo(chip); }, t);
+      t += 1000;
+      later(() => { chip.setAttribute('aria-pressed', 'true'); }, t);
+      t += 500;
+    });
     later(() => { pointTo(el('jp-email')); }, t);
     t += 900;
     later(() => { el('jp-email').checked = true; }, t);
@@ -170,11 +163,11 @@
     if (!LS.user) {
       try { localStorage.setItem('ls_pending_prefs', JSON.stringify(prefs)); } catch (e) {}
       close();
-      LS.requireSignIn('Sign in to save your job preferences. Your matches will be waiting in your plan.');
+      LS.requireSignIn('Sign in to save what matters to you. The boards that fit will be waiting in your plan.');
       return;
     }
     const ok = await store(prefs);
-    if (ok) { close(); toast('Saved. Your matches are in your plan <a href="plan.html#saved">See them &rarr;</a>'); document.dispatchEvent(new CustomEvent('ls:jobprefs', { detail: prefs })); }
+    if (ok) { close(); toast('Saved. Your boards are in your plan <a href="plan.html#saved">See them &rarr;</a>'); document.dispatchEvent(new CustomEvent('ls:jobprefs', { detail: prefs })); }
     else el('jp-hint').textContent = 'Couldn’t save that just now. Please try again in a moment.';
   }
   // finish a save someone started before signing in
@@ -182,7 +175,7 @@
     if (!u) return;
     let pending = null;
     try { pending = JSON.parse(localStorage.getItem('ls_pending_prefs') || 'null'); localStorage.removeItem('ls_pending_prefs'); } catch (e) {}
-    if (pending) store(pending).then((ok) => { if (ok) { toast('Your job preferences are saved. <a href="plan.html#saved">See your matches &rarr;</a>'); document.dispatchEvent(new CustomEvent('ls:jobprefs', { detail: pending })); } });
+    if (pending) store(pending).then((ok) => { if (ok) { toast('Your preferences are saved. <a href="plan.html#saved">See your boards &rarr;</a>'); document.dispatchEvent(new CustomEvent('ls:jobprefs', { detail: pending })); } });
   }
 
   document.addEventListener('click', (e) => {

@@ -19,9 +19,15 @@
       "what": "Free coding curriculum with certifications and real-world projects.",
       "why_for_layoff": "100% free, non-profit, no upsell. Self-paced — pick it up on the days you have energy.",
       "cost": "free",
-      "tags": ["skills", "engineering", "learning"],
+      "tags": [
+        "skills",
+        "engineering",
+        "learning"
+      ],
       "url": "https://www.freecodecamp.org/",
-      "source_urls": ["https://www.freecodecamp.org/"]
+      "source_urls": [
+        "https://www.freecodecamp.org/"
+      ]
     },
     {
       "id": "khan-academy-tool",
@@ -29,9 +35,14 @@
       "what": "Free K-12, college, and adult learning across math, computing, finance, and more.",
       "why_for_layoff": "Non-profit. Whole catalogue is free. Good for brushing up before technical interviews.",
       "cost": "free",
-      "tags": ["skills", "learning"],
+      "tags": [
+        "skills",
+        "learning"
+      ],
       "url": "https://www.khanacademy.org/",
-      "source_urls": ["https://www.khanacademy.org/"]
+      "source_urls": [
+        "https://www.khanacademy.org/"
+      ]
     },
     {
       "id": "adplist",
@@ -39,18 +50,26 @@
       "what": "Book free 1:1 calls with mentors in product, design, engineering, and marketing.",
       "why_for_layoff": "100% free for mentees. The mentors volunteer their time. Often the fastest way to get a real human's eyes on your situation.",
       "cost": "free",
-      "tags": ["mentorship", "networking"],
+      "tags": [
+        "mentorship",
+        "networking"
+      ],
       "url": "https://adplist.org/",
-      "source_urls": ["https://adplist.org/"]
+      "source_urls": [
+        "https://adplist.org/"
+      ]
     },
     {
       "id": "ynab",
       "name": "You Need A Budget (YNAB)",
       "what": "Personal-finance app built around envelope-style budgeting and runway planning.",
       "why_for_layoff": "Has a long-running, publicly-documented program: contact support if you're a student or unemployed and they extend your subscription for free for up to 12 months.",
-      "hardship_program": "Email support@ynab.com from your account address; tell them you're unemployed. They extend access for free.",
-      "cost": "free-for-unemployed",
-      "tags": ["money", "planning"],
+      "hardship_program": "No published hardship policy (checked Nov 2026). 34-day free trial with no card when you sign up on ynab.com. A free year exists only for college students.",
+      "cost": "free-trial",
+      "tags": [
+        "money",
+        "planning"
+      ],
       "url": "https://www.ynab.com/",
       "source_urls": [
         "https://www.ynab.com/",
@@ -63,9 +82,14 @@
       "what": "Free peer-to-peer mock technical interviews with anonymous matching.",
       "why_for_layoff": "Free forever. Schedule a 1-hour mock with someone in your tier and swap roles half-way. No paid upgrade pressure.",
       "cost": "free",
-      "tags": ["interview", "engineering"],
+      "tags": [
+        "interview",
+        "engineering"
+      ],
       "url": "https://www.pramp.com/",
-      "source_urls": ["https://www.pramp.com/"]
+      "source_urls": [
+        "https://www.pramp.com/"
+      ]
     },
     {
       "id": "interviewing-io",
@@ -73,9 +97,14 @@
       "what": "Anonymous mock interviews with senior engineers from FAANG-tier companies.",
       "why_for_layoff": "Free tier for software engineers. Records the call so you can review it without re-living it in real time.",
       "cost": "free-tier",
-      "tags": ["interview", "engineering"],
+      "tags": [
+        "interview",
+        "engineering"
+      ],
       "url": "https://interviewing.io/",
-      "source_urls": ["https://interviewing.io/"]
+      "source_urls": [
+        "https://interviewing.io/"
+      ]
     },
     {
       "id": "yoodli",
@@ -83,9 +112,15 @@
       "what": "AI speech coach that scores filler words, pacing, and clarity on practice videos.",
       "why_for_layoff": "Free tier with unlimited recordings. Practice answering 'tell me about yourself' in private until your shoulders unclench.",
       "cost": "free-tier",
-      "tags": ["interview", "speaking", "ai"],
+      "tags": [
+        "interview",
+        "speaking",
+        "ai"
+      ],
       "url": "https://yoodli.ai/",
-      "source_urls": ["https://yoodli.ai/"]
+      "source_urls": [
+        "https://yoodli.ai/"
+      ]
     },
     {
       "id": "teal",
@@ -93,9 +128,14 @@
       "what": "Job tracker with a resume builder, AI-tailoring, and a Chrome clipper.",
       "why_for_layoff": "Generous free tier covers tracking + resume + cover letter. Paid is optional. The 'job match score' is genuinely useful for triage.",
       "cost": "free-tier",
-      "tags": ["resume", "job-tracking"],
+      "tags": [
+        "resume",
+        "job-tracking"
+      ],
       "url": "https://www.tealhq.com/",
-      "source_urls": ["https://www.tealhq.com/"]
+      "source_urls": [
+        "https://www.tealhq.com/"
+      ]
     },
     {
       "id": "huntr",
@@ -103,9 +143,13 @@
       "what": "Kanban-style job application tracker with autofill and contact management.",
       "why_for_layoff": "Free tier handles the basics. Useful when applying-from-bed and you can't remember which company sent which rejection.",
       "cost": "free-tier",
-      "tags": ["job-tracking"],
+      "tags": [
+        "job-tracking"
+      ],
       "url": "https://huntr.co/",
-      "source_urls": ["https://huntr.co/"]
+      "source_urls": [
+        "https://huntr.co/"
+      ]
     },
     {
       "id": "simplify",
@@ -113,9 +157,14 @@
       "what": "Browser extension that autofills job applications and tracks them in one inbox.",
       "why_for_layoff": "100% free. Cuts the soul-crushing 20-minute application form down to about two minutes per role.",
       "cost": "free",
-      "tags": ["job-tracking", "applications"],
+      "tags": [
+        "job-tracking",
+        "applications"
+      ],
       "url": "https://simplify.jobs/",
-      "source_urls": ["https://simplify.jobs/"]
+      "source_urls": [
+        "https://simplify.jobs/"
+      ]
     },
     {
       "id": "resume-worded",
@@ -123,9 +172,14 @@
       "what": "AI scoring for your resume and LinkedIn profile against real recruiter heuristics.",
       "why_for_layoff": "Free tier gets you a couple of detailed scans per month. Useful sanity check before the apply spree.",
       "cost": "free-tier",
-      "tags": ["resume", "linkedin"],
+      "tags": [
+        "resume",
+        "linkedin"
+      ],
       "url": "https://resumeworded.com/",
-      "source_urls": ["https://resumeworded.com/"]
+      "source_urls": [
+        "https://resumeworded.com/"
+      ]
     },
     {
       "id": "levels-fyi",
@@ -133,9 +187,14 @@
       "what": "Real comp data submitted by tech employees, broken down by level and location.",
       "why_for_layoff": "Free. Use it before any offer call so you don't lowball yourself out of fear.",
       "cost": "free",
-      "tags": ["salary", "research"],
+      "tags": [
+        "salary",
+        "research"
+      ],
       "url": "https://www.levels.fyi/",
-      "source_urls": ["https://www.levels.fyi/"]
+      "source_urls": [
+        "https://www.levels.fyi/"
+      ]
     },
     {
       "id": "comprehensive",
@@ -143,9 +202,14 @@
       "what": "Compensation data scraped from public US job postings (post-pay-transparency-laws).",
       "why_for_layoff": "Free. Wider coverage than levels.fyi for non-FAANG roles and non-engineering functions.",
       "cost": "free",
-      "tags": ["salary", "research"],
+      "tags": [
+        "salary",
+        "research"
+      ],
       "url": "https://www.comprehensive.io/",
-      "source_urls": ["https://www.comprehensive.io/"]
+      "source_urls": [
+        "https://www.comprehensive.io/"
+      ]
     },
     {
       "id": "claude",
@@ -153,9 +217,15 @@
       "what": "Anthropic's general-purpose AI assistant (writing, code, research).",
       "why_for_layoff": "Free tier, no credit card. Good for cover letters, story-mining your old work, and rehearsing answers to hard questions.",
       "cost": "free-tier",
-      "tags": ["ai", "writing", "cover-letter"],
+      "tags": [
+        "ai",
+        "writing",
+        "cover-letter"
+      ],
       "url": "https://claude.ai/",
-      "source_urls": ["https://claude.ai/"]
+      "source_urls": [
+        "https://claude.ai/"
+      ]
     },
     {
       "id": "chatgpt",
@@ -163,9 +233,15 @@
       "what": "OpenAI's general-purpose AI assistant.",
       "why_for_layoff": "Free tier with no credit card. Same use cases as Claude — cover letters, mock Qs, untangling job descriptions.",
       "cost": "free-tier",
-      "tags": ["ai", "writing", "cover-letter"],
+      "tags": [
+        "ai",
+        "writing",
+        "cover-letter"
+      ],
       "url": "https://chatgpt.com/",
-      "source_urls": ["https://chatgpt.com/"]
+      "source_urls": [
+        "https://chatgpt.com/"
+      ]
     },
     {
       "id": "gemini",
@@ -173,9 +249,14 @@
       "what": "Google's general-purpose AI assistant, with a free tier and Workspace integration.",
       "why_for_layoff": "Free. Drafts, summaries, and quick research; lives next to Gmail and Docs.",
       "cost": "free-tier",
-      "tags": ["ai", "writing"],
+      "tags": [
+        "ai",
+        "writing"
+      ],
       "url": "https://gemini.google.com/",
-      "source_urls": ["https://gemini.google.com/"]
+      "source_urls": [
+        "https://gemini.google.com/"
+      ]
     },
     {
       "id": "notion",
@@ -183,9 +264,14 @@
       "what": "Workspace for notes, planning, and lightweight databases.",
       "why_for_layoff": "Free for personal use. A good 'one place' for the job hunt — runway, target companies, story bank, follow-ups.",
       "cost": "free-tier",
-      "tags": ["organization", "planning"],
+      "tags": [
+        "organization",
+        "planning"
+      ],
       "url": "https://www.notion.so/",
-      "source_urls": ["https://www.notion.so/"]
+      "source_urls": [
+        "https://www.notion.so/"
+      ]
     },
     {
       "id": "obsidian",
@@ -193,9 +279,14 @@
       "what": "Local-first markdown notebook. Files live on your laptop, not in someone else's cloud.",
       "why_for_layoff": "Free for personal use. No streaks, no nudges, no AI upsell. Quiet by design.",
       "cost": "free",
-      "tags": ["organization", "focus"],
+      "tags": [
+        "organization",
+        "focus"
+      ],
       "url": "https://obsidian.md/",
-      "source_urls": ["https://obsidian.md/"]
+      "source_urls": [
+        "https://obsidian.md/"
+      ]
     },
     {
       "id": "github",
@@ -203,9 +294,14 @@
       "what": "Code hosting, version control, and a public portfolio surface.",
       "why_for_layoff": "Free for unlimited public and private repos. Often the first thing a recruiter clicks.",
       "cost": "free-tier",
-      "tags": ["portfolio", "engineering"],
+      "tags": [
+        "portfolio",
+        "engineering"
+      ],
       "url": "https://github.com/",
-      "source_urls": ["https://github.com/"]
+      "source_urls": [
+        "https://github.com/"
+      ]
     },
     {
       "id": "leetcode",
@@ -213,9 +309,14 @@
       "what": "Coding interview prep questions sorted by company and topic.",
       "why_for_layoff": "Free tier covers most of what you need. Pace yourself — burnout solving Hards on a Sunday is real.",
       "cost": "free-tier",
-      "tags": ["interview", "engineering"],
+      "tags": [
+        "interview",
+        "engineering"
+      ],
       "url": "https://leetcode.com/",
-      "source_urls": ["https://leetcode.com/"]
+      "source_urls": [
+        "https://leetcode.com/"
+      ]
     },
     {
       "id": "hackerrank",
@@ -223,9 +324,14 @@
       "what": "Coding challenges, certifications, and interview prep tracks.",
       "why_for_layoff": "Free. Often the platform companies use for take-homes — practice in the real environment.",
       "cost": "free",
-      "tags": ["interview", "engineering"],
+      "tags": [
+        "interview",
+        "engineering"
+      ],
       "url": "https://www.hackerrank.com/",
-      "source_urls": ["https://www.hackerrank.com/"]
+      "source_urls": [
+        "https://www.hackerrank.com/"
+      ]
     },
     {
       "id": "coursera",
@@ -234,9 +340,14 @@
       "why_for_layoff": "Most paid courses have a 'Financial Aid' application form — the form is right under the enroll button. They waive fees based on need.",
       "hardship_program": "Apply via the 'Financial aid available' link on the course enrollment page; turnaround is usually under 15 days.",
       "cost": "free-for-unemployed",
-      "tags": ["skills", "learning"],
+      "tags": [
+        "skills",
+        "learning"
+      ],
       "url": "https://www.coursera.org/",
-      "source_urls": ["https://www.coursera.org/"]
+      "source_urls": [
+        "https://www.coursera.org/"
+      ]
     },
     {
       "id": "edx",
@@ -244,9 +355,14 @@
       "what": "Online courses from MIT, Harvard, and other universities; free audit option.",
       "why_for_layoff": "Most courses can be audited for free — you lose the certificate but keep the lectures and materials.",
       "cost": "free-tier",
-      "tags": ["skills", "learning"],
+      "tags": [
+        "skills",
+        "learning"
+      ],
       "url": "https://www.edx.org/",
-      "source_urls": ["https://www.edx.org/"]
+      "source_urls": [
+        "https://www.edx.org/"
+      ]
     },
     {
       "id": "linkedin-learning",
@@ -254,9 +370,14 @@
       "what": "Video courses on professional and technical skills.",
       "why_for_layoff": "Free 1-month trial direct, OR free indefinitely via most US public library cards (search 'Gale Presents' on your library site).",
       "cost": "free-tier",
-      "tags": ["skills", "learning"],
+      "tags": [
+        "skills",
+        "learning"
+      ],
       "url": "https://www.linkedin.com/learning/",
-      "source_urls": ["https://www.linkedin.com/learning/"]
+      "source_urls": [
+        "https://www.linkedin.com/learning/"
+      ]
     },
     {
       "id": "insight-timer",
@@ -264,9 +385,14 @@
       "what": "Meditation app with one of the largest free libraries online.",
       "why_for_layoff": "Free without a paywall on the core library. No streaks. Use for the 4am spiral.",
       "cost": "free",
-      "tags": ["mental-health", "focus"],
+      "tags": [
+        "mental-health",
+        "focus"
+      ],
       "url": "https://insighttimer.com/",
-      "source_urls": ["https://insighttimer.com/"]
+      "source_urls": [
+        "https://insighttimer.com/"
+      ]
     },
     {
       "id": "seven-cups",
@@ -274,9 +400,14 @@
       "what": "Free emotional support from trained listeners over text chat, plus low-cost therapy.",
       "why_for_layoff": "Free peer support is genuinely free. For the days when 'just call a friend' isn't going to happen.",
       "cost": "free",
-      "tags": ["mental-health", "support"],
+      "tags": [
+        "mental-health",
+        "support"
+      ],
       "url": "https://www.7cups.com/",
-      "source_urls": ["https://www.7cups.com/"]
+      "source_urls": [
+        "https://www.7cups.com/"
+      ]
     },
     {
       "id": "lunchclub",
@@ -284,9 +415,13 @@
       "what": "AI-matched 1:1 networking video calls based on what you're working on.",
       "why_for_layoff": "Free. One curated intro per week is much less doom-y than trawling LinkedIn.",
       "cost": "free",
-      "tags": ["networking"],
+      "tags": [
+        "networking"
+      ],
       "url": "https://lunchclub.com/",
-      "source_urls": ["https://lunchclub.com/"]
+      "source_urls": [
+        "https://lunchclub.com/"
+      ]
     }
   ],
   "stacks": [
@@ -294,25 +429,50 @@
       "id": "silent-week",
       "name": "The silent-week stack",
       "blurb": "For when you haven't told anyone yet and don't want to optimize anything. Breathe first.",
-      "tools": ["seven-cups", "insight-timer", "ynab", "adplist"]
+      "tools": [
+        "seven-cups",
+        "insight-timer",
+        "ynab",
+        "adplist"
+      ]
     },
     {
       "id": "free-stack",
       "name": "The free-stack",
       "blurb": "Everything 100% free forever. No credit card, no trial-then-bill.",
-      "tools": ["freecodecamp", "khan-academy-tool", "adplist", "simplify", "pramp", "levels-fyi", "obsidian"]
+      "tools": [
+        "freecodecamp",
+        "khan-academy-tool",
+        "adplist",
+        "simplify",
+        "pramp",
+        "levels-fyi",
+        "obsidian"
+      ]
     },
     {
       "id": "back-to-applying",
       "name": "Back to applying",
       "blurb": "The minimum stack to send five thoughtful applications a week without losing your mind.",
-      "tools": ["teal", "resume-worded", "claude", "yoodli", "simplify"]
+      "tools": [
+        "teal",
+        "resume-worded",
+        "claude",
+        "yoodli",
+        "simplify"
+      ]
     },
     {
       "id": "low-performance",
       "name": "The low-performance stack",
       "blurb": "No streaks, no progress nudges, no cheerful upsell. Quiet tools that won't make you perform recovery.",
-      "tools": ["obsidian", "claude", "insight-timer", "adplist", "notion"]
+      "tools": [
+        "obsidian",
+        "claude",
+        "insight-timer",
+        "adplist",
+        "notion"
+      ]
     }
   ]
 }
