@@ -37,7 +37,7 @@
     if (document.querySelector('link[href*="assets/auth.css"]')) return;
     const l = document.createElement('link');
     l.rel = 'stylesheet';
-    l.href = 'assets/auth.css?v=202611222301';
+    l.href = 'assets/auth.css?v=202611222345';
     document.head.appendChild(l);
   }
 
@@ -66,7 +66,10 @@
     // Arriving from an email with ?signin=1: open sign-in straight away (if not signed in already)
     try {
       if (!user && new URLSearchParams(location.search).has('signin')) {
-        setTimeout(() => requireSignIn('Welcome back. Sign in with the email we wrote to, and we\u2019ll recognise you. No password needed.'), 500);
+        const founding = new URLSearchParams(location.search).has('founding');
+        setTimeout(() => requireSignIn(founding
+          ? 'Welcome back, founding member. Sign in with the email we wrote to, and your early access opens. No password needed.'
+          : 'Welcome back. Sign in with the email we wrote to, and we\u2019ll recognise you. No password needed.'), 500);
       }
     } catch (e) {}
   }
