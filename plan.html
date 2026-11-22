@@ -52,6 +52,13 @@ button,input,select{font:inherit;color:inherit}
 
 main{padding:32px clamp(16px,4vw,48px) 72px;min-width:0}
 .view{display:grid;gap:24px;max-width:1040px}
+.hc-where{max-width:300px;margin-top:14px}
+.hc-where select{padding:10px 12px;border:1px solid var(--line);border-radius:12px;font:inherit;background:var(--surface)}
+.hc-steps{display:grid;gap:12px;margin-top:10px}
+.hc-step{display:grid;grid-template-columns:32px 1fr;gap:12px;align-items:start;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.hc-step p{margin:4px 0 6px;color:var(--ink-2)}
+.hc-step a{color:var(--teal-strong);font-weight:600;text-decoration:none}
+.hc-n{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--teal-wash);color:var(--teal-strong);font-weight:700}
 .view+.view{margin-top:96px;padding-top:72px;border-top:1px solid var(--line)}
 .saved-list{display:grid;gap:10px}
 .saved-row{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
@@ -296,9 +303,14 @@ input[type=range]{width:100%;accent-color:var(--teal)}
     <section class="view" id="v-cover">
       <div class="vhead">
         <span class="eyebrow">Health coverage</span>
-        <h1 class="title">COBRA isn't your only option, and often not the cheapest</h1>
-        <p class="sub">Medicaid and marketplace help depend on what you'll earn this calendar year, including severance and unemployment. Move the slider to see how your options change.</p>
+        <h1 class="title">Keep yourself covered</h1>
+        <p class="sub">What happens to your health cover depends on where you live. Tell us, and we'll show what applies to you.</p>
+        <div class="field hc-where"><label for="hcCountry">Where do you live?</label>
+          <select id="hcCountry"><option value="US">United States</option><option value="UK">United Kingdom</option><option value="CA">Canada</option><option value="IN">India</option><option value="AU">Australia</option><option value="DE">Germany</option><option value="XX">Somewhere else</option></select></div>
       </div>
+      <div class="hc-other" id="hcOther" hidden></div>
+      <div class="hc-us" id="hcUS">
+      <p class="sub" style="margin:0 0 14px">COBRA isn't your only option, and often not the cheapest. Medicaid and marketplace help depend on what you'll earn this calendar year, including severance and unemployment. Move the slider to see how your options change.</p>
       <div class="grid2" style="grid-template-columns:minmax(260px,340px) minmax(0,1fr)">
         <div class="panel form" id="health-options">
           <h3>Your 2026 numbers</h3>
@@ -312,6 +324,7 @@ input[type=range]{width:100%;accent-color:var(--teal)}
           <div class="warn"><b>New for 2026</b>The extra marketplace subsidies ended on December 31, 2025, and there's no longer a cap on paying back excess subsidy at tax time. If a lump-sum severance or a quick new job pushes your income up, update your marketplace income right away.</div>
           <div class="warn" style="background:var(--teal-wash)"><b style="color:var(--teal-strong)">The COBRA safety net</b>You have 60 days to elect COBRA, and it covers you back to day one once you pay. Many people pick a marketplace plan and keep COBRA as a backup in case something happens while they decide.</div>
         </div>
+      </div>
       </div>
     </section>
 
@@ -407,11 +420,12 @@ input[type=range]{width:100%;accent-color:var(--teal)}
 
   /* navigation */
   var navBtns=document.querySelectorAll('.nav button');
-  var TARGET={clock:'about-layoff',cover:'health-options'};
+  var TARGET={clock:'about-layoff'};
   function show(v,instant){
     var sec=$('v-'+v); if(!sec)return;
-    var el=$(TARGET[v]||('v-'+v))||sec;
-    var y=el.getBoundingClientRect().top+window.pageYOffset-24;
+    var el=(TARGET[v]&&$(TARGET[v]))||sec.querySelector('.vhead')||sec;
+    var bar=document.querySelector('.tabs-wrap'), off=(bar?bar.offsetHeight:0)+16;
+    var y=el.getBoundingClientRect().top+window.pageYOffset-off;
     window.scrollTo({top:Math.max(0,y),behavior:instant?'auto':'smooth'});
     mark(v); store('view',v);
     if(history.replaceState)history.replaceState(null,'','#'+v);
@@ -551,10 +565,10 @@ input[type=range]{width:100%;accent-color:var(--teal)}
 })();
 </script>
 
-<script src="assets/script.js?v=202611220130"></script>
-<script src="assets/auth.js?v=202611220130"></script>
-  <script src="assets/boards.js?v=202611220130"></script>
-  <script src="assets/jobprefs.js?v=202611220130"></script>
+<script src="assets/script.js?v=202611220132"></script>
+<script src="assets/auth.js?v=202611220132"></script>
+  <script src="assets/boards.js?v=202611220132"></script>
+  <script src="assets/jobprefs.js?v=202611220132"></script>
 <script>
   // Sign-in features on the plan page: save the plan to the account, and record circle/pod interest.
   function lsInterest(tag, reason) {
@@ -670,6 +684,62 @@ input[type=range]{width:100%;accent-color:var(--teal)}
     }
     document.addEventListener('ls:jobprefs', function (e) { showPrefs(e.detail); });
     if (window.LS) { LS.onUser(load); LS.onUser(loadPrefs); }
+  })();
+</script>
+<script>
+  // Health coverage by country: the US keeps the calculator; other countries get what applies there.
+  (function () {
+    var sel = document.getElementById('hcCountry'), us = document.getElementById('hcUS'), other = document.getElementById('hcOther');
+    if (!sel) return;
+    var C = {
+      UK: ['The NHS keeps covering you', [
+        ['Nothing to switch', 'NHS care doesn\u2019t depend on your job, so your GP and hospital care carry on as normal.'],
+        ['Free prescriptions and dental care', 'If you claim certain benefits, such as income-based Jobseeker\u2019s Allowance or Universal Credit within the income limits, you may get free prescriptions, NHS dental treatment and eye tests.', 'https://www.nhs.uk/nhs-services/help-with-health-costs/', 'Check help with health costs'],
+        ['Private medical insurance from work', 'It usually ends with your job. Ask the insurer whether you can carry it on personally, but you don\u2019t need it to stay covered.'],
+      ]],
+      CA: ['Your provincial plan keeps covering you', [
+        ['Provincial health insurance continues', 'Doctor and hospital care through your province or territory doesn\u2019t depend on your job.'],
+        ['Workplace health and dental ends', 'Extended health, drug and dental cover from work usually stops when you leave. Ask HR about converting it to a personal plan right away: the window is often short, commonly 31 to 60 days.'],
+        ['Help with prescriptions', 'Many provinces have drug programmes for people on low incomes. Search your province\u2019s drug plan.'],
+      ]],
+      IN: ['Keep your health insurance going', [
+        ['Your group policy ends with your job', 'Employer group health insurance usually stops on your last day, or soon after.'],
+        ['Move to an individual policy', 'Insurance rules let you migrate from a group policy to an individual one with the same insurer and keep credit for waiting periods you\u2019ve already served. Ask your insurer before your last day.'],
+        ['Government cover', 'If your household is eligible, Ayushman Bharat PM-JAY gives free hospital cover.', 'https://pmjay.gov.in/', 'Check PM-JAY'],
+      ]],
+      AU: ['Medicare keeps covering you', [
+        ['Medicare continues', 'Public health cover through Medicare doesn\u2019t depend on your job.'],
+        ['Private health insurance is optional', 'If you need to pause private hospital cover to save money, you can go up to 1,094 days without it before you risk a Lifetime Health Cover loading later.'],
+        ['Concession card', 'If you get JobSeeker Payment you may get a Health Care Card, which lowers the cost of medicines.', 'https://www.servicesaustralia.gov.au/health-care-card', 'Health Care Card'],
+      ]],
+      DE: ['Your health insurance continues', [
+        ['While you get Arbeitslosengeld', 'The Agentur f\u00fcr Arbeit pays your statutory health insurance contributions. Tell your Krankenkasse you\u2019ve lost your job.'],
+        ['If you don\u2019t get benefits', 'You stay insured, but you may need to pay voluntary contributions yourself. Ask your Krankenkasse what applies to you.'],
+        ['Register quickly', 'Register as job-seeking with the Agentur within 3 days of your notice, so your benefit and cover start on time.', 'https://www.arbeitsagentur.de/arbeitslos-arbeit-finden', 'Agentur f\u00fcr Arbeit'],
+      ]],
+      XX: ['Keep yourself covered', [
+        ['Find out when your cover ends', 'Ask HR the exact date your workplace health cover stops, and whether you can continue it personally.'],
+        ['Check public cover', 'Many countries have public health care or programmes for people who\u2019ve lost work. Look up your health ministry\u2019s website this week.'],
+        ['Don\u2019t let it lapse', 'Gaps in cover can mean waiting periods or higher prices later, so sort this before your last day if you can.'],
+      ]],
+    };
+    function esc(t) { var d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+    function show(v) {
+      try { localStorage.setItem('ls_hc_country', v); } catch (e) {}
+      if (v === 'US' || !C[v]) { us.hidden = false; other.hidden = true; return; }
+      var c = C[v];
+      other.innerHTML = '<div class="panel"><h3>' + esc(c[0]) + '</h3><div class="hc-steps">' + c[1].map(function (s, i) {
+        return '<div class="hc-step"><span class="hc-n">' + (i + 1) + '</span><div><b>' + esc(s[0]) + '</b><p>' + esc(s[1]) + '</p>' + (s[2] ? '<a href="' + s[2] + '" target="_blank" rel="noopener">' + esc(s[3]) + ' &#8599;</a>' : '') + '</div></div>';
+      }).join('') + '</div><p class="small muted" style="margin-top:12px">General information, checked November 2026. Rules change, so confirm with the official source.</p></div>';
+      us.hidden = true; other.hidden = false;
+    }
+    var start = 'US';
+    try {
+      start = localStorage.getItem('ls_hc_country') || (localStorage.getItem('ls_country') || 'US').split(':')[0] || 'US';
+    } catch (e) {}
+    if (!C[start] && start !== 'US') start = 'XX';
+    sel.value = start; show(start);
+    sel.addEventListener('change', function () { show(sel.value); });
   })();
 </script>
 </body></html>
