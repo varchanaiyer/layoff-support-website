@@ -59,6 +59,11 @@ main{padding:32px clamp(16px,4vw,48px) 72px;min-width:0}
 .hc-step p{margin:4px 0 6px;color:var(--ink-2)}
 .hc-step a{color:var(--teal-strong);font-weight:600;text-decoration:none}
 .hc-n{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--teal-wash);color:var(--teal-strong);font-weight:700}
+.panel>.chip{justify-self:start}
+.rc-list{display:grid;gap:12px;margin-top:10px}
+.rc{align-items:start}
+.rc .when{min-width:84px}
+.rc-by{margin:2px 0 4px}
 .view+.view{margin-top:96px;padding-top:72px;border-top:1px solid var(--line)}
 .saved-list{display:grid;gap:10px}
 .saved-row{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
@@ -253,10 +258,10 @@ input[type=range]{width:100%;accent-color:var(--teal)}
         </div>
 
         <div class="panel">
-          <div class="row"><h3>Your circle this week</h3><span class="chip c-lav">Starting soon</span></div>
+          <div class="row"><h3>A circle this week</h3><span class="chip c-lav">Free, online</span></div>
           <div class="circle" style="padding:0">
-            <div class="when">THU<span>6pm PT</span></div>
-            <div><b>H1B / visa holders circle</b><p class="small muted">Zoom, 8 people max, facilitator was laid off too</p></div>
+            <div class="when">TUE<span>9am PT</span></div>
+            <div><b>Layoff &amp; Job Loss Recovery group</b><p class="small muted">Free drop-in on video, led by a licensed psychologist. Not therapy, just people who get it.</p></div>
             <span></span>
           </div>
           <button class="btn ghost" data-go="circles">See all circles</button>
@@ -362,25 +367,60 @@ input[type=range]{width:100%;accent-color:var(--teal)}
       <div class="vhead">
         <span class="eyebrow">Circles</span>
         <h1 class="title">Small rooms with people who get it</h1>
-        <p class="sub">Eight people at most, led by someone who's been laid off too. Come once, or come every week.</p>
+        <p class="sub">Free online groups that are running now, run by nonprofits and professionals we've checked. Turn up once, or every week. You can keep your camera off.</p>
       </div>
-      <div class="grid2">
-        <div class="panel" id="circleList"><h3>This week</h3></div>
-        <div style="display:grid;gap:20px;align-content:start">
-          <div class="panel">
-            <span class="chip c-lav">New</span>
-            <h3>Job-search pods</h3>
-            <p class="small muted">Six people in the same field meet every Monday for 8 weeks. You share targets, swap referrals and run mock interviews with each other. Matched by role and time zone.</p>
-            <div class="field"><label for="podRole">Your field</label><select id="podRole"><option>Engineering</option><option>Product</option><option>Design</option><option>Data</option><option>Marketing</option><option>Ops / People</option></select></div>
-            <button class="btn" id="podBtn">Put me on the next pod</button>
-            <p class="proto" id="podMsg">Free. We'll email you when a pod in your field is ready.</p>
+      <div class="panel" id="circleList">
+        <h3>Groups you can join</h3>
+        <div class="rc-list">
+          <div class="circle rc">
+            <div class="when">TUE<span>9am PT</span></div>
+            <div><b>Layoff &amp; Job Loss Recovery Support Group</b><p class="small muted rc-by">Next Mission Recovery, led by licensed psychologist Dr. Sheila Vidal</p><p class="small">For anyone in the US dealing with a layoff or sudden job loss. A free 75-minute drop-in online, or an 8-week group (Tuesdays 12pm PT). It says clearly that it isn't therapy.</p><p class="small"><b>Cost:</b> Free</p></div>
+            <a class="btn ghost" href="https://www.nextmissionrecovery.com/consultation-and-programs/free-psychoeducation-groups" target="_blank" rel="noopener">Register (dates arrive by email) &#8599;</a>
           </div>
-          <div class="panel">
-            <h3>A few months ahead</h3>
-            <p class="small muted">Once you're past month three, you can sign up to be paired with someone in their first week. People in support groups say helping someone newer helps them too.</p>
-            <button class="btn ghost">Become a guide</button>
+          <div class="circle rc">
+            <div class="when">2ND THU<span>6:30pm ET</span></div>
+            <div><b>Virtual Jobseeker Support Group</b><p class="small muted rc-by">Philadelphia Area Great Careers Group, a nonprofit</p><p class="small">Monthly on Zoom, open to anyone anywhere: elevator-pitch practice, weekly goals and accountability check-ins.</p><p class="small"><b>Cost:</b> Free</p></div>
+            <a class="btn ghost" href="https://www.meetup.com/philadelphia-area-great-careers-group/" target="_blank" rel="noopener">See the next session &#8599;</a>
+          </div>
+          <div class="circle rc">
+            <div class="when">SAT<span>9am ET</span></div>
+            <div><b>Weekly career group (C3G)</b><p class="small muted rc-by">Crossroads Career Network, a Christian ministry</p><p class="small">A weekly Zoom group mixing encouragement with job-search practice. Faith-based: the content is openly Christian.</p><p class="small"><b>Cost:</b> Free</p></div>
+            <a class="btn ghost" href="https://www.crossroadscareer.org/online-groups/" target="_blank" rel="noopener">Join on Saturday &#8599;</a>
+          </div>
+          <div class="circle rc">
+            <div class="when">MON<span>2pm ET</span></div>
+            <div><b>Living with Loss</b><p class="small muted rc-by">Kiva Centers, a peer-support organisation</p><p class="small">A weekly Zoom group for any kind of loss, and it names adjusting to the loss of a job or role. For when a layoff feels like grief.</p><p class="small"><b>Cost:</b> Ask them (email info@kivacenters.org)</p></div>
+            <a class="btn ghost" href="https://kivacenters.org/online-groups/" target="_blank" rel="noopener">Find the Zoom link &#8599;</a>
+          </div>
+          <div class="circle rc">
+            <div class="when">MANY TIMES<span>pick one</span></div>
+            <div><b>Online support groups (DBSA)</b><p class="small muted rc-by">Depression and Bipolar Support Alliance, a national nonprofit</p><p class="small">Free, peer-led video groups if a layoff has brought on low mood or depression. There are groups for young adults, veterans and LGBTQ+ people.</p><p class="small"><b>Cost:</b> Free (close the paid-trial pop-up on ShareWell)</p></div>
+            <a class="btn ghost" href="https://www.dbsalliance.org/support/chapters-and-support-groups/online-support-groups/" target="_blank" rel="noopener">Choose a group &#8599;</a>
+          </div>
+          <div class="circle rc">
+            <div class="when">WEEKLY<span>varies by area</span></div>
+            <div><b>NAMI Connection (online)</b><p class="small muted rc-by">National Alliance on Mental Illness, through local branches</p><p class="small">Free 90-minute peer support groups for adults living with a mental health condition. Many online groups welcome people from anywhere in the country.</p><p class="small"><b>Cost:</b> Free</p></div>
+            <a class="btn ghost" href="https://www.nami.org/support-education/support-groups/nami-connection/" target="_blank" rel="noopener">Find a group &#8599;</a>
+          </div>
+          <div class="circle rc">
+            <div class="when">ANY TIME<span>24/7</span></div>
+            <div><b>Side by Side (UK)</b><p class="small muted rc-by">Mind, the UK mental health charity</p><p class="small">A safe, moderated online community you can post in at any hour.</p><p class="small"><b>Cost:</b> Free</p></div>
+            <a class="btn ghost" href="https://sidebyside.mind.org.uk/" target="_blank" rel="noopener">Join Side by Side &#8599;</a>
+          </div>
+          <div class="circle rc">
+            <div class="when">MONTHLY<span>varies</span></div>
+            <div><b>Lean In Circles</b><p class="small muted rc-by">LeanIn.Org, a nonprofit</p><p class="small">Small peer circles, mostly for women. Many meet online. Join one, or start your own with friends going through the same thing.</p><p class="small"><b>Cost:</b> Free</p></div>
+            <a class="btn ghost" href="https://leanin.org/circles" target="_blank" rel="noopener">Find or start a circle &#8599;</a>
           </div>
         </div>
+        <p class="small muted" style="margin-top:12px">Checked November 2026. Times can change, so confirm on each group's page. These groups are peer support, not therapy. If you're in crisis, call or text 988 (US).</p>
+      </div>
+      <div class="panel">
+        <span class="chip c-lav">Coming soon</span>
+        <h3>Layoff Support circles</h3>
+        <p class="small muted">We're starting our own small circles: up to eight people, led by someone who's been laid off too. Sign in and we'll invite you to the first ones.</p>
+        <button class="btn" id="ourCircle">Invite me</button>
+        <p class="proto" id="ourCircleMsg">Free. We'll email you when the first circles open.</p>
       </div>
     </section>
     <div id="notesList" hidden></div>
@@ -542,10 +582,7 @@ input[type=range]{width:100%;accent-color:var(--teal)}
   });
 
   /* circles (from communities.html) */
-  var C=[['SUN','9am PT','Sunday morning circle',4],['TUE','7:30pm ET','Tuesday evening circle',6],['WED','12pm PT','Parents who were laid off',5],['THU','6pm PT','H1B / visa holders circle',6],['SAT','8pm IST','India / APAC time zone circle',3]];
-  $('circleList').innerHTML+=C.map(function(c,i){var s='';for(var k=0;k<8;k++)s+='<i class="'+(k<c[3]?'':'free')+'"></i>';return '<div class="circle"><div class="when">'+c[0]+'<span>'+c[1]+'</span></div><div><b>'+c[2]+'</b><p class="small muted">Zoom, 8 people at most. Starting soon.</p></div><button class="btn ghost" data-seat="'+i+'">Get an invite</button></div>'}).join('');
-  $('circleList').addEventListener('click',function(e){var b=e.target.closest('[data-seat]');if(!b)return;var c=C[+b.dataset.seat];lsInterest('circle:'+c[2],'Sign in and we\'ll email you an invite when the '+c[2]+' opens.').then(function(){b.textContent='We\'ll invite you';b.disabled=true})});
-  $('podBtn').addEventListener('click',function(){var r=$('podRole').value;lsInterest('pod:'+r,'Sign in and we\'ll match you with the next '+r+' pod.').then(function(){$('podMsg').textContent='You\'re on the list for the next '+r+' pod. We\'ll email you when it\'s matched.'})});
+  $('ourCircle').addEventListener('click',function(){lsInterest('circle:layoff-support','Sign in and we\'ll invite you to the first Layoff Support circles.').then(function(){$('ourCircleMsg').textContent='You\'re on the list. We\'ll email you when the first circles open.';$('ourCircle').disabled=true})});
 
   /* notes */
   var N=[
@@ -565,10 +602,10 @@ input[type=range]{width:100%;accent-color:var(--teal)}
 })();
 </script>
 
-<script src="assets/script.js?v=202611220132"></script>
-<script src="assets/auth.js?v=202611220132"></script>
-  <script src="assets/boards.js?v=202611220132"></script>
-  <script src="assets/jobprefs.js?v=202611220132"></script>
+<script src="assets/script.js?v=202611220134"></script>
+<script src="assets/auth.js?v=202611220134"></script>
+  <script src="assets/boards.js?v=202611220134"></script>
+  <script src="assets/jobprefs.js?v=202611220134"></script>
 <script>
   // Sign-in features on the plan page: save the plan to the account, and record circle/pod interest.
   function lsInterest(tag, reason) {
