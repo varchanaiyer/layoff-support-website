@@ -256,6 +256,8 @@
     openRoom();
   });
   window.Calm = { breathe: openRoom };
+  // Arriving from an email: ?breathe=1 opens the breather straight away
+  try { if (new URLSearchParams(location.search).has('breathe')) setTimeout(openRoom, 700); } catch (e) {}
 
   function init() {
     const st = document.createElement('style');

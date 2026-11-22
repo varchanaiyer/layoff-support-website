@@ -110,4 +110,13 @@
   }
   try { const r = JSON.parse(localStorage.getItem('ls_runway') || 'null'); if (r) { $('rw-save').value = r.save || ''; $('rw-sev').value = r.sev || ''; $('rw-ui').value = r.ui || ''; $('rw-weeks').value = r.weeks || 26; $('rw-cost').value = r.cost || ''; } } catch (e) {}
   $('runway').addEventListener('input', calc); calc();
+  // Arriving from an email answer: tools.html?runway=short#runway-panel
+  const gut = new URLSearchParams(location.search).get('runway');
+  const GUT = { short: 'You said under 3 months. That\u2019s a lot to carry, and you\u2019re doing the right thing by looking. Let\u2019s check it together.', mid: 'You said 3 to 6 months. Let\u2019s see if the numbers agree, and where there\u2019s room to stretch it.', long: 'You said more than 6 months. Good. Let\u2019s confirm it, so you can be choosy about what comes next.' };
+  if (GUT[gut]) {
+    const n = document.createElement('p'); n.className = 'runway__gut'; n.textContent = GUT[gut];
+    n.style.cssText = 'margin:0 0 14px;padding:12px 14px;border-radius:12px;background:#f0fdfa;color:#0f766e;font-weight:600';
+    $('runway-panel').insertBefore(n, $('runway-panel').firstChild);
+  }
+  if (gut !== null || location.hash === '#runway-panel') setTimeout(() => { $('runway-panel').scrollIntoView({ behavior: 'smooth', block: 'start' }); const f = $('rw-save'); if (f && !f.value) f.focus({ preventScroll: true }); }, 500);
 })();

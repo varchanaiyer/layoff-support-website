@@ -561,6 +561,17 @@ input[type=range]{width:100%;accent-color:var(--teal)}
   /* check-in */
   var REPLY={rough:'That makes sense. Rough days are part of this, not a sign you\'re doing it wrong. If it gets heavy, a free listener is one tap away under Talk to someone.',numb:'Numb is really common in the first weeks. You don\'t have to feel anything in particular today. Something small, like a walk, counts.',okay:'Okay is a good day. If you have a little energy, one item from your deadlines would be a nice win.',hopeful:'Good. Hold on to that. On days like this, people often find it\'s a good time to message one old colleague.'};
   document.querySelectorAll('#feel button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('#feel button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});$('feelReply').textContent=REPLY[b.dataset.f]})});
+  /* Arriving from an email check-in: plan.html?feel=rough */
+  (function(){
+    var f=new URLSearchParams(location.search).get('feel'); if(!REPLY[f])return;
+    $('checkin').hidden=false;
+    var b=document.querySelector('#feel button[data-f="'+f+'"]'); if(b)b.click();
+    var n=document.createElement('p'); n.className='small'; n.style.marginTop='12px'; $('checkin').appendChild(n);
+    var extra=f==='rough'?'<a href="therapists.html">Talk to someone now</a>, free. ':'';
+    function nudge(u){ n.innerHTML=extra+(u?'Thanks for checking in. We\'ll ask again on Sunday.':'Want a gentle check-in like this every Sunday? <a href="account.html" data-require-signin="Sign in to get the Sunday Letter and keep your plan.">Sign in free</a> and say yes to the Sunday Letter.'); }
+    nudge(null); if(window.LS&&LS.onUser)LS.onUser(nudge);
+    setTimeout(function(){$('checkin').scrollIntoView({behavior:'smooth',block:'center'})},400);
+  })();
 
   /* coverage */
   var FPL=[15650,21150,26650,32150];
@@ -613,10 +624,10 @@ input[type=range]{width:100%;accent-color:var(--teal)}
 })();
 </script>
 
-<script src="assets/script.js?v=202611220142"></script>
-<script src="assets/auth.js?v=202611220142"></script>
-  <script src="assets/boards.js?v=202611220142"></script>
-  <script src="assets/jobprefs.js?v=202611220142"></script>
+<script src="assets/script.js?v=202611221414"></script>
+<script src="assets/auth.js?v=202611221414"></script>
+  <script src="assets/boards.js?v=202611221414"></script>
+  <script src="assets/jobprefs.js?v=202611221414"></script>
 <script>
   // Sign-in features on the plan page: save the plan to the account, and record circle/pod interest.
   function lsInterest(tag, reason) {
