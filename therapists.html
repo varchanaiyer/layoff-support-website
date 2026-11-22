@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Therapists — Layoff Support</title>
-  <link rel="stylesheet" href="assets/styles.css?v=202611220125" />
+  <link rel="stylesheet" href="assets/styles.css?v=202611220130" />
+  <link rel="stylesheet" href="assets/home.css?v=202611220130" />
 </head>
 <body data-page="therapists">
 
@@ -12,89 +13,150 @@
   <aside id="sidebar" class="dash__side"></aside>
 
   <main class="dash__main">
+
+    <!-- ========= 1. TOPBAR ========= -->
     <div class="dash__topbar">
       <div class="dash__greeting">
-        <h1>Therapists & Counseling</h1>
-        <p>Affordable, layoff-aware support. You don't have to white-knuckle this part alone.</p>
+        <h1>Talk to someone</h1>
+        <p>From free, right now, to low-cost every week. You don't need the right words. You just need to reach out.</p>
       </div>
     </div>
 
+    <!-- ========= 2. HOW ARE YOU RIGHT NOW? ========= -->
+    <p class="tasks-q">What do you need right now?</p>
+    <div class="tasks th-doors">
+      <a class="task" href="#now"><span class="task__icon th-icon--now"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><span>I need to talk to someone now</span></a>
+      <a class="task" href="#regular"><span class="task__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><span>I'd like regular support</span></a>
+      <a class="task" href="#calm"><span class="task__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg></span><span>I just need a little calm today</span></a>
+    </div>
+
+    <!-- ========= 3. RIGHT NOW ========= -->
+    <section class="panel th-now" id="now">
+      <h3>Talk to someone right now</h3>
+      <p class="sub">Free, confidential, and open any time. You don't have to be in danger to call. Feeling overwhelmed is reason enough.</p>
+      <label class="th-where">Where are you?
+        <select id="clSel"><option value="US">United States</option><option value="UK">United Kingdom</option><option value="CA">Canada</option><option value="IN">India</option><option value="AU">Australia</option><option value="DE">Germany</option><option value="XX">Somewhere else</option></select>
+      </label>
+      <div class="th-lines"><div class="cl" data-cl="US" hidden><p><b>988 Suicide &amp; Crisis Lifeline.</b> Call or text <b>988</b>, or chat online. Free, confidential, any time.</p><a class="btn btn--primary btn--sm" href="https://988lifeline.org" target="_blank" rel="noopener">Open 988lifeline.org &#8599;</a></div><div class="cl" data-cl="UK" hidden><p><b>Samaritans.</b> Call <b>116 123</b>, free, any time, day or night.</p><a class="btn btn--primary btn--sm" href="https://www.samaritans.org" target="_blank" rel="noopener">Open samaritans.org &#8599;</a></div><div class="cl" data-cl="CA" hidden><p><b>9-8-8 Suicide Crisis Helpline.</b> Call or text <b>9-8-8</b>, any time.</p><a class="btn btn--primary btn--sm" href="https://988.ca" target="_blank" rel="noopener">Open 988.ca &#8599;</a></div><div class="cl" data-cl="IN" hidden><p><b>Tele MANAS.</b> Call <b>14416</b>, free and any time.</p><a class="btn btn--primary btn--sm" href="https://telemanas.mohfw.gov.in" target="_blank" rel="noopener">Open telemanas.mohfw.gov.in &#8599;</a></div><div class="cl" data-cl="AU" hidden><p><b>Lifeline.</b> Call <b>13 11 14</b>, any time.</p><a class="btn btn--primary btn--sm" href="https://www.lifeline.org.au" target="_blank" rel="noopener">Open lifeline.org.au &#8599;</a></div><div class="cl" data-cl="DE" hidden><p><b>TelefonSeelsorge.</b> Call <b>0800 111 0 111</b>, free and any time.</p><a class="btn btn--primary btn--sm" href="https://www.telefonseelsorge.de" target="_blank" rel="noopener">Open telefonseelsorge.de &#8599;</a></div><div class="cl" data-cl="XX" hidden><p><b>Find A Helpline</b> lists free, confidential helplines in over 130 countries.</p><a class="btn btn--primary btn--sm" href="https://findahelpline.com" target="_blank" rel="noopener">Open findahelpline.com &#8599;</a></div></div>
+      <p class="th-also"><b>Not a crisis, just need to get it off your chest?</b> <a href="https://www.7cups.com/" target="_blank" rel="noopener">7 Cups</a> has free, trained volunteer listeners you can message any time. They're not therapists.</p>
+    </section>
+
+    <!-- ========= 4. REGULAR SUPPORT ========= -->
+    <section class="th-regular" id="regular">
+      <h2 class="tm-extras-title" style="margin-top:8px">Regular support you can afford</h2>
+      <p class="th-intro">Cheapest first. Most people can get at least one of these for free or close to it.</p>
+      <ol class="picks__list">
+        <li class="pick">
+          <div class="pick__rank">1</div>
+          <div class="pick__body">
+            <h3>Your old job's counselling line (EAP)</h3>
+            <p>Many employers' Employee Assistance Programmes keep offering free, confidential counselling sessions for weeks or months after a layoff.</p>
+            <dl class="pick__facts">
+              <div><dt>Cost</dt><dd>Free</dd></div>
+              <div><dt>Good to know</dt><dd>It varies by employer. Check your separation paperwork, or ask HR when your access ends.</dd></div>
+            </dl>
+            <a class="pick__link" href="#eap" >How to ask &rarr;</a>
+          </div>
+        </li>
+        <li class="pick">
+          <div class="pick__rank">2</div>
+          <div class="pick__body">
+            <h3>Medicaid</h3>
+            <p>If your income has dropped, Medicaid may cover regular therapy at little or no cost. You can apply any time.</p>
+            <dl class="pick__facts">
+              <div><dt>Cost</dt><dd>Usually free</dd></div>
+              <div><dt>Good to know</dt><dd>Some states cover few adults without children. Our health page explains the rules.</dd></div>
+            </dl>
+            <a class="pick__link" href="offers.html#health" >Check if you qualify &rarr;</a>
+          </div>
+        </li>
+        <li class="pick">
+          <div class="pick__rank">3</div>
+          <div class="pick__body">
+            <h3>Community health centers</h3>
+            <p>Federally funded clinics, many with counselling. They can't turn you away for not being able to pay.</p>
+            <dl class="pick__facts">
+              <div><dt>Cost</dt><dd>Sliding fee based on income</dd></div>
+              <div><dt>Good to know</dt><dd>Counselling and waiting times vary by clinic, so call first.</dd></div>
+            </dl>
+            <a class="pick__link" href="https://findahealthcenter.hrsa.gov/" target="_blank" rel="noopener" >Find one near you &rarr;</a>
+          </div>
+        </li>
+        <li class="pick">
+          <div class="pick__rank">4</div>
+          <div class="pick__body">
+            <h3>University training clinics</h3>
+            <p>Weekly therapy with trainee therapists supervised by licensed psychologists. Often the cheapest regular therapy around.</p>
+            <dl class="pick__facts">
+              <div><dt>Cost</dt><dd>Sliding scale, for example $24 to $70 a session</dd></div>
+              <div><dt>Good to know</dt><dd>Often waiting lists, and therapists change each academic year.</dd></div>
+            </dl>
+            <a class="pick__link" href="https://www.google.com/search?q=university+psychology+training+clinic+near+me" target="_blank" rel="noopener" >Search near you &rarr;</a>
+          </div>
+        </li>
+        <li class="pick">
+          <div class="pick__rank">5</div>
+          <div class="pick__body">
+            <h3>Open Path Collective</h3>
+            <p>A national network of private therapists who see clients at a reduced rate. Good if you earn too much for a sliding scale.</p>
+            <dl class="pick__facts">
+              <div><dt>Cost</dt><dd>$65 once, then $40 to $70 a session ($30 with a trainee)</dd></div>
+              <div><dt>Good to know</dt><dd>Only pay the $65 once you've found a therapist with space.</dd></div>
+            </dl>
+            <a class="pick__link" href="https://openpathcollective.org/" target="_blank" rel="noopener" >Search Open Path &rarr;</a>
+          </div>
+        </li>
+      </ol>
+      <div class="panel th-eap" id="eap">
+        <h3>How to use your old job's EAP</h3>
+        <p class="sub">Look for "Employee Assistance Program" in your separation paperwork or benefits portal, or email HR: "Can I still use the EAP, and until when?" The counsellors don't tell your employer you called.</p>
+      </div>
+      <div class="panel">
+        <h3>Want a therapist who shares your background?</h3>
+        <p class="sub">These directories help you find one. Each therapist sets their own fee, so ask about a sliding scale.</p>
+        <div class="th-dirs">
+          <a href="https://www.inclusivetherapists.com/" target="_blank" rel="noopener">Inclusive Therapists</a>
+          <a href="https://therapyforblackgirls.com/" target="_blank" rel="noopener">Therapy for Black Girls</a>
+          <a href="https://latinxtherapy.com/" target="_blank" rel="noopener">Latinx Therapy</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= 5. ASK FOR A LOWER FEE ========= -->
     <div class="panel">
-      <h3>Affordable directories</h3>
-      <p class="sub">Sliding-scale and low-cost therapy networks recommended by community members.</p>
-
-      <div class="counseling__grid">
-        <div class="tile">
-          <div class="tile__photo">
-            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80" alt="" onerror="this.parentNode.style.background='linear-gradient(135deg,#FBCFE8,#F9A8D4)'; this.style.display='none'"/>
-          </div>
-          <h3 class="tile__title">Open Path Collective</h3>
-          <p class="tile__desc">$30–$80 per session for members. One-time $65 lifetime membership. Available across the US.</p>
-          <a href="https://openpathcollective.org" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit</a>
-        </div>
-
-        <div class="tile">
-          <div class="tile__photo">
-            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80" alt="" onerror="this.parentNode.style.background='linear-gradient(135deg,#FED7AA,#FDBA74)'; this.style.display='none'"/>
-          </div>
-          <h3 class="tile__title">Calmerry</h3>
-          <p class="tile__desc">Online therapy with licensed counselors. Flexible plans and a "transition" tier for layoff periods.</p>
-          <a href="https://calmerry.com" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit</a>
-        </div>
-
-        <div class="tile">
-          <div class="tile__photo">
-            <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&q=80" alt="" onerror="this.parentNode.style.background='linear-gradient(135deg,#DDD6FE,#A5B4FC)'; this.style.display='none'"/>
-          </div>
-          <h3 class="tile__title">Crowdsourced India List</h3>
-          <p class="tile__desc">A community-curated list of free and low-cost therapists across India, updated monthly.</p>
-          <a href="#" class="btn btn--ghost btn--sm" style="margin-top:12px;">View list</a>
-        </div>
-
-        <div class="tile">
-          <div class="tile__photo">
-            <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&q=80" alt="" onerror="this.parentNode.style.background='linear-gradient(135deg,#BFDBFE,#93C5FD)'; this.style.display='none'"/>
-          </div>
-          <h3 class="tile__title">BetterHelp Financial Aid</h3>
-          <p class="tile__desc">Discounted rates available if you self-report unemployment. Online and async-friendly.</p>
-          <a href="https://betterhelp.com" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit</a>
-        </div>
-
-        <div class="tile">
-          <div class="tile__photo">
-            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&q=80" alt="" onerror="this.parentNode.style.background='linear-gradient(135deg,#A7F3D0,#6EE7B7)'; this.style.display='none'"/>
-          </div>
-          <h3 class="tile__title">7 Cups</h3>
-          <p class="tile__desc">Free emotional support from trained listeners 24/7. Chat-based, anonymous, and no commitment.</p>
-          <a href="https://7cups.com" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit</a>
-        </div>
-
-        <div class="tile">
-          <div class="tile__photo">
-            <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&q=80" alt="" onerror="this.parentNode.style.background='linear-gradient(135deg,#FBCFE8,#FDA4AF)'; this.style.display='none'"/>
-          </div>
-          <h3 class="tile__title">Inclusive Therapists</h3>
-          <p class="tile__desc">Affirming directory for BIPOC, LGBTQIA+, and neurodivergent folks. Sliding scale options.</p>
-          <a href="https://inclusivetherapists.com" target="_blank" rel="noopener" class="btn btn--ghost btn--sm" style="margin-top:12px;">Visit</a>
-        </div>
-      </div>
+      <h3>Asking for a lower fee is normal</h3>
+      <p class="sub">Many therapists keep a few reduced-fee places and won't mention them unless you ask. Copy this, change the amount, and send it.</p>
+      <pre class="tm-prompt" id="feeMsg">Hi, I was recently laid off and I&#x27;m looking for a therapist. Do you offer a sliding scale or reduced fee? I could manage about $[amount] a session. Thank you.</pre>
+      <button type="button" class="btn btn--outline btn--sm" id="copyFee">Copy message</button>
     </div>
 
+    <!-- ========= 6. CALM TODAY ========= -->
+    <section class="panel th-calm" id="calm">
+      <h3>A little calm, right now</h3>
+      <p class="sub">Not every day needs a therapist. Sometimes a minute of slow breathing is the kindest next step.</p>
+      <div class="acct-actions">
+        <button type="button" class="btn btn--primary" data-breathe>Take a one-minute breather</button>
+        <a class="btn btn--outline" href="https://insighttimer.com/" target="_blank" rel="noopener">Free meditations on Insight Timer &#8599;</a>
+      </div>
+    </section>
+
+    <!-- ========= 7. FIRST SESSION ========= -->
     <div class="panel">
       <h3>What to look for in a therapist right now</h3>
-      <p class="sub">Things our community wishes they'd known before their first session.</p>
-      <ul style="padding-left: 20px; color: var(--ink-600); font-size: 14px; line-height: 1.85;">
-        <li><strong style="color: var(--ink-900);">Ask about layoff and grief experience.</strong> Career loss is an identity loss. Not all therapists frame it that way.</li>
-        <li><strong style="color: var(--ink-900);">Sliding scale is normal.</strong> It's okay to ask. Many practitioners hold a few low-cost slots and won't mention them unless you do.</li>
-        <li><strong style="color: var(--ink-900);">COBRA may keep your benefits.</strong> If you're in the US, your old employer's plan can often continue for 18 months — sometimes subsidized.</li>
-        <li><strong style="color: var(--ink-900);">Don't optimize, just start.</strong> The first therapist doesn't need to be the perfect fit. Just one human, this week, beats waiting three.</li>
+      <ul class="th-list">
+        <li><b>Ask about job loss and grief.</b> Losing a job can feel like losing part of who you are. Not every therapist frames it that way.</li>
+        <li><b>Don't wait for the perfect fit.</b> One conversation this week beats searching for three.</li>
+        <li><b>It's okay to switch.</b> If it doesn't feel right after two or three sessions, try someone else.</li>
       </ul>
     </div>
 
-    <div class="panel" style="background: linear-gradient(135deg, var(--teal-50), var(--teal-100)); border-color: var(--teal-200);">
-      <h3>In a crisis right now?</h3>
-      <p class="sub">Please call or text the 988 Suicide & Crisis Lifeline (US), or your local equivalent. You matter, and people are waiting on the other end.</p>
-      <a href="https://988lifeline.org" target="_blank" rel="noopener" class="btn btn--primary">988 Lifeline</a>
+    <!-- ========= 8. SKIP ========= -->
+    <div class="panel skip">
+      <h3>Skip these for now</h3>
+      <ul>
+        <li><b>BetterHelp.</b> About $260 to $400 a month, and the US Federal Trade Commission fined it in 2023 for sharing users' mental-health data with advertisers.</li>
+        <li><b>Subscription therapy apps you can't afford next month.</b> Choose something you can keep going with.</li>
+      </ul>
     </div>
   </main>
 </div>
@@ -147,8 +209,19 @@
     </div>
   </footer>
 
-<script src="assets/script.js?v=202611220125"></script>
-  <script src="assets/auth.js?v=202611220125"></script>
-  <script src="assets/calm.js?v=202611220125"></script>
+<script src="assets/script.js?v=202611220130"></script>
+  <script src="assets/auth.js?v=202611220130"></script>
+  <script src="assets/calm.js?v=202611220130"></script>
+  <script>
+  (function () {
+    var sel = document.getElementById('clSel'); if (!sel) return;
+    var guess = 'US'; try { var c = localStorage.getItem('ls_country') || ''; c = c.split(':')[0]; if (c && document.querySelector('[data-cl="' + c + '"]')) guess = c; else if (c === 'XX') guess = 'XX'; } catch (e) {}
+    function show(v) { document.querySelectorAll('.cl').forEach(function (d) { d.hidden = d.dataset.cl !== v; }); }
+    sel.value = guess; show(guess);
+    sel.addEventListener('change', function () { show(sel.value); });
+    var b = document.getElementById('copyFee');
+    b.addEventListener('click', function () { navigator.clipboard.writeText(document.getElementById('feeMsg').textContent).then(function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy message'; }, 1600); }); });
+  })();
+  </script>
 </body>
 </html>
