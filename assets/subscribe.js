@@ -11,6 +11,13 @@
     set: (k, v, s = localStorage) => { try { s.setItem(k, v); } catch (e) {} },
   };
   const subscribed = () => !!store.get(KEY);
+  // Remember the ad or site that brought this visitor (from ?utm_source= / ?utm_campaign= on the first page they land on)
+  try {
+    const q = new URLSearchParams(location.search), src = q.get('utm_source');
+    if (src && src !== 'email' && !sessionStorage.getItem('ls_came_from')) {
+      sessionStorage.setItem('ls_came_from', (src + (q.get('utm_campaign') ? ':' + q.get('utm_campaign') : '')).slice(0, 80));
+    }
+  } catch (e) {}
   const signedIn = () => !!(window.LS && window.LS.user);
 
   const css = document.createElement('style');
@@ -49,6 +56,8 @@
     if (!LS.db) throw new Error('not ready');
     const row = { email: email.trim().toLowerCase(), source };
     if (interest) row.interest = String(interest).slice(0, 80);
+    const came = store.get('ls_came_from', sessionStorage);
+    if (came) row.came_from = came;
     const { error } = await LS.db.from('subscribers').insert(row);
     if (error && error.code !== '23505') throw error;   // 23505: already subscribed, which is fine
     store.set(KEY, '1');
