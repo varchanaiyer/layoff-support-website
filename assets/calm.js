@@ -2,10 +2,7 @@
    1. A soft colour aura: large, blurred pastel clouds drift very slowly behind each
       section (30–45 second cycles) and lean a few pixels toward the cursor, with heavy
       easing, so the page feels alive but never busy.
-   2. A one-minute breather: any element with [data-breathe] opens a full-screen space
-      with a circle to breathe with (in for 4 seconds, out for 6).
-   "Reduce motion" is respected: the aura stays still, and the breather fades the words
-   instead of moving the circle. */
+   "Reduce motion" is respected: the aura stays still. */
 (function () {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -22,19 +19,7 @@
   const STYLE =
     '.calm-host{position:relative;isolation:isolate}' +
     '.calm-aura{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none}' +
-    '.calm-aura i{position:absolute;display:block;border-radius:50%;will-change:transform}' +
-    '.calm-breathe-link{display:inline-flex;align-items:center;gap:8px;border:0;background:none;padding:0;font:inherit;font-size:14px;font-weight:600;color:#0f766e;cursor:pointer}' +
-    '.calm-breathe-link:hover{text-decoration:underline}' +
-    '.calm-breathe-link svg{flex:none}' +
-    '.calm-room{position:fixed;inset:0;z-index:1200;display:grid;place-items:center;background:radial-gradient(120% 90% at 30% 20%,#e7fbf6 0%,#efeafd 55%,#fdf1e6 100%);opacity:0;transition:opacity .8s ease}' +
-    '.calm-room.is-open{opacity:1}' +
-    '.calm-room[hidden]{display:none}' +
-    '.calm-room__inner{display:grid;justify-items:center;gap:28px;text-align:center;padding:24px;font-family:Inter,system-ui,-apple-system,sans-serif}' +
-    '.calm-room__orb{width:min(56vw,320px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,rgba(255,255,255,.95) 0%,rgba(153,246,228,.9) 35%,rgba(45,212,191,.55) 70%,rgba(45,212,191,.15) 100%);box-shadow:0 0 80px 20px rgba(45,212,191,.25);transform:scale(.62);transition:transform 4s cubic-bezier(.45,0,.55,1)}' +
-    '.calm-room__word{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(30px,5vw,44px);font-weight:600;color:#10302b;min-height:1.2em;margin:0;transition:opacity 1s ease}' +
-    '.calm-room__sub{font-size:15px;color:#4b5f5a;margin:-16px 0 0;max-width:420px;line-height:1.55}' +
-    '.calm-room__done{border:1px solid rgba(15,118,110,.35);background:rgba(255,255,255,.7);color:#0f766e;font:600 15px/1 Inter,system-ui,sans-serif;padding:12px 22px;border-radius:999px;cursor:pointer}' +
-    '.calm-room__done:hover{background:#fff}';
+    '.calm-aura i{position:absolute;display:block;border-radius:50%;will-change:transform}';
 
   // ---------- Aura ----------
   const ptr = { x: 0.5, y: 0.5, sx: 0.5, sy: 0.5 };
@@ -180,84 +165,6 @@
     function run() { if (!running) { running = true; requestAnimationFrame(tick); } }
   }
 
-  // ---------- One-minute breather ----------
-  let room = null, timer = null;
-  function buildRoom() {
-    room = document.createElement('div');
-    room.className = 'calm-room';
-    room.hidden = true;
-    room.setAttribute('role', 'dialog');
-    room.setAttribute('aria-modal', 'true');
-    room.setAttribute('aria-label', 'One-minute breathing exercise');
-    room.innerHTML =
-      '<div class="calm-room__inner">' +
-      '<div class="calm-room__orb" aria-hidden="true"></div>' +
-      '<p class="calm-room__word" aria-live="polite">Get comfortable</p>' +
-      '<p class="calm-room__sub"></p>' +
-      '<button type="button" class="calm-room__done">I\'m done</button>' +
-      '</div>';
-    document.body.appendChild(room);
-    room.querySelector('.calm-room__done').addEventListener('click', closeRoom);
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && room && !room.hidden) closeRoom(); });
-  }
-  function openRoom() {
-    if (!room) buildRoom();
-    const orb = room.querySelector('.calm-room__orb');
-    const word = room.querySelector('.calm-room__word');
-    const sub = room.querySelector('.calm-room__sub');
-    const btn = room.querySelector('.calm-room__done');
-    const IN = 4000, OUT = 6000, ROUNDS = 6;
-    let n = 0;
-    function say(text) {
-      if (reduce) { word.style.opacity = 0; setTimeout(() => { word.textContent = text; word.style.opacity = 1; }, 400); }
-      else word.textContent = text;
-    }
-    function breatheIn() {
-      if (n >= ROUNDS) return finish();
-      n++;
-      say('Breathe in');
-      orb.style.transitionDuration = IN + 'ms';
-      if (!reduce) orb.style.transform = 'scale(1)';
-      timer = setTimeout(breatheOut, IN);
-    }
-    function breatheOut() {
-      say('Breathe out');
-      orb.style.transitionDuration = OUT + 'ms';
-      if (!reduce) orb.style.transform = 'scale(.62)';
-      timer = setTimeout(breatheIn, OUT);
-    }
-    function finish() {
-      say('Well done');
-      sub.textContent = 'Whenever you\'re ready. There\'s no rush.';
-      btn.textContent = 'Back to the page';
-    }
-    clearTimeout(timer);
-    orb.style.transitionDuration = '1200ms';
-    orb.style.transform = 'scale(.62)';
-    word.textContent = 'Get comfortable';
-    sub.textContent = 'Follow the circle. Breathe in as it grows, and out as it softens. Six slow breaths, about a minute.';
-    btn.textContent = 'I\'m done';
-    room.hidden = false;
-    document.body.style.overflow = 'hidden';
-    requestAnimationFrame(() => room.classList.add('is-open'));
-    btn.focus();
-    timer = setTimeout(breatheIn, 2200);
-  }
-  function closeRoom() {
-    clearTimeout(timer);
-    room.classList.remove('is-open');
-    document.body.style.overflow = '';
-    setTimeout(() => { room.hidden = true; }, 600);
-  }
-  document.addEventListener('click', (e) => {
-    const el = e.target.closest('[data-breathe]');
-    if (!el) return;
-    e.preventDefault();
-    openRoom();
-  });
-  window.Calm = { breathe: openRoom };
-  // Arriving from an email: ?breathe=1 opens the breather straight away
-  try { if (new URLSearchParams(location.search).has('breathe')) setTimeout(openRoom, 700); } catch (e) {}
 
   function init() {
     const st = document.createElement('style');
