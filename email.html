@@ -7,8 +7,8 @@
   <meta name="robots" content="noindex" />
   <meta name="description" content="Your email preferences at Layoff Support." />
   <link rel="icon" href="assets/img/logo.avif" />
-  <link rel="stylesheet" href="assets/styles.css?v=202611221414" />
-  <link rel="stylesheet" href="assets/home.css?v=202611221414" />
+  <link rel="stylesheet" href="assets/styles.css?v=202611221426" />
+  <link rel="stylesheet" href="assets/home.css?v=202611221426" />
 </head>
 <body>
 
@@ -42,6 +42,18 @@
         <h1>Done. We won't email you again.</h1>
         <p>No hard feelings, and nothing else changes. Your plan and checklist are still here whenever you want them. If you change your mind, you can turn emails back on from your progress page.</p>
       </div>
+      <div id="emLanded" hidden>
+        <p class="h-eyebrow">You found a job</p>
+        <h1>Congratulations. That's huge.</h1>
+        <p>After everything a layoff puts you through, this deserves more than a quick nod. Take a moment with it. We've stopped the "we're back" emails, so you won't hear about job hunting from us again unless you ask.</p>
+        <div class="em-help">
+          <h2>Would you help someone who's where you were?</h2>
+          <p>Someone is in your old week right now. Fifteen minutes with a person who made it through is worth more to them than any article. Sign in with the same email, and we'll get in touch when someone could use your story. That's all it takes.</p>
+          <a href="email.html?s=landed" class="btn btn--primary" id="emHelpBtn" data-require-signin="Sign in to offer your help. We'll only contact you when someone could use your story.">Yes, I'd like to help</a>
+          <p class="em-thanks" id="emHelpThanks" hidden><b>Thank you.</b> You're on our list of people who've offered to help. We'll be in touch, gently, when someone could use your story.</p>
+          <p class="small muted" style="margin-top:12px">Hiring for your new team? You can post roles for people who've been laid off on the <a href="marketplace.html">Work Board</a>.</p>
+        </div>
+      </div>
       <div id="emNone">
         <p class="h-eyebrow">Your emails</p>
         <h1>Your email settings</h1>
@@ -73,11 +85,25 @@
     .em-card span { color: #64748b; font-size: 14px; line-height: 1.5; }
     .em-signin { padding: 20px; border-radius: 16px; background: #f0fdfa; border: 1px dashed #99f6e4; }
     .em-signin p { margin: 0 0 12px; }
+    .em-help { margin-top: 28px; padding: 24px; border-radius: 18px; background: #f5f3ff; border: 1px solid #ede9fe; }
+    .em-help h2 { margin-top: 0; }
+    .em-thanks { margin: 0; padding: 14px 16px; border-radius: 12px; background: #fff; }
   </style>
   <script>
     (function () {
       var s = new URLSearchParams(location.search).get('s');
-      if (s === 'on' || s === 'off') { document.getElementById('emNone').hidden = true; document.getElementById(s === 'on' ? 'emOn' : 'emOff').hidden = false; }
+      var box = { on: 'emOn', off: 'emOff', landed: 'emLanded' }[s];
+      if (box) { document.getElementById('emNone').hidden = true; document.getElementById(box).hidden = false; }
+      if (s === 'landed') {
+        document.querySelector('.em-next').hidden = true;
+        // Once they're signed in, note that they'd like to help others
+        var mark = function (u) {
+          if (!u) return;
+          LS.db.from('member_profiles').update({ wants_to_help: true }).eq('id', u.id).then(function () {}, function () {});
+          document.getElementById('emHelpBtn').hidden = true; document.getElementById('emHelpThanks').hidden = false;
+        };
+        if (window.LS) LS.onUser(mark); else window.addEventListener('load', function () { if (window.LS) LS.onUser(mark); });
+      }
     })();
   </script>
 
@@ -128,8 +154,8 @@
     </div>
   </footer>
 
-  <script src="assets/script.js?v=202611221414"></script>
-  <script src="assets/auth.js?v=202611221414"></script>
-  <script src="assets/calm.js?v=202611221414"></script>
+  <script src="assets/script.js?v=202611221426"></script>
+  <script src="assets/auth.js?v=202611221426"></script>
+  <script src="assets/calm.js?v=202611221426"></script>
 </body>
 </html>

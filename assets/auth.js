@@ -37,7 +37,7 @@
     if (document.querySelector('link[href*="assets/auth.css"]')) return;
     const l = document.createElement('link');
     l.rel = 'stylesheet';
-    l.href = 'assets/auth.css?v=202611221414';
+    l.href = 'assets/auth.css?v=202611221426';
     document.head.appendChild(l);
   }
 
@@ -63,6 +63,12 @@
     initialized = true;
     readyResolve();
     emit();
+    // Arriving from an email with ?signin=1: open sign-in straight away (if not signed in already)
+    try {
+      if (!user && new URLSearchParams(location.search).has('signin')) {
+        setTimeout(() => requireSignIn('Welcome back. Sign in with the email we wrote to, and we\u2019ll recognise you. No password needed.'), 500);
+      }
+    } catch (e) {}
   }
 
   // Make sure a profile row exists; mark people who were members on the old site.

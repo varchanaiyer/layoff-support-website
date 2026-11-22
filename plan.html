@@ -218,6 +218,7 @@ input[type=range]{width:100%;accent-color:var(--teal)}
   .dash__side.is-open .dash__wrap { display: block; }
   .dash__side-foot { margin-top: 16px !important; }
 }
+.hc-next{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border:1px dashed var(--line);border-radius:14px}.hc-next p{margin:0}
 </style>
 </head><body data-page="plan">
 
@@ -624,10 +625,10 @@ input[type=range]{width:100%;accent-color:var(--teal)}
 })();
 </script>
 
-<script src="assets/script.js?v=202611221414"></script>
-<script src="assets/auth.js?v=202611221414"></script>
-  <script src="assets/boards.js?v=202611221414"></script>
-  <script src="assets/jobprefs.js?v=202611221414"></script>
+<script src="assets/script.js?v=202611221426"></script>
+<script src="assets/auth.js?v=202611221426"></script>
+  <script src="assets/boards.js?v=202611221426"></script>
+  <script src="assets/jobprefs.js?v=202611221426"></script>
 <script>
   // Sign-in features on the plan page: save the plan to the account, and record circle/pod interest.
   function lsInterest(tag, reason) {
@@ -792,13 +793,26 @@ input[type=range]{width:100%;accent-color:var(--teal)}
       }).join('') + '</div><p class="small muted" style="margin-top:12px">General information, checked November 2026. Rules change, so confirm with the official source.</p></div>';
       us.hidden = true; other.hidden = false;
     }
-    var start = 'US';
+    // "Next" after choosing a country, so people move on to their dates
+    var next = document.createElement('div'); next.className = 'hc-next';
+    next.innerHTML = '<p class="small muted" id="hcNextNote"></p><button class="btn" data-go="clock">Next: write down your dates &rarr;</button>';
+    var vc = document.getElementById('v-cover'); vc.appendChild(next);
+    function saveCountry(v) {
+      if (window.LS && LS.user) LS.db.from('member_profiles').update({ country: v }).eq('id', LS.user.id).then(function () {}, function () {});
+    }
+    var start = 'US', fromLink = (new URLSearchParams(location.search).get('country') || '').toUpperCase();
     try {
       start = localStorage.getItem('ls_hc_country') || (localStorage.getItem('ls_country') || 'US').split(':')[0] || 'US';
     } catch (e) {}
+    if (fromLink) start = fromLink;
     if (!C[start] && start !== 'US') start = 'XX';
     sel.value = start; show(start);
-    sel.addEventListener('change', function () { show(sel.value); });
+    if (fromLink) {
+      document.getElementById('hcNextNote').textContent = 'Saved. Next time we write, we\u2019ll only send what applies where you live.';
+      setTimeout(function () { var h = vc.querySelector('.vhead'); if (h) window.scrollTo({ top: h.getBoundingClientRect().top + scrollY - 90, behavior: 'smooth' }); }, 400);
+      if (window.LS) LS.onUser(function (u) { if (u) saveCountry(start); });
+    }
+    sel.addEventListener('change', function () { show(sel.value); saveCountry(sel.value); document.getElementById('hcNextNote').textContent = ''; });
   })();
 </script>
 </body></html>
