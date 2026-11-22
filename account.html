@@ -6,8 +6,8 @@
   <title>Your progress — Layoff Support</title>
   <meta name="robots" content="noindex" />
   <meta name="description" content="Sign in to save your layoff plan, track your checklist and get help that fits your situation." />
-  <link rel="stylesheet" href="assets/styles.css?v=202611222345" />
-  <link rel="stylesheet" href="assets/home.css?v=202611222345" />
+  <link rel="stylesheet" href="assets/styles.css?v=202611230004" />
+  <link rel="stylesheet" href="assets/home.css?v=202611230004" />
 </head>
 <body data-page="account">
 
@@ -172,11 +172,11 @@ Thanks,
     </div>
   </footer>
 
-<script src="assets/script.js?v=202611222345"></script>
-<script src="assets/auth.js?v=202611222345"></script>
-  <script src="assets/boards.js?v=202611222345"></script>
-  <script src="assets/jobprefs.js?v=202611222345"></script>
-  <script src="assets/calm.js?v=202611222345"></script>
+<script src="assets/script.js?v=202611230004"></script>
+<script src="assets/auth.js?v=202611230004"></script>
+  <script src="assets/boards.js?v=202611230004"></script>
+  <script src="assets/jobprefs.js?v=202611230004"></script>
+  <script src="assets/calm.js?v=202611230004"></script>
   <script>
   (function () {
     const NON_EXPANSION = ['AL','FL','GA','KS','MS','SC','TN','TX','WI','WY'];
@@ -229,7 +229,7 @@ Thanks,
     function greet() {
       const p = profile || {};
       $('hello').textContent = p.first_name ? (p.returning_member ? 'Welcome back, ' : 'Hi, ') + p.first_name : 'Welcome';
-      $('hello-sub').textContent = p.returning_member ? 'Founding member. You were here from the start, so new things reach you first.' : 'Here\'s where you are, and what\'s next.';
+      $('hello-sub').textContent = p.returning_member ? 'You\'re one of our original members, so new things reach you first.' : 'Here\'s where you are, and what\'s next.';
     }
 
     $('profileForm').addEventListener('submit', async (e) => {
