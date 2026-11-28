@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Share Layoff Support with someone who was laid off</title>
-  <meta name="description" content="A kind, easy way to send someone a free plan for the weeks after a layoff." />
-  <meta property="og:title" content="Share Layoff Support with someone who was laid off" />
-  <meta property="og:description" content="A kind, easy way to send someone a free plan for the weeks after a layoff." />
+  <title>How to help someone who was laid off · Layoff Support</title>
+  <meta name="description" content="Seven practical ways to help someone after a layoff, and a note you can send them in a minute." />
+  <meta property="og:title" content="How to help someone who was laid off" />
+  <meta property="og:description" content="Seven practical ways to help someone after a layoff, and a note you can send them in a minute." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://layoff.support/share.html" />
   <meta property="og:site_name" content="Layoff Support" />
@@ -17,8 +17,8 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://layoff.support/assets/img/og-image.jpg?v=2" />
   <link rel="icon" href="assets/img/logo.avif" />
-  <link rel="stylesheet" href="assets/styles.css?v=202611281931" />
-  <link rel="stylesheet" href="assets/home.css?v=202611281931" />
+  <link rel="stylesheet" href="assets/styles.css?v=202611281942" />
+  <link rel="stylesheet" href="assets/home.css?v=202611281942" />
 </head>
 <body>
 
@@ -43,12 +43,49 @@
   <main id="main" class="page">
     <div class="container page__narrow sh-page">
       <p class="h-eyebrow">For colleagues and friends</p>
-      <h1>Know someone who's just been laid off?</h1>
-      <p class="sh-lead">You don't have to find the right words. Send them this: a free, calm plan for the weeks after, with their deadlines, health cover for their country, job boards worth their time, and someone to talk to.</p>
+      <h1>Someone you know was laid off?</h1>
+      <p class="sh-lead">Here's what actually helps. Most of it takes less than half an hour, and none of it needs the perfect words.</p>
 
-      <div class="sh-card">
-        <p class="sh-label">The message they'll get</p>
-        <p class="sh-msg" id="shareMsg">I'm so sorry about the layoff. I came across this and thought it might help: a free plan for the weeks after, with deadlines, health cover and people to talk to. No pressure, just in case: https://layoff.support/?utm_source=share&amp;utm_campaign=colleague</p>
+      <figure class="sh-photo">
+        <img src="assets/img/share-help-up.jpg" width="1320" height="600" alt="One person reaching down from a rock to pull another person up" loading="eager">
+      </figure>
+
+      <h2 class="sh-h2">Seven things that help</h2>
+      <ol class="sh-tips">
+        <li><b>Write their LinkedIn recommendation now.</b> Don't wait to be asked. Two or three sentences about one piece of work you saw them do is plenty. It sits on their profile while recruiters are looking. <span class="sh-how">Their profile → More → Recommend.</span></li>
+        <li><b>Send them their numbers.</b> Once the laptop's gone, so is the record of what they achieved. If you remember a result (the launch they ran, the backlog they cleared, the customer they kept), message it to them for their CV. Numbers and memories only, never company files.</li>
+        <li><b>Make one introduction.</b> Ask where they'd like to work next. Search each company on LinkedIn, filter people by your 1st connections, and ask that person first whether they'd take a 15-minute call. One warm intro beats ten job links.</li>
+        <li><b>Refer them where you work.</b> If there's a role that fits, an employee referral usually means a person reads the CV. Ask your recruiter how to submit one, and tell them you have.</li>
+        <li><b>Offer one specific thing, with a day.</b> An open offer of help leaves them to work out what to ask for. Offer a practice interview on Thursday, or lunch next week, and make it easy to say no.</li>
+        <li><b>Check in at week three.</b> Most messages arrive in the first few days, then stop, right when the job search gets long. <button type="button" class="sh-inline" id="shCal">Add a reminder to my calendar</button></li>
+        <li><b>Keep inviting them.</b> To the lunch, the drinks, the group chat. Losing work friends is part of losing a job; it doesn't have to be.</li>
+      </ol>
+
+      <div class="sh-skip">
+        <b>Better to skip</b>
+        <ul>
+          <li>Asking what happened, especially in a group. They'll tell you if they want to.</li>
+          <li>A stack of job links with no context. One role you know something about is worth more.</li>
+          <li>Looking for the silver lining. Leave that for them to find, if they want to.</li>
+        </ul>
+      </div>
+
+      <div class="sh-card" id="message">
+        <h2 class="sh-h2">Send them a note</h2>
+        <p class="sh-sub">Tick what you can offer and the message writes itself. Edit anything; it's yours.</p>
+        <div class="sh-fields">
+          <label>Their first name <input id="shName" type="text" autocomplete="off" placeholder="Sam"></label>
+          <label>Your name <input id="shFrom" type="text" autocomplete="off" placeholder="optional"></label>
+        </div>
+        <fieldset class="sh-offers">
+          <legend>I can…</legend>
+          <label><input type="checkbox" value="write you a LinkedIn recommendation" checked> write a LinkedIn recommendation</label>
+          <label><input type="checkbox" value="introduce you to a few people I know"> make an introduction</label>
+          <label><input type="checkbox" value="be a reference"> be a reference</label>
+          <label><input type="checkbox" value="do a practice interview with you"> do a practice interview</label>
+          <label><input type="checkbox" value="buy you lunch"> buy them lunch</label>
+        </fieldset>
+        <textarea class="sh-msg" id="shareMsg" rows="10" aria-label="Your message"></textarea>
         <div class="sh-actions">
           <button type="button" class="btn btn--primary" id="shCopy">Copy message</button>
           <a class="btn btn--outline" id="shEmail" href="#">Email it</a>
@@ -56,7 +93,7 @@
           <a class="btn btn--outline" id="shText" href="#">Text message</a>
           <a class="btn btn--outline" id="shLinkedIn" href="#" target="_blank" rel="noopener">LinkedIn</a>
         </div>
-        <p class="sh-done" id="shDone" hidden>Copied. Paste it wherever you talk to them.</p>
+        <p class="sh-done" id="shDone" hidden>Copied. Paste it wherever you usually talk to them.</p>
       </div>
 
       <div class="sh-also">
@@ -68,9 +105,27 @@
 
   <style>
     .sh-lead { font-size: 18px; line-height: 1.6; color: #334155; }
-    .sh-card { margin: 24px 0 30px; padding: 24px; border-radius: 20px; background: linear-gradient(135deg, #f0fdfa, #f5f3ff); border: 1px solid #e2e8f0; }
-    .sh-label { margin: 0 0 8px; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #0f766e; }
-    .sh-msg { margin: 0 0 18px; padding: 16px 18px; border-radius: 14px; background: #fff; font-size: 16px; line-height: 1.6; color: #0f172a; }
+    .sh-photo { margin: 22px 0 30px; }
+    .sh-photo img { display: block; width: 100%; height: auto; aspect-ratio: 1320 / 600; object-fit: cover; border-radius: 22px; }
+    .sh-h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 32px; line-height: 1.1; margin: 0 0 14px; color: #0f172a; }
+    .sh-tips { margin: 0 0 26px; padding: 0; list-style: none; counter-reset: tip; display: grid; gap: 14px; }
+    .sh-tips li { counter-increment: tip; position: relative; padding: 16px 18px 16px 58px; border-radius: 16px; background: #fff; border: 1px solid #e2e8f0; font-size: 16px; line-height: 1.6; color: #334155; }
+    .sh-tips li::before { content: counter(tip); position: absolute; left: 16px; top: 15px; width: 28px; height: 28px; border-radius: 50%; background: #ccfbf1; color: #0f766e; font-weight: 700; display: grid; place-items: center; font-size: 14px; }
+    .sh-tips b { color: #0f172a; }
+    .sh-how { display: block; margin-top: 4px; font-size: 14px; color: #0f766e; }
+    .sh-inline { display: inline-block; margin-top: 8px; font: inherit; font-size: 14px; font-weight: 600; color: #0f766e; background: #f0fdfa; border: 1px solid #99f6e4; border-radius: 999px; padding: 6px 14px; cursor: pointer; }
+    .sh-skip { margin: 0 0 30px; padding: 18px 20px; border-radius: 16px; background: #fff7ed; border: 1px solid #fed7aa; color: #431407; }
+    .sh-skip ul { margin: 8px 0 0; padding-left: 20px; display: grid; gap: 6px; line-height: 1.5; }
+    .sh-card { margin: 0 0 30px; padding: 24px; border-radius: 20px; background: linear-gradient(135deg, #f0fdfa, #f5f3ff); border: 1px solid #e2e8f0; }
+    .sh-sub { margin: -6px 0 16px; color: #475569; }
+    .sh-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 12px; margin-bottom: 14px; }
+    .sh-fields label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; color: #0f172a; }
+    .sh-fields input { font: inherit; font-weight: 400; padding: 10px 12px; border-radius: 10px; border: 1px solid #cbd5e1; background: #fff; }
+    .sh-offers { border: 0; margin: 0 0 14px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .sh-offers legend { font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 8px; }
+    .sh-offers label { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: #fff; border: 1px solid #cbd5e1; font-size: 14px; cursor: pointer; }
+    .sh-offers label:has(input:checked) { border-color: #0f766e; background: #f0fdfa; }
+    .sh-msg { display: block; width: 100%; margin: 0 0 16px; padding: 16px 18px; border-radius: 14px; border: 1px solid #e2e8f0; background: #fff; font: inherit; font-size: 16px; line-height: 1.6; color: #0f172a; resize: vertical; }
     .sh-actions { display: flex; flex-wrap: wrap; gap: 10px; }
     .sh-done { margin: 12px 0 0; color: #0f766e; font-weight: 600; }
     .sh-also { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 12px; }
@@ -79,14 +134,46 @@
   </style>
   <script>
     (function () {
-      var msg = document.getElementById('shareMsg').textContent.trim();
       var url = 'https://layoff.support/?utm_source=share&utm_campaign=colleague';
-      document.getElementById('shEmail').href = 'mailto:?subject=' + encodeURIComponent('Thinking of you') + '&body=' + encodeURIComponent(msg);
-      document.getElementById('shWhatsApp').href = 'https://wa.me/?text=' + encodeURIComponent(msg);
-      document.getElementById('shText').href = 'sms:?&body=' + encodeURIComponent(msg);
-      document.getElementById('shLinkedIn').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url);
+      var box = document.getElementById('shareMsg'), edited = false;
+      var nameEl = document.getElementById('shName'), fromEl = document.getElementById('shFrom');
+      function list(a) { return a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' or ' + a[a.length - 1]; }
+      function build() {
+        var n = nameEl.value.trim(), f = fromEl.value.trim();
+        var offers = Array.prototype.map.call(document.querySelectorAll('.sh-offers input:checked'), function (i) { return i.value; });
+        var t = 'Hi' + (n ? ' ' + n : '') + ', I just heard about the layoff. I\'m sorry, that\'s rough.\n\n';
+        if (offers.length) t += 'If it\'s useful, I\'d be glad to ' + list(offers) + '. Just say the word.\n\n';
+        t += 'I also found this site that lays out the deadlines and health insurance side of things after a layoff. Might save you some digging: ' + url + '\n\nNo need to reply.' + (f ? '\n' + f : '');
+        return t;
+      }
+      function sync() {
+        var m = box.value;
+        document.getElementById('shEmail').href = 'mailto:?subject=' + encodeURIComponent('Thinking of you') + '&body=' + encodeURIComponent(m);
+        document.getElementById('shWhatsApp').href = 'https://wa.me/?text=' + encodeURIComponent(m);
+        document.getElementById('shText').href = 'sms:?&body=' + encodeURIComponent(m);
+        document.getElementById('shLinkedIn').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url);
+      }
+      function refresh() { if (!edited) box.value = build(); sync(); }
+      box.addEventListener('input', function () { edited = true; sync(); });
+      [nameEl, fromEl].forEach(function (el) { el.addEventListener('input', refresh); });
+      document.querySelectorAll('.sh-offers input').forEach(function (el) { el.addEventListener('change', function () { edited = false; refresh(); }); });
+      refresh();
       document.getElementById('shCopy').addEventListener('click', async function () {
-        try { await navigator.clipboard.writeText(msg); document.getElementById('shDone').hidden = false; } catch (e) {}
+        try { await navigator.clipboard.writeText(box.value); } catch (e) { box.select(); document.execCommand('copy'); }
+        document.getElementById('shDone').hidden = false;
+      });
+      document.getElementById('shCal').addEventListener('click', function () {
+        var n = nameEl.value.trim() || 'them';
+        var d = new Date(); d.setDate(d.getDate() + 21);
+        var p = function (x) { return String(x).padStart(2, '0'); };
+        var day = d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate());
+        var e = new Date(d); e.setDate(e.getDate() + 1);
+        var end = e.getFullYear() + p(e.getMonth() + 1) + p(e.getDate());
+        var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Layoff Support//EN', 'BEGIN:VEVENT', 'UID:' + Date.now() + '@layoff.support',
+          'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z', 'DTSTART;VALUE=DATE:' + day, 'DTEND;VALUE=DATE:' + end,
+          'SUMMARY:Check in with ' + n, 'DESCRIPTION:Three weeks since the layoff. A short message, a coffee, or an intro.', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+        var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([ics], {type: 'text/calendar'})); a.download = 'check-in-reminder.ics';
+        document.body.appendChild(a); a.click(); a.remove();
       });
     })();
   </script>
@@ -137,9 +224,9 @@
     </div>
   </footer>
 
-  <script src="assets/script.js?v=202611281931"></script>
-  <script src="assets/subscribe.js?v=202611281931"></script>
-  <script src="assets/auth.js?v=202611281931"></script>
-  <script src="assets/calm.js?v=202611281931"></script>
+  <script src="assets/script.js?v=202611281942"></script>
+  <script src="assets/subscribe.js?v=202611281942"></script>
+  <script src="assets/auth.js?v=202611281942"></script>
+  <script src="assets/calm.js?v=202611281942"></script>
 </body>
 </html>
