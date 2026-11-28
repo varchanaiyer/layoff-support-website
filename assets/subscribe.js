@@ -97,7 +97,7 @@
     document.querySelectorAll('.ls-sub[data-source]').forEach((el) => {
       if (el.dataset.ready) return; el.dataset.ready = '1';
       const src = el.dataset.source;
-      const interest = src === 'jobs' ? () => ((location.hash || '').replace(/^#for-/, '') || '') : '';
+      const interest = el.dataset.interest || (src === 'jobs' ? () => ((location.hash || '').replace(/^#for-/, '') || '') : '');
       el.innerHTML = (el.dataset.title ? '<p class="ls-sub__title">' + esc(el.dataset.title) + '</p>' : '') +
         '<p class="ls-sub__text">' + esc(el.dataset.text || '') + '</p>';
       el.appendChild(form(src, el.dataset.button || 'Send me the letters', interest));
