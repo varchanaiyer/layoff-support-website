@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Become a mentor — Layoff Support</title>
+  <meta name="description" content="Help someone through the weeks after a layoff. Free, and as little as 15 minutes a month." />
+  <link rel="icon" href="assets/img/logo.avif" />
+  <link rel="stylesheet" href="assets/styles.css?v=202611281613" />
+  <link rel="stylesheet" href="assets/home.css?v=202611281613" />
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="logo" aria-label="Layoff Support home">
+        <span class="logo__mark" aria-hidden="true"><img src="assets/img/logo.avif" alt="" /></span>
+        <span class="logo__text"><span>layoff</span><span>support</span></span>
+      </a>
+      <button class="site-nav__toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <a href="plan.html">Your plan</a>
+        <a href="offers.html">Get help</a>
+        <a href="jobs.html">Find work</a>
+        <a href="marketplace.html" class="btn btn--primary btn--sm site-nav__cta">Work Board</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <div class="container page__narrow mt-page">
+      <p class="h-eyebrow">Become a mentor</p>
+      <h1>Be the person you needed after a layoff</h1>
+      <p class="mt-lead">People come to Layoff Support in one of the hardest weeks of their working life. Fifteen minutes with someone who's been there, or who hires for a living, can change how that week goes.</p>
+
+      <div class="mt-ask">
+        <div><b>What we ask</b><span>As little as one 15-minute video call a month, at times that suit you.</span></div>
+        <div><b>Who it's for</b><span>Career coaches, recruiters, hiring managers, and anyone who's been through a layoff and come out the other side.</span></div>
+        <div><b>What it costs</b><span>Nothing, for you or for them. Mentoring here is free.</span></div>
+      </div>
+
+      <form class="mt-form" id="mentorForm" novalidate>
+        <h2>Tell us a little about you</h2>
+        <div class="mt-row">
+          <label>Your name <input name="name" autocomplete="name" required maxlength="120"></label>
+          <label>Email <input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+        </div>
+        <label>LinkedIn profile <span class="mt-opt">(optional)</span> <input name="linkedin" type="url" placeholder="https://www.linkedin.com/in/…" maxlength="300"></label>
+        <label>Your role today <input name="role" placeholder="e.g. Career coach, Engineering manager, Recruiter" maxlength="120" required></label>
+        <fieldset>
+          <legend>What could you help with?</legend>
+          <div class="mt-chips">
+            <label><input type="checkbox" name="help" value="resume"> Resumes and LinkedIn</label>
+            <label><input type="checkbox" name="help" value="interviews"> Interview practice</label>
+            <label><input type="checkbox" name="help" value="career-change"> Changing careers</label>
+            <label><input type="checkbox" name="help" value="negotiation"> Severance and offers</label>
+            <label><input type="checkbox" name="help" value="job-search"> Job search strategy</label>
+            <label><input type="checkbox" name="help" value="listening"> Just listening</label>
+          </div>
+        </fieldset>
+        <div class="mt-row">
+          <label>How much time, roughly?
+            <select name="time"><option value="15-month">15 minutes a month</option><option value="1h-month">About an hour a month</option><option value="more">More than that</option></select>
+          </label>
+          <label>Where are you? <input name="location" placeholder="City or country" maxlength="120"></label>
+        </div>
+        <label class="mt-check"><input type="checkbox" name="laid_off" value="yes"> I've been through a layoff myself</label>
+        <button type="submit" class="btn btn--primary">Sign me up as a mentor</button>
+        <p class="mt-fine">We'll email you before anything else happens, and only introduce you to someone when you say yes. <a href="privacy.html">Privacy</a></p>
+        <p class="mt-err" role="alert" hidden></p>
+      </form>
+      <div class="mt-done" id="mentorDone" hidden>
+        <h2>Thank you. Truly.</h2>
+        <p>We'll be in touch by email soon with how it works and your first introduction. If you know someone who's been laid off, <a href="share.html">here's an easy way to send them our way</a>.</p>
+      </div>
+    </div>
+  </main>
+
+  <style>
+    .mt-page h1 { margin-bottom: 12px; }
+    .mt-lead { font-size: 18px; line-height: 1.6; color: #334155; }
+    .mt-ask { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 12px; margin: 26px 0 34px; }
+    .mt-ask div { display: grid; gap: 4px; padding: 18px; border-radius: 16px; background: #f0fdfa; border: 1px solid #ccfbf1; }
+    .mt-ask b { color: #0f172a; } .mt-ask span { color: #475569; font-size: 15px; line-height: 1.5; }
+    .mt-form { display: grid; gap: 16px; padding: 26px; border-radius: 20px; border: 1px solid #e2e8f0; background: #fff; }
+    .mt-form h2 { margin: 0; }
+    .mt-form label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; color: #334155; }
+    .mt-form input:not([type=checkbox]), .mt-form select { font: inherit; font-weight: 400; font-size: 15px; padding: 11px 14px; border: 1px solid #cbd5e1; border-radius: 12px; background: #fff; min-width: 0; }
+    .mt-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 16px; }
+    .mt-form fieldset { border: 0; padding: 0; margin: 0; }
+    .mt-form legend { font-size: 14px; font-weight: 600; color: #334155; margin-bottom: 8px; }
+    .mt-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .mt-chips label, .mt-check { display: inline-flex !important; align-items: center; gap: 8px; font-weight: 500 !important; padding: 8px 14px; border: 1px solid #e2e8f0; border-radius: 999px; cursor: pointer; }
+    .mt-check { border: 0; padding: 0; }
+    .mt-opt { font-weight: 400; color: #64748b; }
+    .mt-fine { margin: 0; font-size: 13px; color: #64748b; }
+    .mt-err { margin: 0; color: #be123c; font-size: 14px; }
+    .mt-done { padding: 26px; border-radius: 20px; background: #f0fdfa; border: 1px solid #ccfbf1; }
+  </style>
+  <script>
+    (function () {
+      var form = document.getElementById('mentorForm'), err = form.querySelector('.mt-err');
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        var f = new FormData(form);
+        var email = String(f.get('email') || '').trim().toLowerCase(), name = String(f.get('name') || '').trim(), role = String(f.get('role') || '').trim();
+        if (!name || !role || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { err.textContent = 'Please add your name, your role and a valid email.'; err.hidden = false; return; }
+        var linkedin = String(f.get('linkedin') || '').trim();
+        if (linkedin && !/^https:\/\/([a-z]+\.)?linkedin\.com\//i.test(linkedin)) linkedin = '';
+        var came = null; try { came = sessionStorage.getItem('ls_came_from'); } catch (x) {}
+        var row = { email: email, name: name.slice(0, 120), role: role.slice(0, 120), linkedin: linkedin || null,
+          help: f.getAll('help').map(String).slice(0, 6), time: String(f.get('time') || ''), location: String(f.get('location') || '').slice(0, 120) || null,
+          laid_off: f.get('laid_off') === 'yes', came_from: came };
+        err.hidden = true; form.querySelector('button').disabled = true;
+        try {
+          await window.LS.ready;
+          var res = await window.LS.db.from('mentor_signups').insert(row);
+          if (res.error && res.error.code !== '23505') throw res.error;
+          form.hidden = true; document.getElementById('mentorDone').hidden = false;
+        } catch (x) {
+          form.querySelector('button').disabled = false;
+          err.textContent = 'Something went wrong. Please try again, or email contact@laidoff.support.'; err.hidden = false;
+        }
+      });
+    })();
+  </script>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__cols">
+        <div class="footer__col">
+          <h4 class="footer__heading">Get through it</h4>
+          <ul class="footer__list">
+            <li><a href="plan.html">Your deadlines and plan</a></li>
+            <li><a href="offers.html">Our picks: best low-cost help</a></li>
+            <li><a href="plan.html#cover">Health coverage</a></li>
+            <li><a href="therapists.html">Affordable therapy</a></li>
+            <li><a href="mentors.html">Find a mentor</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">Find work</h4>
+          <ul class="footer__list">
+            <li><a href="marketplace.html">Work Board: jobs and gigs</a></li>
+            <li><a href="jobs.html">Job boards</a></li>
+            <li><a href="tools.html">Job search tools</a></li>
+            <li><a href="communities.html">Communities</a></li>
+            <li><a href="blog.html">Stories</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">In crisis right now?</h4>
+          <p class="footer__msg">In the US, call or text 988. Free, 24/7 and confidential. Elsewhere, call your local emergency number.</p>
+          <h4 class="footer__heading footer__heading--mt">About</h4>
+          <ul class="footer__list">
+            <li><a href="share.html">Share with someone laid off</a></li>
+            <li><a href="mentor.html">Become a mentor</a></li>
+            <li><a href="privacy.html">Privacy policy</a></li>
+            <li><a href="marketplace.html">Work Board</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; <span data-year>2026</span> Layoff Support, a Data and AI Consulting project. General information, not legal, medical or financial advice.</p>
+        <a href="index.html" class="logo footer__logo" aria-label="Layoff Support home">
+          <span class="logo__mark" aria-hidden="true"><img src="assets/img/logo.avif" alt="" /></span>
+          <span class="logo__text"><span>layoff</span><span>support</span></span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/script.js?v=202611281613"></script>
+  <script src="assets/subscribe.js?v=202611281613"></script>
+  <script src="assets/auth.js?v=202611281613"></script>
+  <script src="assets/calm.js?v=202611281613"></script>
+</body>
+</html>

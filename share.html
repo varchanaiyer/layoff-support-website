@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Share Layoff Support with someone who was laid off</title>
+  <meta name="description" content="A kind, easy way to send someone a free plan for the weeks after a layoff." />
+  <link rel="icon" href="assets/img/logo.avif" />
+  <link rel="stylesheet" href="assets/styles.css?v=202611281613" />
+  <link rel="stylesheet" href="assets/home.css?v=202611281613" />
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="logo" aria-label="Layoff Support home">
+        <span class="logo__mark" aria-hidden="true"><img src="assets/img/logo.avif" alt="" /></span>
+        <span class="logo__text"><span>layoff</span><span>support</span></span>
+      </a>
+      <button class="site-nav__toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <a href="plan.html">Your plan</a>
+        <a href="offers.html">Get help</a>
+        <a href="jobs.html">Find work</a>
+        <a href="marketplace.html" class="btn btn--primary btn--sm site-nav__cta">Work Board</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <div class="container page__narrow sh-page">
+      <p class="h-eyebrow">For colleagues and friends</p>
+      <h1>Know someone who's just been laid off?</h1>
+      <p class="sh-lead">You don't have to find the right words. Send them this: a free, calm plan for the weeks after, with their deadlines, health cover for their country, job boards worth their time, and someone to talk to.</p>
+
+      <div class="sh-card">
+        <p class="sh-label">The message they'll get</p>
+        <p class="sh-msg" id="shareMsg">I'm so sorry about the layoff. I came across this and thought it might help: a free plan for the weeks after, with deadlines, health cover and people to talk to. No pressure, just in case: https://layoff.support/?utm_source=share&amp;utm_campaign=colleague</p>
+        <div class="sh-actions">
+          <button type="button" class="btn btn--primary" id="shCopy">Copy message</button>
+          <a class="btn btn--outline" id="shEmail" href="#">Email it</a>
+          <a class="btn btn--outline" id="shWhatsApp" href="#" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn btn--outline" id="shText" href="#">Text message</a>
+          <a class="btn btn--outline" id="shLinkedIn" href="#" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <p class="sh-done" id="shDone" hidden>Copied. Paste it wherever you talk to them.</p>
+      </div>
+
+      <div class="sh-also">
+        <div><b>Were you affected yourself?</b><span>Start with your plan. It takes two minutes, and there's no account needed.</span><a href="plan.html">Open my plan &rarr;</a></div>
+        <div><b>Made it through a layoff?</b><span>Help someone else through theirs, as little as 15 minutes a month.</span><a href="mentor.html">Become a mentor &rarr;</a></div>
+      </div>
+    </div>
+  </main>
+
+  <style>
+    .sh-lead { font-size: 18px; line-height: 1.6; color: #334155; }
+    .sh-card { margin: 24px 0 30px; padding: 24px; border-radius: 20px; background: linear-gradient(135deg, #f0fdfa, #f5f3ff); border: 1px solid #e2e8f0; }
+    .sh-label { margin: 0 0 8px; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #0f766e; }
+    .sh-msg { margin: 0 0 18px; padding: 16px 18px; border-radius: 14px; background: #fff; font-size: 16px; line-height: 1.6; color: #0f172a; }
+    .sh-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .sh-done { margin: 12px 0 0; color: #0f766e; font-weight: 600; }
+    .sh-also { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 12px; }
+    .sh-also div { display: grid; gap: 6px; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0; background: #fff; }
+    .sh-also b { color: #0f172a; } .sh-also span { color: #475569; font-size: 15px; line-height: 1.5; } .sh-also a { color: #0f766e; font-weight: 600; text-decoration: none; }
+  </style>
+  <script>
+    (function () {
+      var msg = document.getElementById('shareMsg').textContent.trim();
+      var url = 'https://layoff.support/?utm_source=share&utm_campaign=colleague';
+      document.getElementById('shEmail').href = 'mailto:?subject=' + encodeURIComponent('Thinking of you') + '&body=' + encodeURIComponent(msg);
+      document.getElementById('shWhatsApp').href = 'https://wa.me/?text=' + encodeURIComponent(msg);
+      document.getElementById('shText').href = 'sms:?&body=' + encodeURIComponent(msg);
+      document.getElementById('shLinkedIn').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url);
+      document.getElementById('shCopy').addEventListener('click', async function () {
+        try { await navigator.clipboard.writeText(msg); document.getElementById('shDone').hidden = false; } catch (e) {}
+      });
+    })();
+  </script>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__cols">
+        <div class="footer__col">
+          <h4 class="footer__heading">Get through it</h4>
+          <ul class="footer__list">
+            <li><a href="plan.html">Your deadlines and plan</a></li>
+            <li><a href="offers.html">Our picks: best low-cost help</a></li>
+            <li><a href="plan.html#cover">Health coverage</a></li>
+            <li><a href="therapists.html">Affordable therapy</a></li>
+            <li><a href="mentors.html">Find a mentor</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">Find work</h4>
+          <ul class="footer__list">
+            <li><a href="marketplace.html">Work Board: jobs and gigs</a></li>
+            <li><a href="jobs.html">Job boards</a></li>
+            <li><a href="tools.html">Job search tools</a></li>
+            <li><a href="communities.html">Communities</a></li>
+            <li><a href="blog.html">Stories</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__heading">In crisis right now?</h4>
+          <p class="footer__msg">In the US, call or text 988. Free, 24/7 and confidential. Elsewhere, call your local emergency number.</p>
+          <h4 class="footer__heading footer__heading--mt">About</h4>
+          <ul class="footer__list">
+            <li><a href="privacy.html">Privacy policy</a></li>
+            <li><a href="marketplace.html">Work Board</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">&copy; <span data-year>2026</span> Layoff Support, a Data and AI Consulting project. General information, not legal, medical or financial advice.</p>
+        <a href="index.html" class="logo footer__logo" aria-label="Layoff Support home">
+          <span class="logo__mark" aria-hidden="true"><img src="assets/img/logo.avif" alt="" /></span>
+          <span class="logo__text"><span>layoff</span><span>support</span></span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/script.js?v=202611281613"></script>
+  <script src="assets/subscribe.js?v=202611281613"></script>
+  <script src="assets/auth.js?v=202611281613"></script>
+  <script src="assets/calm.js?v=202611281613"></script>
+</body>
+</html>
